@@ -1,1 +1,13 @@
+.profile-info{
+  grid-column: 2/3;
+  display: grid;
+  
+ grid-template-columns: max-content min-content;
+}
 
+@media screen and (max-width: 707px) {
+  .profile-info{
+align-items: center;
+flex-wrap: wrap;
+  }
+}

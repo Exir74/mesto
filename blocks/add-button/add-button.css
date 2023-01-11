@@ -1,0 +1,10 @@
+.add-button{
+  margin: 0;
+  padding: 0;
+  grid-column: 3/4;
+  background-color: #000;
+  border: none;
+  max-width: 150px;
+  max-height: 50px;
+  align-self: center;
+}
