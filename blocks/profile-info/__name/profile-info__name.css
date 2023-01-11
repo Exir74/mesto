@@ -11,6 +11,7 @@ align-self: end ;
 
 @media screen and (max-width: 707px) {
   .profile-info__name{
+  grid-column: 2/3;
 font-weight: 500;
 font-size: 27px;
 line-height: 33px;

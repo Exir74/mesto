@@ -4,7 +4,14 @@
   grid-column: 3/4;
   background-color: #000;
   border: none;
-  max-width: 150px;
-  max-height: 50px;
+
   align-self: center;
+  
+}
+
+@media screen and (max-width: 708px) {
+  .add-button{
+     margin: 36px 0 0 0;
+    }
+  
 }

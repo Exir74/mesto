@@ -13,6 +13,7 @@ align-self: start ;
 
 @media screen and (max-width: 707px) {
   .profile-info__subtitle{
+    grid-column: 2/3;
   font-weight: 400;
 font-size: 14px;
 line-height: 17px;

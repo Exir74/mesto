@@ -10,7 +10,7 @@
 <body>
   <div class="page">
     <header class="header">
-      <a href="#" class="header__logo">
+      <a href="#" class="header__logo hover">
       </a>
     </header>
     <main class="main-content">
@@ -20,12 +20,18 @@
           <h1 class="profile-info__name">Жак-Ив Кусто</h1>
           <p class="profile-info__subtitle">Исследователь океана</p>
           <button class="profile-info__edit-button edit-button hover">
-            <img class="edit-button__image" src="./image/Edit-Button.svg">
+            <img class="edit-button__image" src="./image/Edit-Button.svg" alt="изменить">
           </button>
         </div>
         <button class="add-button hover">
-          <img class="add-button__image" src="./image/Add-Button.png">
+          <picture class="add-button__image">
+            <source srcset="./image/Add-Button-S.svg" media="(min-width: 710px)">
+            <img src="./image/Add-Button-L.svg" alt="добавить">
+          </picture>
         </button>
+      </section>
+      <section>
+        
       </section>
     </main>
   </div>
