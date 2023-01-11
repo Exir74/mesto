@@ -9,10 +9,12 @@ line-height: 1.14;
 align-self: end ;
 }
 
-@media screen and (max-width: 807px) {
+@media screen and (max-width: 707px) {
   .profile-info__name{
 font-weight: 500;
 font-size: 27px;
 line-height: 33px;
+margin: 0 0 14px 0; 
+text-align: center;
 }
 }
