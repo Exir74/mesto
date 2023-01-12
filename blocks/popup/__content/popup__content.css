@@ -9,6 +9,10 @@
   grid-template-rows: min-content min-content 40px;
   grid-template-columns: 40px auto auto;
   /* grid-template-columns: min-content; */
-  
-  
 }
+  @media screen and (max-width: 708px) {
+    .popup__content{
+      grid-template-columns: 19px auto 19px;
+    }
+    
+  }
