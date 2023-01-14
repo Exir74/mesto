@@ -1,15 +1,14 @@
-.profile-info{
+.profile-info {
   grid-column: 2/3;
   display: grid;
-  
- grid-template-columns: max-content min-content;
+
+  grid-template-columns: max-content min-content;
 }
 
 @media screen and (max-width: 707px) {
-  .profile-info{
+  .profile-info {
     grid-template-columns: 28px max-content min-content;
-align-items: center;
-flex-wrap: wrap;
-
+    align-items: center;
+    flex-wrap: wrap;
   }
 }
