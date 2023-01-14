@@ -7,6 +7,16 @@ font-weight: 400;
 font-size: 18px;
 line-height: 22px;
 align-self: start ;
+text-overflow: ellipsis;
+white-space: nowrap;
+overflow: hidden;
+max-width: 480px;
+}
+
+@media screen and (max-width: 890px) {
+  .profile-info__subtitle{
+  max-width: 300px;
+}
 }
 
 @media screen and (max-width: 707px) {

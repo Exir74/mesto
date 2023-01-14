@@ -10,7 +10,13 @@
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
-  max-width: 100%;
+  max-width: 480px;
+}
+
+@media screen and (max-width: 890px) {
+  .profile-info__name{
+  max-width: 320px;
+}
 }
 
 @media screen and (max-width: 707px) {
