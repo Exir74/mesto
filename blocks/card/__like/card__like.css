@@ -1,5 +1,11 @@
-.card__like{
-  margin: 5px 5px 0 0 ;
+.card__like {
+  margin: 5px 5px 0 0;
   height: 19px;
-
+  /* width: 19px;
+  background-image: url(../../../image/like.svg);
+  background-size:100%;
+  background-repeat: no-repeat;
+}
+.card__like:active {
+  background-image: url(../../../image/LikeActive.png); */
 }

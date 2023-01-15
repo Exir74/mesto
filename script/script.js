@@ -12,8 +12,6 @@ let popupSaveButton = document.querySelector('.popup__button');
 function popupOpener() {
   popup.classList.remove('popup_close');
   popup.classList.add('popup_open');
-  // qq = profileName.textContent;
-  // profileNamePopup.setAttribute('value', qq);
   profileNamePopup.setAttribute('value', profileName.textContent);
   profileSubtitlePopup.setAttribute('value', profileSubtitle.textContent);
 }
@@ -23,7 +21,8 @@ function popupClose() {
   popup.classList.add('popup_close');
 }
 
-function popupSavaClose() {
+function popupSavaClose(evt) {
+  evt.preventDefault();
   popup.classList.remove('popup_open');
   popup.classList.add('popup_close');
   profileName.textContent = profileNamePopup.value;
@@ -32,4 +31,4 @@ function popupSavaClose() {
 
 popupButton.addEventListener('click', popupOpener);
 popupCloseButton.addEventListener('click', popupClose);
-popupSaveButton.addEventListener('click', popupSavaClose);
+popupSaveButton.addEventListener('click', popupSavaClose, Boolean);
