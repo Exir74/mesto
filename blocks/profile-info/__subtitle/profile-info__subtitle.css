@@ -1,29 +1,29 @@
-.profile-info__subtitle{
+.profile-info__subtitle {
   margin: 0;
   padding: 0;
   grid-column: 1/2;
   grid-row: 2/3;
-font-weight: 400;
-font-size: 18px;
-line-height: 22px;
-align-self: start ;
-text-overflow: ellipsis;
-white-space: nowrap;
-overflow: hidden;
-max-width: 480px;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 22px;
+  align-self: start;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  max-width: 480px;
 }
 
 @media screen and (max-width: 890px) {
-  .profile-info__subtitle{
-  max-width: 300px;
-}
+  .profile-info__subtitle {
+    max-width: 300px;
+  }
 }
 
 @media screen and (max-width: 707px) {
-  .profile-info__subtitle{
+  .profile-info__subtitle {
     grid-column: 2/3;
-font-size: 14px;
-line-height: 17px;
-text-align: center;
-}
+    font-size: 14px;
+    line-height: 17px;
+    text-align: center;
+  }
 }
