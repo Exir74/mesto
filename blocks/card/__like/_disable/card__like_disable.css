@@ -1,0 +1,8 @@
+.card__like_disable {
+  background-image: url(../../../../image/like.svg);
+  height: 19px;
+  width: 19px;
+  margin: 5px 5px 0 0;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
