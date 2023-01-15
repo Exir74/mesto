@@ -1,7 +1,7 @@
 .profile-info {
   grid-column: 2/3;
   display: grid;
-max-width: 580px;
+  max-width: 580px;
   grid-template-columns: max-content min-content;
 }
 

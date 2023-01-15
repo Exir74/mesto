@@ -14,9 +14,9 @@
 }
 
 @media screen and (max-width: 890px) {
-  .profile-info__name{
-  max-width: 320px;
-}
+  .profile-info__name {
+    max-width: 320px;
+  }
 }
 
 @media screen and (max-width: 707px) {
