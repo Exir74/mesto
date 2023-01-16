@@ -6,3 +6,7 @@
   background-repeat: no-repeat;
   background-size: contain;
 }
+
+.card__like:hover{
+  opacity: .5;
+}
