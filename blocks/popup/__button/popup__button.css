@@ -9,6 +9,7 @@
   font-size: 18px;
   line-height: 1.22;
   color: #fff;
+  border-radius: 2px;
 }
 
 .popup__button:hover{
