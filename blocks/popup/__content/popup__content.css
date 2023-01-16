@@ -10,7 +10,7 @@
 }
 @media screen and (max-width: 708px) {
   .popup__content {
-    grid-template-rows: 40px 322px 40px;
-    grid-template-columns: 19px auto 19px;
+    grid-template-rows: 36px 322px 36px;
+    grid-template-columns: 36px auto 36px;
   }
 }
