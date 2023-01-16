@@ -1,4 +1,4 @@
-.profile-info__subtitle {
+.profile__subtitle {
   margin: 0;
   padding: 0;
   grid-column: 1/2;
@@ -14,13 +14,13 @@
 }
 
 @media screen and (max-width: 890px) {
-  .profile-info__subtitle {
+  .profile__subtitle {
     max-width: 300px;
   }
 }
 
 @media screen and (max-width: 707px) {
-  .profile-info__subtitle {
+  .profile__subtitle {
     grid-column: 2/3;
     font-size: 14px;
     line-height: 17px;
