@@ -4,8 +4,6 @@
   max-width: 358px;
   padding: 0;
   border: none;
-  font: inherit;
-  background-color: transparent;
   background-color: #000;
   font-weight: 400;
   font-size: 18px;
@@ -19,6 +17,6 @@
     min-height: 46px;
     font-weight: 400;
     font-size: 14px;
-    line-height: 17px;
+    line-height: 1.21;
   }
 }
