@@ -5,8 +5,8 @@
   font: inherit;
   color: inherit;
   background-color: transparent;
-  width: 20px;
-  height: 20px;
+  width: 32px;
+  height: 32px;
   grid-column: 3/4;
 }
 
@@ -15,5 +15,7 @@
     margin: 0 0 16px 0;
     grid-column: 2/3;
     justify-self: end;
+    width: 20px;
+    height: 20px;
   }
 }
