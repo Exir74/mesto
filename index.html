@@ -2,7 +2,10 @@
 <html lang="ru">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
     <link rel="stylesheet" href="./pages/index.css" />
     <title>Mesto</title>
   </head>
@@ -13,7 +16,11 @@
       </header>
       <main class="main-content">
         <section class="profile">
-          <img class="profile__avatar" src="./image/avatar.jpg" alt="Аватар" />
+          <img
+            class="profile__avatar"
+            src="./image/avatar.jpg"
+            alt="Аватар"
+          />
           <div class="profile__info">
             <h1 class="profile__name">Жак-Ив Кусто</h1>
             <p class="profile__subtitle">Исследователь океана</p>
@@ -47,17 +54,22 @@
                   alt="закрыть"
                 />
               </button>
-              <form method="get" 
-              name="popupForm" 
-              class="popup__form">
-                <p class="popup__title">Редактировать профиль</p>
-                <input 
-                class="popup__input popup__name"
-                type="text"
-                value=""
+              <!-- ПО GET ЕСТЬ ВОПРОСИКИ -->
+              <form
+                method="get"
+                name="popup-form"
+                class="popup__form"
+              >
+                <h3 class="popup__title">Редактировать профиль</h3>
+                <input
+                  class="popup__input popup__input_name"
+                  name="popup-name"
+                  type="text"
+                  value=""
                 />
                 <input
-                  class="popup__input popup__subtitle"
+                  class="popup__input popup__input_subtitle"
+                  name="popup-subtitle"
                   type="text"
                   value=""
                 />
@@ -76,7 +88,7 @@
               alt="Карачаевск"
             />
             <div class="card__footer">
-              <p class="card__caption">Карачаевск</p>
+              <h2 class="card__caption">Карачаевск</h2>
               <div class="card__like card__like_disable"></div>
             </div>
           </div>
@@ -87,28 +99,40 @@
               alt="гора эльбрус"
             />
             <div class="card__footer">
-              <p class="card__caption">Гора Эльбрус</p>
+              <h2 class="card__caption">Гора Эльбрус</h2>
               <div class="card__like card__like_disable"></div>
             </div>
           </div>
           <div class="cards__item card">
-            <img class="card__image" src="./image/dombai.png" alt="Домбай" />
+            <img
+              class="card__image"
+              src="./image/dombai.png"
+              alt="Домбай"
+            />
             <div class="card__footer">
-              <p class="card__caption">Домбай</p>
+              <h2 class="card__caption">Домбай</h2>
               <div class="card__like card__like_disable"></div>
             </div>
           </div>
           <div class="cards__item card">
-            <img class="card__image" src="./image/elbrus.png" alt="Эльбрус" />
+            <img
+              class="card__image"
+              src="./image/elbrus.png"
+              alt="Эльбрус"
+            />
             <div class="card__footer">
-              <p class="card__caption">Гора Эльбрус</p>
+              <h2 class="card__caption">Гора Эльбрус</h2>
               <div class="card__like card__like_disable"></div>
             </div>
           </div>
           <div class="cards__item card">
-            <img class="card__image" src="./image/dombai.png" alt="Домбай" />
+            <img
+              class="card__image"
+              src="./image/dombai.png"
+              alt="Домбай"
+            />
             <div class="card__footer">
-              <p class="card__caption">Домбай</p>
+              <h2 class="card__caption">Домбай</h2>
               <div class="card__like card__like_disable"></div>
             </div>
           </div>
@@ -119,7 +143,7 @@
               alt="Карачаево-Черкесия"
             />
             <div class="card__footer">
-              <p class="card__caption">Карачаево-Черкесия</p>
+              <h2 class="card__caption">Карачаево-Черкесия</h2>
               <div class="card__like card__like_disable"></div>
             </div>
           </div>
