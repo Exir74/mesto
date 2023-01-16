@@ -1,8 +1,8 @@
-.card__loke_active {
+.card__like_active {
   background-image: url(../../../../image/LikeActive.png);
   height: 19px;
-  width: 19px;
-  margin: 5px 5px 0 0;
+  width: 22px;
+  /* margin: 5px 5px 0 0; */
   background-repeat: no-repeat;
   background-size: contain;
 }
