@@ -1,34 +1,37 @@
-let popupButton = document.querySelector('.edit-button');
+let popupButton = document.querySelector('.profile__edit-button');
 let popup = document.querySelector('.popup');
 let popupCloseButton = document.querySelector('.popup__close');
-let popupForm = document.querySelector('.popup__form');
-let profileInfo = document.querySelector('.profile-info');
-let profileName = document.querySelector('.profile-info__name');
-let profileSubtitle = document.querySelector('.profile-info__subtitle');
-let profileNamePopup = document.querySelector('.popup__name');
-let profileSubtitlePopup = document.querySelector('.popup__subtitle');
+let profileName = document.querySelector('.profile__name');
+let profileSubtitle = document.querySelector('.profile__subtitle');
+let profileNamePopup = document.querySelector('.popup__input_name');
+let profileSubtitlePopup = document.querySelector('.popup__input_subtitle');
 let popupSaveButton = document.querySelector('.popup__button');
+let popupForm = document.querySelector('.popup__form');
 
-function popupOpener() {
-  popup.classList.remove('popup_close');
+// открытие popup
+function openPopup() {
+  transferInPopup();
   popup.classList.add('popup_open');
-  profileNamePopup.setAttribute('value', profileName.textContent);
-  profileSubtitlePopup.setAttribute('value', profileSubtitle.textContent);
+}
+// закрытие popup
+function closePopup() {
+  popup.classList.remove('popup_open');
 }
 
-function popupClose() {
-  popup.classList.remove('popup_open');
-  popup.classList.add('popup_close');
+// передачи данных в popup
+function transferInPopup() {
+  profileNamePopup.value = profileName.textContent;
+  profileSubtitlePopup.value = profileSubtitle.textContent;
 }
 
-function popupSavaClose(evt) {
-  evt.preventDefault();
-  popup.classList.remove('popup_open');
-  popup.classList.add('popup_close');
-  profileName.textContent = profileNamePopup.value;
+// передачи данных в form
+function transferInForm(evt) {
+  evt.preventDefault()
+  profileName.textContent = (profileNamePopup.value);
   profileSubtitle.textContent = profileSubtitlePopup.value;
+  closePopup();
 }
 
-popupButton.addEventListener('click', popupOpener);
-popupCloseButton.addEventListener('click', popupClose);
-popupSaveButton.addEventListener('click', popupSavaClose, Boolean);
+popupButton.addEventListener('click', openPopup);
+popupCloseButton.addEventListener('click', closePopup);
+popupForm.addEventListener('submit', transferInForm);
