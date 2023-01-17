@@ -10,6 +10,9 @@
   line-height: 1.22;
   color: #fff;
   border-radius: 2px;
+  opacity: #fff;
+  transition: 0.7s opacity ease;
+  cursor: pointer;
 }
 
 .popup__button:hover{

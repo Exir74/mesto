@@ -45,40 +45,6 @@
               />
             </picture>
           </button>
-          <div class="popup">
-            <div class="popup__content">
-              <button class="popup__close hover">
-                <img
-                  class="popup__close-icon"
-                  src="./image/Close-Icon.svg"
-                  alt="закрыть"
-                />
-              </button>
-              <!-- ПО GET ЕСТЬ ВОПРОСИКИ -->
-              <form
-                method="get"
-                name="popup-form"
-                class="popup__form"
-              >
-                <h3 class="popup__title">Редактировать профиль</h3>
-                <input
-                  class="popup__input popup__input_name"
-                  name="popup-name"
-                  type="text"
-                  value=""
-                />
-                <input
-                  class="popup__input popup__input_subtitle"
-                  name="popup-subtitle"
-                  type="text"
-                  value=""
-                />
-                <button type="submit" class="popup__button">
-                  Сохранить
-                </button>
-              </form>
-            </div>
-          </div>
         </section>
         <section class="cards">
           <div class="cards__item card">
@@ -152,6 +118,35 @@
       <footer class="footer">
         <p class="footer__copyright">&copy; 2022 Mesto Russia</p>
       </footer>
+      <div class="popup">
+        <div class="popup__content">
+          <button class="popup__close hover">
+            <img
+              class="popup__close-icon"
+              src="./image/Close-Icon.svg"
+              alt="закрыть"
+            />
+          </button>
+          <form method="get" name="popup-form" class="popup__form">
+            <h3 class="popup__title">Редактировать профиль</h3>
+            <input
+              class="popup__input popup__input_name"
+              name="popup-name"
+              type="text"
+              value=""
+            />
+            <input
+              class="popup__input popup__input_subtitle"
+              name="popup-subtitle"
+              type="text"
+              value=""
+            />
+            <button type="submit" class="popup__button">
+              Сохранить
+            </button>
+          </form>
+        </div>
+      </div>
     </div>
     <script src="./script/script.js"></script>
   </body>
