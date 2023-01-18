@@ -5,6 +5,9 @@
   margin: 5px 5px 0 0;
   background-repeat: no-repeat;
   background-size: contain;
+  border: none;
+  background-color: inherit;
+
 }
 
 .card__like:hover{

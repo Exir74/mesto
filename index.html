@@ -1,153 +1,139 @@
 <!DOCTYPE html>
 <html lang="ru">
-  <head>
-    <meta charset="UTF-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0"
-    />
-    <link rel="stylesheet" href="./pages/index.css" />
-    <title>Mesto</title>
-  </head>
-  <body>
-    <div class="page">
-      <header class="header">
-        <a href="#" class="header__logo hover"> </a>
-      </header>
-      <main class="main-content">
-        <section class="profile">
-          <img
-            class="profile__avatar"
-            src="./image/avatar.jpg"
-            alt="Аватар"
-          />
-          <div class="profile__info">
-            <h1 class="profile__name">Жак-Ив Кусто</h1>
-            <p class="profile__subtitle">Исследователь океана</p>
-            <button class="profile__edit-button hover">
-              <img
-                class="profile__edit-image"
-                src="./image/Edit-Button.svg"
-                alt="изменить"
-              />
-            </button>
-          </div>
-          <button class="profile__add-button hover">
-            <picture>
-              <source
-                srcset="./image/Add-Button-S.svg"
-                media="(min-width: 708px)"
-              />
-              <img
-                class="profile__add-image"
-                src="./image/Add-Button-L.svg"
-                alt="добавить"
-              />
-            </picture>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet"
+    href="./pages/index.css" />
+  <title>Mesto</title>
+</head>
+<body>
+  <div class="page">
+    <header class="header">
+      <a href="#"
+        class="header__logo hover"> </a>
+    </header>
+    <main class="main-content">
+      <section class="profile">
+        <img class="profile__avatar"
+          src="./image/avatar.jpg"
+          alt="Аватар" />
+        <div class="profile__info">
+          <h1 class="profile__name">Жак-Ив Кусто</h1>
+          <p class="profile__subtitle">Исследователь океана</p>
+          <button type="button"
+            class="profile__edit-button hover">
+            <img class="profile__edit-image"
+              src="./image/Edit-Button.svg"
+              alt="изменить" />
           </button>
-        </section>
-        <section class="cards">
-          <div class="cards__item card">
-            <img
-              class="card__image"
-              src="./image/karachaevsk.png"
-              alt="Карачаевск"
-            />
-            <div class="card__footer">
-              <h2 class="card__caption">Карачаевск</h2>
-              <div class="card__like"></div>
-            </div>
-          </div>
-          <div class="cards__item card">
-            <img
-              class="card__image"
-              src="./image/elbrus.png"
-              alt="гора эльбрус"
-            />
-            <div class="card__footer">
-              <h2 class="card__caption">Гора Эльбрус</h2>
-              <div class="card__like"></div>
-            </div>
-          </div>
-          <div class="cards__item card">
-            <img
-              class="card__image"
-              src="./image/dombai.png"
-              alt="Домбай"
-            />
-            <div class="card__footer">
-              <h2 class="card__caption">Домбай</h2>
-              <div class="card__like"></div>
-            </div>
-          </div>
-          <div class="cards__item card">
-            <img
-              class="card__image"
-              src="./image/elbrus.png"
-              alt="Эльбрус"
-            />
-            <div class="card__footer">
-              <h2 class="card__caption">Гора Эльбрус</h2>
-              <div class="card__like"></div>
-            </div>
-          </div>
-          <div class="cards__item card">
-            <img
-              class="card__image"
-              src="./image/dombai.png"
-              alt="Домбай"
-            />
-            <div class="card__footer">
-              <h2 class="card__caption">Домбай</h2>
-              <div class="card__like"></div>
-            </div>
-          </div>
-          <div class="cards__item card">
-            <img
-              class="card__image"
-              src="./image/karachaevsk.png"
-              alt="Карачаево-Черкесия"
-            />
-            <div class="card__footer">
-              <h2 class="card__caption">Карачаево-Черкесия</h2>
-              <div class="card__like"></div>
-            </div>
-          </div>
-        </section>
-      </main>
-      <footer class="footer">
-        <p class="footer__copyright">&copy; 2022 Mesto Russia</p>
-      </footer>
-      <div class="popup">
-        <div class="popup__content">
-          <button class="popup__close hover">
-            <img
-              class="popup__close-icon"
-              src="./image/Close-Icon.svg"
-              alt="закрыть"
-            />
-          </button>
-          <form method="get" name="popup-form" class="popup__form">
-            <h3 class="popup__title">Редактировать профиль</h3>
-            <input
-              class="popup__input popup__input_name"
-              name="popup-name"
-              type="text"
-              value=""
-            />
-            <input
-              class="popup__input popup__input_subtitle"
-              name="popup-subtitle"
-              type="text"
-              value=""
-            />
-            <button type="submit" class="popup__button">
-              Сохранить
-            </button>
-          </form>
         </div>
+        <button type="button"
+          class="profile__add-button hover">
+          <picture>
+            <source srcset="./image/Add-Button-S.svg"
+              media="(min-width: 708px)" />
+            <img class="profile__add-image"
+              src="./image/Add-Button-L.svg"
+              alt="добавить" />
+          </picture>
+        </button>
+      </section>
+      <section class="cards">
+        <div class="cards__item card">
+          <img class="card__image"
+            src="./image/karachaevsk.png"
+            alt="Карачаевск" />
+          <div class="card__footer">
+            <h2 class="card__caption">Карачаевск</h2>
+            <button type="button"
+              class="card__like"></button>
+          </div>
+        </div>
+        <div class="cards__item card">
+          <img class="card__image"
+            src="./image/elbrus.png"
+            alt="гора эльбрус" />
+          <div class="card__footer">
+            <h2 class="card__caption">Гора Эльбрус</h2>
+            <button type="button"
+              class="card__like"></button>
+          </div>
+        </div>
+        <div class="cards__item card">
+          <img class="card__image"
+            src="./image/dombai.png"
+            alt="Домбай" />
+          <div class="card__footer">
+            <h2 class="card__caption">Домбай</h2>
+            <button type="button"
+              class="card__like"></button>
+          </div>
+        </div>
+        <div class="cards__item card">
+          <img class="card__image"
+            src="./image/elbrus.png"
+            alt="Эльбрус" />
+          <div class="card__footer">
+            <h2 class="card__caption">Гора Эльбрус</h2>
+            <button type="button"
+              class="card__like"></button>
+          </div>
+        </div>
+        <div class="cards__item card">
+          <img class="card__image"
+            src="./image/dombai.png"
+            alt="Домбай" />
+          <div class="card__footer">
+            <h2 class="card__caption">Домбай</h2>
+            <button type="button"
+              class="card__like"></button>
+          </div>
+        </div>
+        <div class="cards__item card">
+          <img class="card__image"
+            src="./image/karachaevsk.png"
+            alt="Карачаево-Черкесия" />
+          <div class="card__footer">
+            <h2 class="card__caption">Карачаево-Черкесия</h2>
+            <button type="button"
+              class="card__like"></button>
+          </div>
+        </div>
+      </section>
+    </main>
+    <footer class="footer">
+      <p class="footer__copyright">&copy; 2022 Mesto Russia</p>
+    </footer>
+    <div class="popup">
+      <div class="popup__content">
+        <button type="button"
+          class="popup__close hover">
+          <img class="popup__close-icon"
+            src="./image/Close-Icon.svg"
+            alt="закрыть" />
+        </button>
+        <form method="get"
+          name="popup-form"
+          class="popup__form">
+          <h3 class="popup__title">Редактировать профиль</h3>
+          <input class="popup__input popup__input_type_name"
+            name="popup-name"
+            type="text"
+            value="" />
+          <input class="popup__input popup__input_type_subtitle"
+            name="popup-subtitle"
+            type="text"
+            value="" />
+          <button type="submit"
+            class="popup__button">
+            Сохранить
+          </button>
+        </form>
       </div>
     </div>
-    <script src="./script/script.js"></script>
-  </body>
+  </div>
+  <script src="./script/script.js"></script>
+</body>
 </html>

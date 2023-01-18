@@ -3,9 +3,8 @@ let popup = document.querySelector('.popup');
 let popupCloseButton = document.querySelector('.popup__close');
 let profileName = document.querySelector('.profile__name');
 let profileSubtitle = document.querySelector('.profile__subtitle');
-let profileNamePopup = document.querySelector('.popup__input_name');
-let profileSubtitlePopup = document.querySelector('.popup__input_subtitle');
-let popupSaveButton = document.querySelector('.popup__button');
+let profileNamePopup = document.querySelector('.popup__input_type_name');
+let profileSubtitlePopup = document.querySelector('.popup__input_type_subtitle');
 let popupForm = document.querySelector('.popup__form');
 
 // открытие popup
