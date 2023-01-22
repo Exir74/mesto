@@ -147,6 +147,35 @@
         </form>
       </div>
     </div>
+    <div class="popup">
+      <div class="popup__content">
+        <button type="button"
+          class="popup__close hover">
+          <img class="popup__close-icon"
+            src="./image/Close-Icon.svg"
+            alt="закрыть" />
+        </button>
+        <form method="get"
+          name="popup-form"
+          class="popup__form">
+          <h3 class="popup__title">Новое место</h3>
+          <input class="popup__input popup__input_type_place-name"
+            placeholder="Название"
+            name="popup-place-name"
+            type="text"
+            value="" />
+          <input class="popup__input popup__input_type_place-url"
+            placeholder="Ссылка на картинку"
+            name="popup-place-url"
+            type="text"
+            value="" />
+          <button type="submit"
+            class="popup__button">
+            Создать
+          </button>
+        </form>
+      </div>
+    </div>
   </div>
   <script src="./script/script.js"></script>
 </body>

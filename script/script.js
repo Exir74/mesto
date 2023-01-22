@@ -31,6 +31,7 @@ function transferInForm(evt) {
   closePopup();
 }
 
+
 popupButton.addEventListener('click', openPopup);
 popupCloseButton.addEventListener('click', closePopup);
 popupForm.addEventListener('submit', transferInForm);
