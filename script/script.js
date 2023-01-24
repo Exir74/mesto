@@ -7,6 +7,18 @@ let profileNamePopup = document.querySelector('.popup__input_type_name');
 let profileSubtitlePopup = document.querySelector('.popup__input_type_subtitle');
 let popupForm = document.querySelector('.popup__form');
 
+
+
+
+//test
+let cardLike = document.querySelectorAll('.card__like')
+console.log(cardLike.length)
+//test na verhy
+
+
+
+
+
 // открытие popup
 function openPopup() {
   transferInPopup();
