@@ -10,10 +10,19 @@ let popupForm = document.querySelector('.popup__form');
 
 
 
-//test
-let cardLike = document.querySelectorAll('.card__like')
-console.log(cardLike.length)
-//test na verhy
+
+
+//test (Работает нужно перенсти в норм версия)
+let likes = document.querySelectorAll('.card__like');
+// Лайк/дизлайк
+for (let i = 0; i < likes.length; i++){
+  likes[i].addEventListener('click', addLike);
+  function addLike() {
+    likes[i].classList.toggle('card__like_active')
+  }
+}
+
+//test na verhy (Работает нужно перенсти в норм версия)
 
 
 
