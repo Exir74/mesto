@@ -5,14 +5,17 @@ let profileName = document.querySelector('.profile__name');
 let profileSubtitle = document.querySelector('.profile__subtitle');
 let profileNamePopup = document.querySelector('.popup__input_type_name');
 let profileSubtitlePopup = document.querySelector('.popup__input_type_subtitle');
-let popupForm = document.querySelector('.popup__form');
+let popupForm = document.querySelectorAll('.popup__form');
 let popupAddImageButton = document.querySelector('.profile__add-image');
 let cardImage = document.querySelectorAll('.card__image');
 let cardCaption = document.querySelectorAll('.card__caption');
 let likes = document.querySelectorAll('.card__like'); 
 let card = document.querySelectorAll('.cards__item');
 let cardTrash = document.querySelectorAll('.card__trash');
-const initialCards = [
+let placeName = document.querySelector('.popup__input_type_place-name');
+let placeUrl = document.querySelector('.popup__input_type_place-url');
+let cards = document.querySelector('.cards')
+let initialCards = [
   {
     name: 'Архыз',
     link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
@@ -38,12 +41,22 @@ const initialCards = [
     link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
   }
 ];
+//добавление картинки в массив
+function addPlace(evt){
+  evt.preventDefault()
+  initialCards.unshift({name: placeName.value , link: placeUrl.value});
+  closePopupAddImage();
+
+
+}
 
 //удаление картинки
 for (let i = 0; i < card.length; i++){
   cardTrash[i].addEventListener('click', removeCard);
   function removeCard (){
-    card[i].innerHTML = '';
+    card[i].remove();
+    initialCards.splice(i, 1);
+    console.log(initialCards)
   }
 }
 
@@ -104,4 +117,6 @@ popupButton.addEventListener('click', openPopup);
 popupAddImageButton.addEventListener('click', openPopupAddImage);
 popupCloseButton[0].addEventListener('click', closePopup);
 popupCloseButton[1].addEventListener('click', closePopupAddImage);
-popupForm.addEventListener('submit', transferInForm);
+popupForm[0].addEventListener('submit', transferInForm);
+popupForm[1].addEventListener('submit', addPlace);
+
