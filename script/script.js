@@ -8,15 +8,7 @@ let profileSubtitlePopup = document.querySelector('.popup__input_type_subtitle')
 let popupForm = document.querySelector('.popup__form');
 
 
-//удаление карточки
-// let cardTrash = document.querySelectorAll('.card__trash');
-// let card = document.querySelectorAll('.card')
-// for (i = 0; i < cardTrash.length; i++){
-//   cardDelet[i].addEventListener('click', 'deletCard')
-//   function deletCard () {
-    
-//   }
-// }
+
 
 // добавление картинки
 let cardImage = document.querySelectorAll('.card__image');
@@ -53,24 +45,16 @@ for (let i = 0; i < cardImage.length; i++ ){
   cardCaption[i].textContent = initialCards[i].name; 
 }
 
-
-
-// окончание теста добавления картинки
-
-
-
-
-//test (Работает нужно перенсти в норм версия)
+// лайк
 let likes = document.querySelectorAll('.card__like');
 // Лайк/дизлайк
 for (let i = 0; i < likes.length; i++){
   likes[i].addEventListener('click', addLike);
   function addLike() {
     likes[i].classList.toggle('card__like_active');
+    console.log(like[i])
   }
 }
-
-//test na verhy (Работает нужно перенсти в норм версия)
 
 
 
