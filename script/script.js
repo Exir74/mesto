@@ -10,6 +10,8 @@ let popupAddImageButton = document.querySelector('.profile__add-image');
 let cardImage = document.querySelectorAll('.card__image');
 let cardCaption = document.querySelectorAll('.card__caption');
 let likes = document.querySelectorAll('.card__like'); 
+let card = document.querySelectorAll('.cards__item');
+let cardTrash = document.querySelectorAll('.card__trash');
 const initialCards = [
   {
     name: 'Архыз',
@@ -36,7 +38,17 @@ const initialCards = [
     link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
   }
 ];
-// добавление картинки и описания
+
+//удаление картинки
+for (let i = 0; i < card.length; i++){
+  cardTrash[i].addEventListener('click', removeCard);
+  function removeCard (){
+    card[i].innerHTML = '';
+  }
+}
+
+
+// добавление картинки и описания из массива 
 for (let i = 0; i < cardImage.length; i++ ){
   cardImage[i].setAttribute('src', initialCards[i].link);
   cardCaption[i].textContent = initialCards[i].name; 
@@ -48,7 +60,6 @@ for (let i = 0; i < likes.length; i++){
   likes[i].addEventListener('click', addLike);
   function addLike() {
     likes[i].classList.toggle('card__like_active');
-    console.log(like[i])
   }
 }
 
