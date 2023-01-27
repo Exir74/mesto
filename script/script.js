@@ -6,11 +6,10 @@ let profileSubtitle = document.querySelector('.profile__subtitle');
 let profileNamePopup = document.querySelector('.popup__input_type_name');
 let profileSubtitlePopup = document.querySelector('.popup__input_type_subtitle');
 let popupForm = document.querySelector('.popup__form');
-let popupAddImageButton = document.querySelector('.profile__add-image')
-
-// добавление картинки
+let popupAddImageButton = document.querySelector('.profile__add-image');
 let cardImage = document.querySelectorAll('.card__image');
-let cardCaption = document.querySelectorAll('.card__caption'); 
+let cardCaption = document.querySelectorAll('.card__caption');
+let likes = document.querySelectorAll('.card__like'); 
 const initialCards = [
   {
     name: 'Архыз',
@@ -37,14 +36,13 @@ const initialCards = [
     link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
   }
 ];
-
+// добавление картинки и описания
 for (let i = 0; i < cardImage.length; i++ ){
   cardImage[i].setAttribute('src', initialCards[i].link);
   cardCaption[i].textContent = initialCards[i].name; 
+  cardImage[i].setAttribute('alt', initialCards[i].name);
 }
 
-// лайк
-let likes = document.querySelectorAll('.card__like');
 // Лайк/дизлайк
 for (let i = 0; i < likes.length; i++){
   likes[i].addEventListener('click', addLike);
@@ -59,19 +57,18 @@ function openPopupAddImage() {
   transferInPopup();
   popup[1].classList.add('popup_open');
 }
+
 // закрытие popup доабвления картинки
 function closePopupAddImage() {
   popup[1].classList.remove('popup_open');
 }
-
-
-
 
 // открытие popup
 function openPopup() {
   transferInPopup();
   popup[0].classList.add('popup_open');
 }
+
 // закрытие popup
 function closePopup() {
   popup[0].classList.remove('popup_open');
