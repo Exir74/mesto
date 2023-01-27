@@ -56,10 +56,6 @@ for (let i = 0; i < likes.length; i++){
   }
 }
 
-
-
-
-
 // открытие popup
 function openPopup() {
   transferInPopup();
