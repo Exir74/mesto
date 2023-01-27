@@ -50,6 +50,7 @@ for (let i = 0; i < likes.length; i++){
   likes[i].addEventListener('click', addLike);
   function addLike() {
     likes[i].classList.toggle('card__like_active');
+    console.log(like[i])
   }
 }
 
