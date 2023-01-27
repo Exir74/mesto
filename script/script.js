@@ -43,7 +43,7 @@ let initialCards = [
 ];
 //добавление картинки и имя в массив
 function addPlace(evt){
-  evt.preventDefault()
+  evt.preventDefault();
   initialCards.unshift({name: placeName.value , link: placeUrl.value});
   closePopupAddImage();
 
