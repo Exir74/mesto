@@ -8,9 +8,6 @@ let profileSubtitlePopup = document.querySelector('.popup__input_type_subtitle')
 let popupForm = document.querySelector('.popup__form');
 let popupAddImageButton = document.querySelector('.profile__add-image')
 
-
-
-
 // добавление картинки
 let cardImage = document.querySelectorAll('.card__image');
 let cardCaption = document.querySelectorAll('.card__caption'); 
