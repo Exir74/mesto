@@ -10,10 +10,50 @@ let popupForm = document.querySelector('.popup__form');
 
 
 
-//test
-let cardLike = document.querySelectorAll('.card__like')
-console.log(cardLike.length)
-//test na verhy
+// добавление картинки
+let cardImage = document.querySelectorAll('.card__image');
+let cardCaption = document.querySelectorAll('.card__caption'); 
+const initialCards = [
+  {
+    name: 'Архыз',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
+  },
+  {
+    name: 'Челябинская область',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
+  },
+  {
+    name: 'Иваново',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
+  },
+  {
+    name: 'Камчатка',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
+  },
+  {
+    name: 'Холмогорский район',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
+  },
+  {
+    name: 'Байкал',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
+  }
+];
+
+for (let i = 0; i < cardImage.length; i++ ){
+  cardImage[i].setAttribute('src', initialCards[i].link);
+  cardCaption[i].textContent = initialCards[i].name; 
+}
+
+// лайк
+let likes = document.querySelectorAll('.card__like');
+// Лайк/дизлайк
+for (let i = 0; i < likes.length; i++){
+  likes[i].addEventListener('click', addLike);
+  function addLike() {
+    likes[i].classList.toggle('card__like_active');
+  }
+}
 
 
 
