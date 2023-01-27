@@ -41,7 +41,7 @@ let initialCards = [
     link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
   }
 ];
-//добавление картинки в массив
+//добавление картинки и имя в массив
 function addPlace(evt){
   evt.preventDefault()
   initialCards.unshift({name: placeName.value , link: placeUrl.value});
