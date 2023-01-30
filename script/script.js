@@ -1,20 +1,21 @@
-let popupButton = document.querySelector('.profile__edit-button');
-let popup = document.querySelectorAll('.popup');
-let popupCloseButton = document.querySelectorAll('.popup__close');
+const popupButton = document.querySelector('.profile__edit-button');
+const popup = document.querySelectorAll('.popup');
+const popupCloseButton = document.querySelectorAll('.popup__close');
 let profileName = document.querySelector('.profile__name');
 let profileSubtitle = document.querySelector('.profile__subtitle');
 let profileNamePopup = document.querySelector('.popup__input_type_name');
 let profileSubtitlePopup = document.querySelector('.popup__input_type_subtitle');
-let popupForm = document.querySelectorAll('.popup__form');
-let popupAddImageButton = document.querySelector('.profile__add-image');
+const popupForm = document.querySelectorAll('.popup__form');
+const popupAddImageButton = document.querySelector('.profile__add-image');
 let cardImage = document.querySelectorAll('.card__image');
 let cardCaption = document.querySelectorAll('.card__caption');
-let likes = document.querySelectorAll('.card__like'); 
-let card = document.querySelectorAll('.cards__item');
-let cardTrash = document.querySelectorAll('.card__trash');
-let placeName = document.querySelector('.popup__input_type_place-name');
-let placeUrl = document.querySelector('.popup__input_type_place-url');
-let cards = document.querySelector('.cards')
+const likes = document.querySelectorAll('.card__like'); 
+const card = document.querySelectorAll('.cards__item');
+const cardTrash = document.querySelectorAll('.card__trash');
+const placeName = document.querySelector('.popup__input_type_place-name');
+const placeUrl = document.querySelector('.popup__input_type_place-url');
+const cards = document.querySelector('.cards');
+const popupContent = document.querySelectorAll('.popup__content')
 let initialCards = [
   {
     name: 'Архыз',
@@ -60,7 +61,6 @@ for (let i = 0; i < card.length; i++){
   }
 }
 
-
 // добавление картинки и описания из массива 
 for (let i = 0; i < cardImage.length; i++ ){
   cardImage[i].setAttribute('src', initialCards[i].link);
@@ -78,7 +78,6 @@ for (let i = 0; i < likes.length; i++){
 
 // открытие popup доабвления картинки
 function openPopupAddImage() {
-  transferInPopup();
   popup[1].classList.add('popup_open');
 }
 
@@ -112,6 +111,19 @@ function transferInForm(evt) {
   closePopup();
 }
 
+// закрытие по клику overlay профиля
+function overlayClickProfile(event){
+if (event.target === event.currentTarget) {
+  closePopup();
+}
+}
+// закрытие по клику overlay картинки
+function overlayClickImage(event){
+  if (event.target === event.currentTarget) {
+    closePopupAddImage();
+  }
+  }
+
 
 popupButton.addEventListener('click', openPopup);
 popupAddImageButton.addEventListener('click', openPopupAddImage);
@@ -119,4 +131,8 @@ popupCloseButton[0].addEventListener('click', closePopup);
 popupCloseButton[1].addEventListener('click', closePopupAddImage);
 popupForm[0].addEventListener('submit', transferInForm);
 popupForm[1].addEventListener('submit', addPlace);
+popupContent[0].addEventListener('click', overlayClickProfile);
+popupContent[1].addEventListener('click', overlayClickImage);
+
+
 
