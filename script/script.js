@@ -42,13 +42,15 @@ let initialCards = [
     link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
   }
 ];
+//добавление картинок из массива
+addImage();
+
 //добавление картинки и имя в массив
 function addPlace(evt){
   evt.preventDefault();
   initialCards.unshift({name: placeName.value , link: placeUrl.value});
   closePopupAddImage();
-
-
+  addImage();
 }
 
 //удаление картинки
@@ -61,13 +63,14 @@ for (let i = 0; i < card.length; i++){
   }
 }
 
-// добавление картинки и описания из массива 
+// добавление картинки и описания из массива
+function addImage(){ 
 for (let i = 0; i < cardImage.length; i++ ){
   cardImage[i].setAttribute('src', initialCards[i].link);
   cardCaption[i].textContent = initialCards[i].name; 
   cardImage[i].setAttribute('alt', initialCards[i].name);
 }
-
+}
 // Лайк/дизлайк
 for (let i = 0; i < likes.length; i++){
   likes[i].addEventListener('click', addLike);
@@ -117,6 +120,7 @@ if (event.target === event.currentTarget) {
   closePopup();
 }
 }
+
 // закрытие по клику overlay картинки
 function overlayClickImage(event){
   if (event.target === event.currentTarget) {
@@ -133,6 +137,3 @@ popupForm[0].addEventListener('submit', transferInForm);
 popupForm[1].addEventListener('submit', addPlace);
 popupContent[0].addEventListener('click', overlayClickProfile);
 popupContent[1].addEventListener('click', overlayClickImage);
-
-
-
