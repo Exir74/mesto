@@ -42,6 +42,7 @@ let initialCards = [
     link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
   }
 ];
+
 //добавление картинок из массива
 addImage();
 
@@ -49,7 +50,7 @@ addImage();
 function addPlace(evt){
   evt.preventDefault();
   initialCards.unshift({name: placeName.value , link: placeUrl.value});
-  closePopupAddImage();
+  togglePopupImage();
   addImage();
 }
 
@@ -79,25 +80,15 @@ for (let i = 0; i < likes.length; i++){
   }
 }
 
-// открытие popup доабвления картинки
-function openPopupAddImage() {
-  popup[1].classList.add('popup_open');
-}
-
-// закрытие popup доабвления картинки
-function closePopupAddImage() {
-  popup[1].classList.remove('popup_open');
-}
-
-// открытие popup
-function openPopup() {
+//toggle попап редактирования профиля
+function togglePopupProfile() {
   transferInPopup();
-  popup[0].classList.add('popup_open');
+  popup[0].classList.toggle('popup_open');
 }
 
-// закрытие popup
-function closePopup() {
-  popup[0].classList.remove('popup_open');
+//toggle попап добаваление картинки
+function togglePopupImage() {
+  popup[1].classList.toggle('popup_open');
 }
 
 // передачи данных в popup
@@ -111,28 +102,28 @@ function transferInForm(evt) {
   evt.preventDefault()
   profileName.textContent = (profileNamePopup.value);
   profileSubtitle.textContent = profileSubtitlePopup.value;
-  closePopup();
+  togglePopupProfile();
 }
 
 // закрытие по клику overlay профиля
 function overlayClickProfile(event){
 if (event.target === event.currentTarget) {
-  closePopup();
+  togglePopupProfile();
 }
 }
 
 // закрытие по клику overlay картинки
 function overlayClickImage(event){
   if (event.target === event.currentTarget) {
-    closePopupAddImage();
+    togglePopupImage();
   }
   }
 
 
-popupButton.addEventListener('click', openPopup);
-popupAddImageButton.addEventListener('click', openPopupAddImage);
-popupCloseButton[0].addEventListener('click', closePopup);
-popupCloseButton[1].addEventListener('click', closePopupAddImage);
+popupButton.addEventListener('click', togglePopupProfile);
+popupAddImageButton.addEventListener('click', togglePopupImage);
+popupCloseButton[0].addEventListener('click', togglePopupProfile);
+popupCloseButton[1].addEventListener('click', togglePopupImage);
 popupForm[0].addEventListener('submit', transferInForm);
 popupForm[1].addEventListener('submit', addPlace);
 popupContent[0].addEventListener('click', overlayClickProfile);
