@@ -5,12 +5,12 @@
   display: grid;
   align-content: center;
   justify-content: center;
-  grid-template-rows: 40px 330px 40px;
+  grid-template-rows: 40px auto 40px;
   grid-template-columns: 40px auto 40px;
 }
 @media screen and (max-width: 708px) {
   .popup__content {
-    grid-template-rows: 36px 322px 36px;
+    grid-template-rows: 36px auto 36px;
     grid-template-columns: 36px auto 36px;
   }
 }

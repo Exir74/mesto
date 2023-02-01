@@ -16,6 +16,7 @@ const placeName = document.querySelector('.popup__input_type_place-name');
 const placeUrl = document.querySelector('.popup__input_type_place-url');
 const cards = document.querySelector('.cards');
 const popupContent = document.querySelectorAll('.popup__content')
+let 
 let initialCards = [
   {
     name: 'Архыз',
