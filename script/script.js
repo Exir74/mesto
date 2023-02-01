@@ -15,8 +15,8 @@ const cardTrash = document.querySelectorAll('.card__trash');
 const placeName = document.querySelector('.popup__input_type_place-name');
 const placeUrl = document.querySelector('.popup__input_type_place-url');
 const cards = document.querySelector('.cards');
-const popupContent = document.querySelectorAll('.popup__content')
-let 
+const popupContent = document.querySelectorAll('.popup__content');
+let cardFullscreen = document.querySelectorAll('.card__button');
 let initialCards = [
   {
     name: 'Архыз',
@@ -81,6 +81,15 @@ for (let i = 0; i < likes.length; i++){
   }
 }
 
+//Открытие/закрытие попапа fullscreen картинки 
+for (let i = 0; i< cardFullscreen.length; i++){
+  cardFullscreen[i].addEventListener('click', toggleFullscreen);
+  function toggleFullscreen() {
+    popup[2].classList.toggle('popup_open')
+  }
+}
+
+
 //toggle попап редактирования профиля
 function togglePopupProfile() {
   transferInPopup();
@@ -120,11 +129,21 @@ function overlayClickImage(event){
   }
   }
 
+  // закрытие по клику overlay fullscreen картинки
+function overlayClickFullscreenImage(event){
+  console.log('dd')
+  if (event.target === event.currentTarget) {
+    toggleFullscreen();
+
+  }
+  }
+
 
 popupButton.addEventListener('click', togglePopupProfile);
 popupAddImageButton.addEventListener('click', togglePopupImage);
 popupCloseButton[0].addEventListener('click', togglePopupProfile);
 popupCloseButton[1].addEventListener('click', togglePopupImage);
+popupCloseButton[2].addEventListener('click', toggleFullscreen);
 popupForm[0].addEventListener('submit', transferInForm);
 popupForm[1].addEventListener('submit', addPlace);
 popupContent[0].addEventListener('click', overlayClickProfile);
