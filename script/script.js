@@ -16,8 +16,10 @@ const placeName = document.querySelector('.popup__input_type_place-name');
 const placeUrl = document.querySelector('.popup__input_type_place-url');
 const cards = document.querySelector('.cards');
 const popupContent = document.querySelectorAll('.popup__content');
-let cardFullscreen = document.querySelectorAll('.card__button');
-let initialCards = [
+let cardButton = document.querySelectorAll('.card__button');
+let cardImageFullscreen = document.querySelector('.popup__full-image')
+let imageText = document.querySelector('.popup__image-text');
+const initialCards = [
   {
     name: 'Архыз',
     link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
@@ -61,7 +63,6 @@ for (let i = 0; i < card.length; i++){
   function removeCard (){
     card[i].remove();
     initialCards.splice(i, 1);
-    console.log(initialCards)
   }
 }
 
@@ -81,14 +82,25 @@ for (let i = 0; i < likes.length; i++){
   }
 }
 
-//Открытие/закрытие попапа fullscreen картинки 
-for (let i = 0; i< cardFullscreen.length; i++){
-  cardFullscreen[i].addEventListener('click', toggleFullscreen);
-  function toggleFullscreen() {
+//Открытие попапа fullscreen картинки 
+for (let i = 0; i < cardButton.length; i++){
+  cardButton[i].addEventListener('click', openFullscreen,);
+  function openFullscreen() {  
     popup[2].classList.toggle('popup_open')
+    cardImageFullscreen.setAttribute('src', initialCards[i].link); 
+    imageText.textContent = initialCards[i].name; 
+    cardImageFullscreen.setAttribute('alt', initialCards[i].name)
+    // popup[2].setAttribute('background', 'rgba(0, 0, 0, 0.9)')
+    console.log(popup[2])
+    console.log(cardImageFullscreen)
   }
 }
 
+
+//Закрытие попапа fullscreen картинки 
+function closeFullscreen(){
+popup[2].classList.remove('popup_open')
+}
 
 //toggle попап редактирования профиля
 function togglePopupProfile() {
@@ -119,7 +131,7 @@ function transferInForm(evt) {
 function overlayClickProfile(event){
 if (event.target === event.currentTarget) {
   togglePopupProfile();
-}
+  }
 }
 
 // закрытие по клику overlay картинки
@@ -127,24 +139,22 @@ function overlayClickImage(event){
   if (event.target === event.currentTarget) {
     togglePopupImage();
   }
-  }
+}
 
   // закрытие по клику overlay fullscreen картинки
 function overlayClickFullscreenImage(event){
-  console.log('dd')
   if (event.target === event.currentTarget) {
-    toggleFullscreen();
-
+    closeFullscreen();
   }
-  }
-
+}
 
 popupButton.addEventListener('click', togglePopupProfile);
 popupAddImageButton.addEventListener('click', togglePopupImage);
 popupCloseButton[0].addEventListener('click', togglePopupProfile);
 popupCloseButton[1].addEventListener('click', togglePopupImage);
-popupCloseButton[2].addEventListener('click', toggleFullscreen);
+popupCloseButton[2].addEventListener('click', closeFullscreen);
 popupForm[0].addEventListener('submit', transferInForm);
 popupForm[1].addEventListener('submit', addPlace);
 popupContent[0].addEventListener('click', overlayClickProfile);
 popupContent[1].addEventListener('click', overlayClickImage);
+popupContent[2].addEventListener('click', overlayClickFullscreenImage);
