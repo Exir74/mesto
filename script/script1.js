@@ -35,30 +35,26 @@ const initialCards = [
     link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
   }
 ];
-
+const array3 = array1.concat(array2);
+// открытие/закрытие попапов профиля и картинки
 function togglePopup(index) {
   popup[index].classList.toggle('popup_open');
 }
-
-// открытие/закрытие попапов профиля и картинки
 popupButtons.forEach((element, index) => {
-  // element.addEventListener('click', togglePopup(index));
-  console.log(element)
+  element.addEventListener('click', function openPopup(){
+    togglePopup(index)
+  })
 });
-
 popupClose.forEach((element, index) => {
   element.addEventListener('click', function closePopup(){
     togglePopup(index)
   })
 })
-
+console.log(cardPopup)
  //вставка картинки и описания из массива
  cardPopup.forEach(function addImage(element, index){
     cardImage[index].setAttribute('src', initialCards[index].link);
     cardCaption[index].textContent = initialCards[index].name; 
     cardImage[index].setAttribute('alt', initialCards[index].name);
   });
-
-
-
 
