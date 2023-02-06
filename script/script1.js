@@ -1,10 +1,15 @@
 const page = document.querySelector('.page');
 const popup = page.querySelectorAll('.popup');
+const popupOverlay = Array.from (page.querySelectorAll('.popup__content'))
 const popupAddImageButton = page.querySelector('.profile__add-image');
 const cardImage = page.querySelectorAll('.card__image');
 const cardCaption = page.querySelectorAll('.card__caption');
 const popupClose = page.querySelectorAll('.popup__close');
 const cardPopup = page.querySelectorAll('.card__button')
+const profileName = page.querySelector('.profile__name');
+const profileSubtitle = page.querySelector('.profile__subtitle');
+const profileNamePopup = page.querySelector('.popup__input_type_name');
+const profileSubtitlePopup = page.querySelector('.popup__input_type_subtitle');
 const popupButtons = [
 document.querySelector('.profile__edit-button'),
 document.querySelector('.profile__add-button'),
@@ -35,22 +40,31 @@ const initialCards = [
     link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
   }
 ];
-const array3 = array1.concat(array2);
 // открытие/закрытие попапов профиля и картинки
 function togglePopup(index) {
+  if (index === 0 && popup[index].classList.contains('popup_open') === false){
+    profileNamePopup.value = profileName.textContent;
+    profileSubtitlePopup.value = profileSubtitle.textContent;
+  }
   popup[index].classList.toggle('popup_open');
 }
 popupButtons.forEach((element, index) => {
-  element.addEventListener('click', function openPopup(){
-    togglePopup(index)
+  element.addEventListener('click', () => {
+      togglePopup(index);
   })
 });
 popupClose.forEach((element, index) => {
-  element.addEventListener('click', function closePopup(){
-    togglePopup(index)
+  element.addEventListener('click', () => {
+      togglePopup(index);
   })
 })
-console.log(cardPopup)
+popupOverlay.forEach((element, index) => {
+  element.addEventListener('click', (event) => {
+    if (event.target === event.currentTarget){
+      togglePopup(index);
+    }
+  })
+})
  //вставка картинки и описания из массива
  cardPopup.forEach(function addImage(element, index){
     cardImage[index].setAttribute('src', initialCards[index].link);
