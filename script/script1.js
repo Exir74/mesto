@@ -13,6 +13,9 @@ const profileSubtitlePopup = page.querySelector('.popup__input_type_subtitle');
 const placeName = document.querySelector('.popup__input_type_place-name');
 const placeUrl = document.querySelector('.popup__input_type_place-url');
 const popupForm = document.querySelectorAll('.popup__form');
+const imageTemplate = document.querySelector('#card-template').content;
+const cardTrash = imageTemplate.querySelectorAll('.card__trash');
+const cards = page.querySelector('.cards');
 const popupButtons = [
 document.querySelector('.profile__edit-button'),
 document.querySelector('.profile__add-button'),
@@ -48,10 +51,10 @@ iteraterray()
 
 // добавление template карточек
 function addCard(cardLink, cardName){
-const imageTemplate = document.querySelector('#card-template').content;
-const cards = page.querySelector('.cards');
+
 const imageElement = imageTemplate.querySelector('.card').cloneNode(true);
 addCardContent(cards,imageElement,cardLink, cardName);
+console.log(imageElement.querySelectorAll('.card__trash')[0])
 
 }
 
@@ -141,3 +144,16 @@ popupOverlay.forEach((element, index) => {
     togglePopup(index)
   })
  })
+ cardTrash.forEach((element, index) => {
+  element.addEventListener('click', () => {
+      console.log('aa')
+  })
+});
+
+ //удалить карточку
+//  function removeCard(){
+//   console.log('opaa')
+//  }
+
+
+ //слушать кнопку удалить 
