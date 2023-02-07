@@ -43,6 +43,40 @@ const initialCards = [
     link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
   }
 ];
+
+iteraterray()
+
+// добавление template карточек
+function addCard(cardLink, cardName){
+const imageTemplate = document.querySelector('#card-template').content;
+const cards = page.querySelector('.cards');
+const imageElement = imageTemplate.querySelector('.card').cloneNode(true);
+addCardContent(cards,imageElement,cardLink, cardName);
+
+}
+
+// добавление данных в template карточки
+function addCardContent(cards,imageElement, cardLink, cardName) {
+  // console.log(cardLink)
+imageElement.querySelector('.card__image').src = cardLink;
+imageElement.querySelector('.card__image').alt = cardName;
+imageElement.querySelector('.card__caption').textContent = cardName;
+if (initialCards.length <= 6){
+cards.append(imageElement);
+} else {
+  cards.prepend(imageElement);
+}
+}
+
+// перебор массива мест
+function iteraterray (){
+initialCards.forEach ((element, index) => {
+ const cardLink = initialCards[index].link
+ const cardName = initialCards[index].name
+ addCard(cardLink, cardName)
+ 
+})
+}
 // открытие/закрытие попапов профиля и картинки
 function togglePopup(index) {
   if (index === 0 && popup[index].classList.contains('popup_open') === false){
@@ -58,9 +92,10 @@ function transferInForm (){
 
 //добавление картинки в массив 
 function addPlace() {
-  initialCards.unshift({name: placeName.value , link: placeUrl.value});
-  placeName.value='';
-  placeUrl.value='';
+  // initialCards.unshift({name: placeName.value , link: placeUrl.value});
+  // placeName.value='';
+  // placeUrl.value='';
+  // console.log(initialCards[0]);
 }
 
 // передачи данных в popup
@@ -97,16 +132,12 @@ popupOverlay.forEach((element, index) => {
     if (index === 0){
       transferInForm();
     }
-    if (index === 1 ) {
-      addPlace();
+    if (index === 1) {
+      initialCards.unshift({name: placeName.value , link: placeUrl.value});
+      addCard(placeUrl.value, placeName.value)
+      placeName.value='';
+      placeUrl.value='';
     }
     togglePopup(index)
   })
  })
-
- //вставка картинки и описания из массива
- cardPopup.forEach(function addImage(element, index){
-    cardImage[index].setAttribute('src', initialCards[index].link);
-    cardCaption[index].textContent = initialCards[index].name; 
-    cardImage[index].setAttribute('alt', initialCards[index].name);
-  });
