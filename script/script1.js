@@ -54,8 +54,9 @@ function addCard(cardLink, cardName){
 
 const imageElement = imageTemplate.querySelector('.card').cloneNode(true);
 addCardContent(cards,imageElement,cardLink, cardName);
-console.log(imageElement.querySelectorAll('.card__trash')[0])
-
+imageElement.querySelector('.card__like').addEventListener('click', function(evt) {
+  evt.target.classList.toggle('card__like_active');
+})
 }
 
 // добавление данных в template карточки
@@ -149,6 +150,7 @@ popupOverlay.forEach((element, index) => {
       console.log('aa')
   })
 });
+
 
  //удалить карточку
 //  function removeCard(){
