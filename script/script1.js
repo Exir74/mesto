@@ -117,6 +117,7 @@ function transferInPopup() {
 popupButtons.forEach((element, index) => {
   element.addEventListener('click', () => {
       togglePopup(index);
+      console.log(element)
   })
 });
 // слушатель закрытия картинки по нажатию на крестик
@@ -150,3 +151,4 @@ popupOverlay.forEach((element, index) => {
     togglePopup(index)
   })
  })
+console.log(popupButtons)
