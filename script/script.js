@@ -72,7 +72,6 @@ imageElement.querySelector('.card__image').addEventListener('click', function(ev
   popupFullImage.src = imageElement.querySelector('.card__image').src
   popupFullImage.alt = imageElement.querySelector('.card__caption').textContent;
   popupFullText.textContent = imageElement.querySelector('.card__caption').textContent;
-  console.log(popup[2])
   popup[2].classList.add('popup_background')
   togglePopup(2);
 })
