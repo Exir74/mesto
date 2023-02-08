@@ -65,15 +65,16 @@ imageElement.querySelector('.card__caption').textContent = cardName;
 imageElement.querySelector('.card__like').addEventListener('click', function(event) {
   event.target.classList.toggle('card__like_active');
 })
-imageElement.querySelector('.card__trash').addEventListener('click', function(event) {
+imageElement.querySelector('.card__trash').addEventListener('click', function() {
   imageElement.remove(); 
 })
-
-imageElement.querySelector('.card__image').addEventListener('click', function() {
+imageElement.querySelector('.card__image').addEventListener('click', function(event) {
   popupFullImage.src = imageElement.querySelector('.card__image').src
   popupFullImage.alt = imageElement.querySelector('.card__caption').textContent;
   popupFullText.textContent = imageElement.querySelector('.card__caption').textContent;
-
+  console.log(popup[2])
+  popup[2].classList.add('popup_background')
+  // popup[2].classList.toggle('popup_background')
   togglePopup(2);
 })
 if (initialCards.length <= 6){
