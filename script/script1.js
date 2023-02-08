@@ -16,6 +16,8 @@ const popupForm = document.querySelectorAll('.popup__form');
 const imageTemplate = document.querySelector('#card-template').content;
 const cardTrash = imageTemplate.querySelectorAll('.card__trash');
 const cards = page.querySelector('.cards');
+const popupFullImage = document.querySelector('.popup__full-image')
+const popupFullText = document.querySelector('.popup__image-text')
 const popupButtons = [
 document.querySelector('.profile__edit-button'),
 document.querySelector('.profile__add-button'),
@@ -51,13 +53,24 @@ iteraterray()
 
 // добавление template карточек
 function addCard(cardLink, cardName){
-
 const imageElement = imageTemplate.querySelector('.card').cloneNode(true);
 addCardContent(cards,imageElement,cardLink, cardName);
-imageElement.querySelector('.card__like').addEventListener('click', function(evt) {
-  evt.target.classList.toggle('card__like_active');
+imageElement.querySelector('.card__like').addEventListener('click', function(event) {
+  event.target.classList.toggle('card__like_active');
+})
+imageElement.querySelector('.card__trash').addEventListener('click', function(event) {
+  imageElement.remove(); 
+})
+
+imageElement.querySelector('.card__image').addEventListener('click', function() {
+  popupFullImage.src = imageElement.querySelector('.card__image').src
+  popupFullImage.alt = imageElement.querySelector('.card__caption').textContent;
+  popupFullText.textContent = imageElement.querySelector('.card__caption').textContent;
+  togglePopup(2);
 })
 }
+
+
 
 // добавление данных в template карточки
 function addCardContent(cards,imageElement, cardLink, cardName) {
@@ -92,14 +105,6 @@ function togglePopup(index) {
 function transferInForm (){
   profileName.textContent = profileNamePopup.value;
   profileSubtitle.textContent = profileSubtitlePopup.value;
-}
-
-//добавление картинки в массив 
-function addPlace() {
-  // initialCards.unshift({name: placeName.value , link: placeUrl.value});
-  // placeName.value='';
-  // placeUrl.value='';
-  // console.log(initialCards[0]);
 }
 
 // передачи данных в popup
@@ -145,17 +150,3 @@ popupOverlay.forEach((element, index) => {
     togglePopup(index)
   })
  })
- cardTrash.forEach((element, index) => {
-  element.addEventListener('click', () => {
-      console.log('aa')
-  })
-});
-
-
- //удалить карточку
-//  function removeCard(){
-//   console.log('opaa')
-//  }
-
-
- //слушать кнопку удалить 

@@ -158,3 +158,18 @@ popupForm[1].addEventListener('submit', addPlace);
 popupContent[0].addEventListener('click', overlayClickProfile);
 popupContent[1].addEventListener('click', overlayClickImage);
 popupContent[2].addEventListener('click', overlayClickFullscreenImage);
+
+
+
+
+// const popupFullImage = document.querySelector('.popup__full-image')
+// const popupFullText = document.querySelector('.popup__image-text')
+
+// imageElement.querySelector('.card__image').addEventListener('click', function() {
+//   popupFullImage.src = imageElement.querySelector('.card__image').src
+//   popupFullImage.alt = imageElement.querySelector('.card__caption').textContent;
+//   popupFullText.textContent = imageElement.querySelector('.card__caption').textContent;
+//   console.log(popupFullImage.alt)
+//   togglePopup(2);
+  
+// })
