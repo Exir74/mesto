@@ -1,24 +1,27 @@
-const popupButton = document.querySelector('.profile__edit-button');
-const popup = document.querySelectorAll('.popup');
-const popupCloseButton = document.querySelectorAll('.popup__close');
-let profileName = document.querySelector('.profile__name');
-let profileSubtitle = document.querySelector('.profile__subtitle');
-let profileNamePopup = document.querySelector('.popup__input_type_name');
-let profileSubtitlePopup = document.querySelector('.popup__input_type_subtitle');
-const popupForm = document.querySelectorAll('.popup__form');
-const popupAddImageButton = document.querySelector('.profile__add-image');
-let cardImage = document.querySelectorAll('.card__image');
-let cardCaption = document.querySelectorAll('.card__caption');
-const likes = document.querySelectorAll('.card__like'); 
-const card = document.querySelectorAll('.cards__item');
-const cardTrash = document.querySelectorAll('.card__trash');
+const page = document.querySelector('.page');
+const popup = page.querySelectorAll('.popup');
+const popupOverlay = Array.from (page.querySelectorAll('.popup__content'))
+const popupAddImageButton = page.querySelector('.profile__add-image');
+const cardImage = page.querySelectorAll('.card__image');
+const cardCaption = page.querySelectorAll('.card__caption');
+const popupClose = page.querySelectorAll('.popup__close');
+const cardPopup = page.querySelectorAll('.card__button')
+const profileName = page.querySelector('.profile__name');
+const profileSubtitle = page.querySelector('.profile__subtitle');
+const profileNamePopup = page.querySelector('.popup__input_type_name');
+const profileSubtitlePopup = page.querySelector('.popup__input_type_subtitle');
 const placeName = document.querySelector('.popup__input_type_place-name');
 const placeUrl = document.querySelector('.popup__input_type_place-url');
-const cards = document.querySelector('.cards');
-const popupContent = document.querySelectorAll('.popup__content');
-let cardButton = document.querySelectorAll('.card__button');
-let cardImageFullscreen = document.querySelector('.popup__full-image')
-let imageText = document.querySelector('.popup__image-text');
+const popupForm = document.querySelectorAll('.popup__form');
+const imageTemplate = document.querySelector('#card-template').content;
+const cardTrash = imageTemplate.querySelectorAll('.card__trash');
+const cards = page.querySelector('.cards');
+const popupFullImage = document.querySelector('.popup__full-image')
+const popupFullText = document.querySelector('.popup__image-text')
+const popupButtons = [
+document.querySelector('.profile__edit-button'),
+document.querySelector('.profile__add-button'),
+];
 const initialCards = [
   {
     name: 'Архыз',
@@ -46,71 +49,60 @@ const initialCards = [
   }
 ];
 
-//добавление картинок из массива
-addImage();
+iteraterray()
 
-//добавление картинки и имя в массив
-function addPlace(evt){
-  evt.preventDefault();
-  initialCards.unshift({name: placeName.value , link: placeUrl.value});
-  togglePopupImage();
-  addImage();
+// добавление template карточек
+function addCard(cardLink, cardName){
+const imageElement = imageTemplate.querySelector('.card').cloneNode(true);
+addCardContent(cards,imageElement,cardLink, cardName);
 }
 
-//удаление картинки
-for (let i = 0; i < card.length; i++){
-  cardTrash[i].addEventListener('click', removeCard);
-  function removeCard (){
-    card[i].remove();
-    initialCards.splice(i, 1);
+// добавление данных в template карточки
+function addCardContent(cards,imageElement, cardLink, cardName) {
+imageElement.querySelector('.card__image').src = cardLink;
+imageElement.querySelector('.card__image').alt = cardName;
+imageElement.querySelector('.card__caption').textContent = cardName;
+imageElement.querySelector('.card__like').addEventListener('click', function(event) {
+  event.target.classList.toggle('card__like_active');
+})
+imageElement.querySelector('.card__trash').addEventListener('click', function() {
+  imageElement.remove(); 
+})
+imageElement.querySelector('.card__image').addEventListener('click', function(event) {
+  popupFullImage.src = imageElement.querySelector('.card__image').src
+  popupFullImage.alt = imageElement.querySelector('.card__caption').textContent;
+  popupFullText.textContent = imageElement.querySelector('.card__caption').textContent;
+  console.log(popup[2])
+  popup[2].classList.add('popup_background')
+  togglePopup(2);
+})
+if (initialCards.length <= 6){
+cards.append(imageElement);
+} else {
+  cards.prepend(imageElement);
+}
+}
+
+// перебор массива мест
+function iteraterray (){
+initialCards.forEach ((element, index) => {
+ const cardLink = initialCards[index].link
+ const cardName = initialCards[index].name
+ addCard(cardLink, cardName)
+ 
+})
+}
+// открытие/закрытие попапов профиля и картинки
+function togglePopup(index) {
+  if (index === 0 && popup[index].classList.contains('popup_open') === false){
+    transferInPopup()
   }
+  popup[index].classList.toggle('popup_open');
 }
-
-// добавление картинки и описания из массива
-function addImage(){ 
-for (let i = 0; i < cardImage.length; i++ ){
-  cardImage[i].setAttribute('src', initialCards[i].link);
-  cardCaption[i].textContent = initialCards[i].name; 
-  cardImage[i].setAttribute('alt', initialCards[i].name);
-}
-}
-// Лайк/дизлайк
-for (let i = 0; i < likes.length; i++){
-  likes[i].addEventListener('click', addLike);
-  function addLike() {
-    likes[i].classList.toggle('card__like_active');
-  }
-}
-
-//Открытие попапа fullscreen картинки 
-for (let i = 0; i < cardButton.length; i++){
-  cardButton[i].addEventListener('click', openFullscreen,);
-  function openFullscreen() {  
-    popup[2].classList.toggle('popup_open')
-    cardImageFullscreen.setAttribute('src', initialCards[i].link); 
-    imageText.textContent = initialCards[i].name; 
-    cardImageFullscreen.setAttribute('alt', initialCards[i].name)
-    // popup[2].setAttribute('background', 'rgba(0, 0, 0, 0.9)')
-    console.log(popup[2])
-    console.log(cardImageFullscreen)
-  }
-}
-
-
-//Закрытие попапа fullscreen картинки 
-function closeFullscreen(){
-popup[2].classList.remove('popup_open')
-}
-
-//toggle попап редактирования профиля
-function togglePopupProfile() {
-  transferInPopup();
-  popup[0].classList.toggle('popup_open');
-}
-
-//toggle попап добаваление картинки
-function togglePopupImage() {
-  popup[1].classList.toggle('popup_open');
+//перенос данных из попапа профиля
+function transferInForm (){
+  profileName.textContent = profileNamePopup.value;
+  profileSubtitle.textContent = profileSubtitlePopup.value;
 }
 
 // передачи данных в popup
@@ -119,57 +111,42 @@ function transferInPopup() {
   profileSubtitlePopup.value = profileSubtitle.textContent;
 }
 
-// передачи данных в form
-function transferInForm(evt) {
-  evt.preventDefault()
-  profileName.textContent = (profileNamePopup.value);
-  profileSubtitle.textContent = profileSubtitlePopup.value;
-  togglePopupProfile();
-}
+//слушатель на кнопки редактировать профиль и добавление картинки
+popupButtons.forEach((element, index) => {
+  element.addEventListener('click', () => {
+      togglePopup(index);
+  })
+});
+// слушатель закрытия картинки по нажатию на крестик
+popupClose.forEach((element, index) => {
+  element.addEventListener('click', () => {
+      togglePopup(index);
+      popup[2].classList.remove('popup_background')
+  })
+})
+// слушатель закрытия картинки по нажатию на оверлей
+popupOverlay.forEach((element, index) => {
+  element.addEventListener('click', (event) => {
+    if (event.target === event.currentTarget){
+      togglePopup(index);
+      popup[2].classList.remove('popup_background')
+    }
+  })
+})
 
-// закрытие по клику overlay профиля
-function overlayClickProfile(event){
-if (event.target === event.currentTarget) {
-  togglePopupProfile();
-  }
-}
-
-// закрытие по клику overlay картинки
-function overlayClickImage(event){
-  if (event.target === event.currentTarget) {
-    togglePopupImage();
-  }
-}
-
-  // закрытие по клику overlay fullscreen картинки
-function overlayClickFullscreenImage(event){
-  if (event.target === event.currentTarget) {
-    closeFullscreen();
-  }
-}
-
-popupButton.addEventListener('click', togglePopupProfile);
-popupAddImageButton.addEventListener('click', togglePopupImage);
-popupCloseButton[0].addEventListener('click', togglePopupProfile);
-popupCloseButton[1].addEventListener('click', togglePopupImage);
-popupCloseButton[2].addEventListener('click', closeFullscreen);
-popupForm[0].addEventListener('submit', transferInForm);
-popupForm[1].addEventListener('submit', addPlace);
-popupContent[0].addEventListener('click', overlayClickProfile);
-popupContent[1].addEventListener('click', overlayClickImage);
-popupContent[2].addEventListener('click', overlayClickFullscreenImage);
-
-
-
-
-// const popupFullImage = document.querySelector('.popup__full-image')
-// const popupFullText = document.querySelector('.popup__image-text')
-
-// imageElement.querySelector('.card__image').addEventListener('click', function() {
-//   popupFullImage.src = imageElement.querySelector('.card__image').src
-//   popupFullImage.alt = imageElement.querySelector('.card__caption').textContent;
-//   popupFullText.textContent = imageElement.querySelector('.card__caption').textContent;
-//   console.log(popupFullImage.alt)
-//   togglePopup(2);
-  
-// })
+// слушатель сабмитов форм
+ popupForm.forEach((element, index) => {
+  element.addEventListener('submit', (event) => {
+    event.preventDefault()
+    if (index === 0){
+      transferInForm();
+    }
+    if (index === 1) {
+      initialCards.unshift({name: placeName.value , link: placeUrl.value});
+      addCard(placeUrl.value, placeName.value)
+      placeName.value='';
+      placeUrl.value='';
+    }
+    togglePopup(index)
+  })
+ })
