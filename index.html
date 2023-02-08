@@ -1,145 +1,152 @@
 <!DOCTYPE html>
 <html lang="ru">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport"
-    content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet"
-    href="./pages/index.css" />
-  <title>Mesto</title>
-</head>
-<body>
-  <div class="page">
-    <header class="header">
-      <a href="#"
-        class="header__logo hover"> </a>
-    </header>
-    <main class="main-content">
-      <section class="profile">
-        <img class="profile__avatar"
-          src="./image/avatar.jpg"
-          alt="Аватар" />
-        <div class="profile__info">
-          <h1 class="profile__name">Жак-Ив Кусто</h1>
-          <p class="profile__subtitle">Исследователь океана</p>
-          <button type="button"
-            class="profile__edit-button hover">
-            <img class="profile__edit-image"
-              src="./image/Edit-Button.svg"
-              alt="изменить" />
-          </button>
-        </div>
-        <button type="button"
-          class="profile__add-button hover">
-          <picture>
-            <source srcset="./image/Add-Button-S.svg"
-              media="(min-width: 708px)" />
-            <img class="profile__add-image"
-              src="./image/Add-Button-L.svg"
-              alt="добавить" />
-          </picture>
-        </button>
-      </section>
-      <section class="cards">
-      </section>
-    </main>
-    <footer class="footer">
-      <p class="footer__copyright">&copy; 2022 Mesto Russia</p>
-    </footer>
-    <div class="popup">
-      <div class="popup__content">
-        <button type="button"
-          class="popup__close hover">
-          <img class="popup__close-icon"
-            src="./image/Close-Icon.svg"
-            alt="закрыть" />
-        </button>
-        <form method="get"
-          name="popup-form"
-          class="popup__form">
-          <h3 class="popup__title">Редактировать профиль</h3>
-          <input class="popup__input popup__input_type_name"
-            name="popup-name"
-            type="text"
-            value="" />
-          <input class="popup__input popup__input_type_subtitle"
-            name="popup-subtitle"
-            type="text"
-            value="" />
-          <button type="submit"
-            class="popup__button">
-            Сохранить
-          </button>
-        </form>
-      </div>
-    </div>
-    <div class="popup">
-      <div class="popup__content">
-        <button type="button"
-          class="popup__close hover">
-          <img class="popup__close-icon"
-            src="./image/Close-Icon.svg"
-            alt="закрыть" />
-        </button>
-        <form method="get"
-          name="popup-form"
-          class="popup__form">
-          <h3 class="popup__title">Новое место</h3>
-          <input class="popup__input popup__input_type_place-name"
-            placeholder="Название"
-            name="popup-place-name"
-            type="text"
-            value="" />
-          <input class="popup__input popup__input_type_place-url"
-            placeholder="Ссылка на картинку"
-            name="popup-place-url"
-            type="text"
-            value="" />
-          <button type="submit"
-            class="popup__button">
-            Создать
-          </button>
-        </form>
-      </div>
-    </div>
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
+    <link rel="stylesheet" href="./pages/index.css" />
+    <title>Mesto</title>
+  </head>
 
-    <div class="popup">
-      <div class="popup__content">
-        <button type="button"
-          class="popup__close hover">
-          <img class="popup__close-icon"
-            src="./image/Close-Icon.svg"
-            alt="закрыть" />
-        </button>
-        <div class="popup__image">
-          <img class="popup__full-image"
-            src="https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg"
-            alt="" />
-        </div>
-        <div class="popup__image-name">
-          <p class="popup__image-text">
-          </p>
-        </div>
-      </div>
-    </div>
-  </div>
-  <template id="card-template">
-    <div class="cards__item card">
-      <button type="button"
-        class="card__trash hover"></button>
-      <button type="button"
-        class="card__button">
-        <img class="card__image"
+  <body>
+    <div class="page">
+      <header class="header">
+        <a href="#" class="header__logo hover"> </a>
+      </header>
+      <main class="main-content">
+        <section class="profile">
+          <img
+            class="profile__avatar"
+            src="./image/avatar.jpg"
+            alt="Аватар"
           />
-      </button>
-      <div class="card__footer">
-        <h2 class="card__caption"></h2>
-        <button type="button"
-          class="card__like"></button>
+          <div class="profile__info">
+            <h1 class="profile__name">Жак-Ив Кусто</h1>
+            <p class="profile__subtitle">Исследователь океана</p>
+            <button type="button" class="profile__edit-button hover">
+              <img
+                class="profile__edit-image"
+                src="./image/Edit-Button.svg"
+                alt="изменить"
+              />
+            </button>
+          </div>
+          <button type="button" class="profile__add-button hover">
+            <picture>
+              <source
+                srcset="./image/Add-Button-S.svg"
+                media="(min-width: 708px)"
+              />
+              <img
+                class="profile__add-image"
+                src="./image/Add-Button-L.svg"
+                alt="добавить"
+              />
+            </picture>
+          </button>
+        </section>
+        <section class="cards"></section>
+      </main>
+      <footer class="footer">
+        <p class="footer__copyright">&copy; 2022 Mesto Russia</p>
+      </footer>
+      <div class="popup">
+        <div class="popup__content">
+          <button type="button" class="popup__close hover">
+            <img
+              class="popup__close-icon"
+              src="./image/Close-Icon.svg"
+              alt="закрыть"
+            />
+          </button>
+          <form method="get" name="popup-form" class="popup__form">
+            <h3 class="popup__title">Редактировать профиль</h3>
+            <input
+              class="popup__input popup__input_type_name"
+              name="popup-name"
+              type="text"
+              value=""
+            />
+            <input
+              class="popup__input popup__input_type_subtitle"
+              name="popup-subtitle"
+              type="text"
+              value=""
+            />
+            <button type="submit" class="popup__button">
+              Сохранить
+            </button>
+          </form>
+        </div>
+      </div>
+      <div class="popup">
+        <div class="popup__content">
+          <button type="button" class="popup__close hover">
+            <img
+              class="popup__close-icon"
+              src="./image/Close-Icon.svg"
+              alt="закрыть"
+            />
+          </button>
+          <form method="get" name="popup-form" class="popup__form">
+            <h3 class="popup__title">Новое место</h3>
+            <input
+              class="popup__input popup__input_type_place-name"
+              placeholder="Название"
+              name="popup-place-name"
+              type="text"
+              value=""
+            />
+            <input
+              class="popup__input popup__input_type_place-url"
+              placeholder="Ссылка на картинку"
+              name="popup-place-url"
+              type="text"
+              value=""
+            />
+            <button type="submit" class="popup__button">
+              Создать
+            </button>
+          </form>
+        </div>
+      </div>
+
+      <div class="popup">
+        <div class="popup__content">
+          <button type="button" class="popup__close hover">
+            <img
+              class="popup__close-icon"
+              src="./image/Close-Icon.svg"
+              alt="закрыть"
+            />
+          </button>
+          <div class="popup__image">
+            <img
+              class="popup__full-image"
+              src="https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg"
+              alt=""
+            />
+          </div>
+          <div class="popup__image-name">
+            <p class="popup__image-text"></p>
+          </div>
+        </div>
       </div>
     </div>
-  </template>
-  <script src="./script/script.js"></script>
-</body>
-
+    <template id="card-template">
+      <div class="cards__item card">
+        <button type="button" class="card__trash hover"></button>
+        <button type="button" class="card__button">
+          <img class="card__image" />
+        </button>
+        <div class="card__footer">
+          <h2 class="card__caption"></h2>
+          <button type="button" class="card__like"></button>
+        </div>
+      </div>
+    </template>
+    <script src="./script/script.js"></script>
+  </body>
 </html>
