@@ -74,7 +74,6 @@ imageElement.querySelector('.card__image').addEventListener('click', function(ev
   popupFullText.textContent = imageElement.querySelector('.card__caption').textContent;
   console.log(popup[2])
   popup[2].classList.add('popup_background')
-  // popup[2].classList.toggle('popup_background')
   togglePopup(2);
 })
 if (initialCards.length <= 6){
@@ -122,6 +121,7 @@ popupButtons.forEach((element, index) => {
 popupClose.forEach((element, index) => {
   element.addEventListener('click', () => {
       togglePopup(index);
+      popup[2].classList.remove('popup_background')
   })
 })
 // слушатель закрытия картинки по нажатию на оверлей
@@ -129,6 +129,7 @@ popupOverlay.forEach((element, index) => {
   element.addEventListener('click', (event) => {
     if (event.target === event.currentTarget){
       togglePopup(index);
+      popup[2].classList.remove('popup_background')
     }
   })
 })
