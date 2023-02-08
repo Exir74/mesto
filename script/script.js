@@ -18,6 +18,7 @@ const cardTrash = imageTemplate.querySelectorAll('.card__trash');
 const cards = page.querySelector('.cards');
 const popupFullImage = document.querySelector('.popup__full-image')
 const popupFullText = document.querySelector('.popup__image-text')
+const popupImage = 2
 const popupButtons = [
 document.querySelector('.profile__edit-button'),
 document.querySelector('.profile__add-button'),
@@ -72,8 +73,8 @@ imageElement.querySelector('.card__image').addEventListener('click', function(ev
   popupFullImage.src = imageElement.querySelector('.card__image').src
   popupFullImage.alt = imageElement.querySelector('.card__caption').textContent;
   popupFullText.textContent = imageElement.querySelector('.card__caption').textContent;
-  popup[2].classList.add('popup_background')
-  togglePopup(2);
+  popup[popupImage].classList.add('popup_background')
+  togglePopup(popupImage);
 })
 if (initialCards.length <= 6){
 cards.append(imageElement);
@@ -120,7 +121,7 @@ popupButtons.forEach((element, index) => {
 popupClose.forEach((element, index) => {
   element.addEventListener('click', () => {
       togglePopup(index);
-      popup[2].classList.remove('popup_background')
+      popup[popupImage].classList.remove('popup_background')
   })
 })
 // слушатель закрытия картинки по нажатию на оверлей
@@ -128,7 +129,7 @@ popupOverlay.forEach((element, index) => {
   element.addEventListener('click', (event) => {
     if (event.target === event.currentTarget){
       togglePopup(index);
-      popup[2].classList.remove('popup_background')
+      popup[popupImage].classList.remove('popup_background')
     }
   })
 })
