@@ -55,6 +55,13 @@ iteraterray()
 function addCard(cardLink, cardName){
 const imageElement = imageTemplate.querySelector('.card').cloneNode(true);
 addCardContent(cards,imageElement,cardLink, cardName);
+}
+
+// добавление данных в template карточки
+function addCardContent(cards,imageElement, cardLink, cardName) {
+imageElement.querySelector('.card__image').src = cardLink;
+imageElement.querySelector('.card__image').alt = cardName;
+imageElement.querySelector('.card__caption').textContent = cardName;
 imageElement.querySelector('.card__like').addEventListener('click', function(event) {
   event.target.classList.toggle('card__like_active');
 })
@@ -66,18 +73,9 @@ imageElement.querySelector('.card__image').addEventListener('click', function() 
   popupFullImage.src = imageElement.querySelector('.card__image').src
   popupFullImage.alt = imageElement.querySelector('.card__caption').textContent;
   popupFullText.textContent = imageElement.querySelector('.card__caption').textContent;
+
   togglePopup(2);
 })
-}
-
-
-
-// добавление данных в template карточки
-function addCardContent(cards,imageElement, cardLink, cardName) {
-  // console.log(cardLink)
-imageElement.querySelector('.card__image').src = cardLink;
-imageElement.querySelector('.card__image').alt = cardName;
-imageElement.querySelector('.card__caption').textContent = cardName;
 if (initialCards.length <= 6){
 cards.append(imageElement);
 } else {
@@ -117,7 +115,6 @@ function transferInPopup() {
 popupButtons.forEach((element, index) => {
   element.addEventListener('click', () => {
       togglePopup(index);
-      console.log(element)
   })
 });
 // слушатель закрытия картинки по нажатию на крестик
@@ -151,4 +148,3 @@ popupOverlay.forEach((element, index) => {
     togglePopup(index)
   })
  })
-console.log(popupButtons)
