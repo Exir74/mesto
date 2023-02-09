@@ -4,9 +4,11 @@ const popups = page.querySelectorAll('.popup');
 const profilePopup = page.querySelector('.profile-popup');
 const cardPopup = page.querySelector('.card-popup');
 const imagePopup = page.querySelector('.image-popup');
+const imageTemplate =
+  document.querySelector('#card-template').content;
 const imageAddButton = page.querySelector('.profile__add-button');
 const profileEditButton = page.querySelector('.profile__edit-button');
-const cardImage = page.querySelector('.card__button');
+const cardImageButton = imageTemplate.querySelector('.card__button')
 const popupsOverlay = page.querySelectorAll('.popup__content');
 const closeButtons = document.querySelectorAll('.popup__close');
 const popupsClose = page.querySelectorAll('.popup__close');
@@ -30,8 +32,6 @@ const popupFullImage = document.querySelector('.popup__full-image');
 const popupFullText = document.querySelector('.popup__image-text');
 const buttonAddImage = page.querySelector('.profile__add-button');
 const buttonEditProfile = page.querySelector('.profile__edit-button');
-const imageTemplate =
-  document.querySelector('#card-template').content;
 // const imageElement = cardTemplate.querySelector('.card').cloneNode(true);
 const cards = page.querySelector('.cards');
 const card = page.querySelector('.card');
@@ -66,40 +66,38 @@ renderInitialCards();
 
 function createCard(cardLink, cardName) {
   cardElement = imageTemplate.querySelector('.card').cloneNode(true);
-return cardElement;
+
+  return cardElement;
 }
-function addCardContent(cardLink, cardName, append=true) {
-  // const cardElement = createCard(cardLink, cardName);
-  // cardElement.querySelector('.card__image').src = cardLink;
-  // cardElement.querySelector('.card__image').alt = cardName;
-  // cardElement.querySelector('.card__caption').textContent = cardName;
-  // cards.append(cardElement);
-    const cardElement = createCard(cardLink, cardName);
-    cardElement.querySelector('.card__image').src = cardLink;
-    cardElement.querySelector('.card__image').alt = cardName;
-    cardElement.querySelector('.card__caption').textContent = cardName;
+
+function renderInitialCards() {
+  initialCards.forEach((element) => {
+    const cardLink = element.link;
+    const cardName = element.name;
+    addCardContent(cardLink, cardName, append = true);
+  });
+}
+function addCardContent(cardLink, cardName, append = true) {
+  const cardElement = createCard(cardLink, cardName);
+  cardElement.querySelector('.card__image').src = cardLink;
+  cardElement.querySelector('.card__image').alt = cardName;
+  cardElement.querySelector('.card__caption').textContent = cardName;
   if (append) {
     cards.append(cardElement);
   } else {
     cards.prepend(cardElement);
     cardElement.querySelector('.card__image').src = cardLink;
     cardElement.querySelector('.card__image').alt = cardName;
-    cardElement.querySelector('.card__caption').textContent = cardName;
+    cardElement.querySelector('.card__caption').textContent =
+      cardName;
   }
-
-
-}
-function renderInitialCards() {
-  initialCards.forEach((element) => {
-    const cardLink = element.link;
-    const cardName = element.name;
-    addCardContent(cardLink, cardName)
-  });
 }
 
-function renderUsersImages(){
-  const imageArr = [placeName.value, placeUrl.value]
-  addCardContent(cardLink, cardName)
+function renderUsersImages() {
+  const cardLink = placeUrl.value;
+  const cardName = placeName.value;
+  addCardContent(cardLink, cardName, append = false);
+
 }
 
 // function addCardContent(cards, imageElement, cardLink, cardName) {
@@ -254,8 +252,9 @@ profileForm.addEventListener('submit', (event) => {
 cardForm.addEventListener('submit', (event) => {
   const popup = cardForm.closest('.popup');
   event.preventDefault();
-  event.target.reset();
   closePopup(popup);
+  renderUsersImages()
+  event.target.reset();
 });
 //закрытие попапов при нажатии на крестик
 closeButtons.forEach((button) => {
@@ -283,8 +282,16 @@ profileEditButton.addEventListener('click', () => {
   changeProfile();
   openPopup(popup);
 });
-// // слушатель кнопок откртыия попапа fullscreen картинки
-// cardImage.addEventListener('click', () => {
-//   const popup = imagePopup
-//   openPopup(popup)
-// })
+// слушатель кнопок откртыия попапа fullscreen картинки
+cardElement.querySelector('.card__image').addEventListener('click', () => {
+  debugger
+  const popup = imagePopup 
+  openPopup(popup)
+})
+
+
+console.log(cardElement.querySelector('.card__button'))
+console.log(imagePopup)
+console.log('----------------------------------------------------------------------------')
+console.log(profileEditButton)
+console.log(profilePopup)
