@@ -27,7 +27,7 @@
             <p class="profile__subtitle">Исследователь океана</p>
             <button type="button" class="profile__edit-button hover">
               <img
-                class="profile__edit-image"
+                class="profile__edit-image prof"
                 src="./image/Edit-Button.svg"
                 alt="изменить"
               />
@@ -52,7 +52,7 @@
       <footer class="footer">
         <p class="footer__copyright">&copy; 2022 Mesto Russia</p>
       </footer>
-      <div class="popup">
+      <div class="popup profile-popup">
         <div class="popup__content">
           <button type="button" class="popup__close hover">
             <img
@@ -61,7 +61,7 @@
               alt="закрыть"
             />
           </button>
-          <form method="get" name="popup-form" class="popup__form">
+          <form method="get" name="profile-form" class="popup__form">
             <h3 class="popup__title">Редактировать профиль</h3>
             <input
               class="popup__input popup__input_type_name"
@@ -81,7 +81,7 @@
           </form>
         </div>
       </div>
-      <div class="popup">
+      <div class="popup card-popup">
         <div class="popup__content">
           <button type="button" class="popup__close hover">
             <img
@@ -90,7 +90,7 @@
               alt="закрыть"
             />
           </button>
-          <form method="get" name="popup-form" class="popup__form">
+          <form method="get" name="card-form" class="popup__form">
             <h3 class="popup__title">Новое место</h3>
             <input
               class="popup__input popup__input_type_place-name"
@@ -113,7 +113,7 @@
         </div>
       </div>
 
-      <div class="popup">
+      <div class="popup image-popup">
         <div class="popup__content">
           <button type="button" class="popup__close hover">
             <img
