@@ -66,7 +66,11 @@ renderInitialCards();
 
 function createCard(cardLink, cardName) {
   cardElement = imageTemplate.querySelector('.card').cloneNode(true);
-
+  cardElement.querySelector('.card__image').addEventListener('click', () => {
+    debugger
+    const popup = imagePopup 
+    openPopup(popup)
+  })
   return cardElement;
 }
 
@@ -98,6 +102,7 @@ function renderUsersImages() {
   const cardName = placeName.value;
   addCardContent(cardLink, cardName, append = false);
 
+  // addCardContent(cardLink, cardName);
 }
 
 // function addCardContent(cards, imageElement, cardLink, cardName) {
