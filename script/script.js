@@ -66,11 +66,7 @@ renderInitialCards();
 
 function createCard() {
   cardElement = imageTemplate.querySelector('.card').cloneNode(true);
-  // cardElement.querySelector('.card__image').addEventListener('click', () => {
-  //   debugger
-  //   const popup = imagePopup 
-  //   openPopup(popup)
-  // })
+  
   addListener();
   return cardElement;
 }
@@ -290,9 +286,15 @@ profileEditButton.addEventListener('click', () => {
 });
 // слушатель кнопок откртыия попапа fullscreen картинки
 function addListener() {
-cardElement.querySelector('.card__image').addEventListener('click', () => {
-  console.log(createCard().querySelector('.card__button'))
+cardElement.querySelector('.card__button').addEventListener('click', () => {
   const popup = imagePopup 
+  addNewContetntPopup()
   openPopup(popup)
 })
+}
+function addNewContetntPopup(){
+  console.log(cardElement.querySelector('.card__image').src)
+  console.log(popupFullImage)
+ popupFullImage.src = cardElement.querySelector('.card__image').src;
+// popupFullText = 
 }
