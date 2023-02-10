@@ -64,13 +64,14 @@ const initialCards = [
 
 renderInitialCards();
 
-function createCard(cardLink, cardName) {
+function createCard() {
   cardElement = imageTemplate.querySelector('.card').cloneNode(true);
-  cardElement.querySelector('.card__image').addEventListener('click', () => {
-    debugger
-    const popup = imagePopup 
-    openPopup(popup)
-  })
+  // cardElement.querySelector('.card__image').addEventListener('click', () => {
+  //   debugger
+  //   const popup = imagePopup 
+  //   openPopup(popup)
+  // })
+  addListener();
   return cardElement;
 }
 
@@ -288,15 +289,10 @@ profileEditButton.addEventListener('click', () => {
   openPopup(popup);
 });
 // слушатель кнопок откртыия попапа fullscreen картинки
+function addListener() {
 cardElement.querySelector('.card__image').addEventListener('click', () => {
-  debugger
+  console.log(createCard().querySelector('.card__button'))
   const popup = imagePopup 
   openPopup(popup)
 })
-
-
-console.log(cardElement.querySelector('.card__button'))
-console.log(imagePopup)
-console.log('----------------------------------------------------------------------------')
-console.log(profileEditButton)
-console.log(profilePopup)
+}
