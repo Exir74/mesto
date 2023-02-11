@@ -127,19 +127,30 @@ cardForm.addEventListener('submit', (event) => {
   event.target.reset();
 });
 //закрытие попапов при нажатии на крестик
-closeButtons.forEach((button) => {
-  const popup = button.closest('.popup');
-  button.addEventListener('click', () => closePopup(popup));
-});
-//закрытие попапов при нажатии на оверлей
-popupOverlays.forEach((overlay) => {
-  const popup = overlay.closest('.popup');
-  overlay.addEventListener('mousedown', (event) => {
-    if (event.target === event.currentTarget) {
-      closePopup(popup);
-    }
-  });
-});
+// closeButtons.forEach((button) => {
+//   const popup = button.closest('.popup');
+//   button.addEventListener('click', () => closePopup(popup));
+// });
+// //закрытие попапов при нажатии на оверлей
+// popupOverlays.forEach((overlay) => {
+//   const popup = overlay.closest('.popup');
+//   overlay.addEventListener('mousedown', (event) => {
+//     if (event.target === event.currentTarget) {
+//       closePopup(popup);
+//     }
+//   });
+// });
+popups.forEach((popup) => {
+    popup.addEventListener('mousedown', (evt) => {
+      console.log('ddd')
+        if (evt.target.classList.contains('popup_opened')) {
+            closePopup(popup)
+        }
+        if (evt.target.classList.contains('popup__close')) {
+          closePopup(popup)
+        }
+    })
+})
 // обработчик кнопок откртыия попапа добавления картинки
 imageAddButton.addEventListener('click', () => {
   openPopup(cardPopup);
@@ -152,6 +163,7 @@ profileEditButton.addEventListener('click', () => {
 });
 // обработчик кнопки откртыия попапа fullscreen картинки
 function setImageClickListener(cardElement) {
+  console.log(cardElement)
   cardElement
     .querySelector('.card__button')
     .addEventListener('click', () => {
@@ -159,6 +171,7 @@ function setImageClickListener(cardElement) {
       openPopup(imagePopup);
     });
 }
+
 // добавление контента в фулл скрин картинки
 function addNewContetntPopup(cardElement) {
   popupFullImage.src = cardElement.querySelector('.card__image').src;
