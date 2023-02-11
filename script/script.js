@@ -107,48 +107,6 @@ function fillProfileInputs() {
   profileNamePopup.value = profileName.textContent;
   profileSubtitlePopup.value = profileSubtitle.textContent;
 }
-//слушатель на кнопки редактировать профиль и добавление картинки
-// popupButtons.forEach((element, index) => {
-//   element.addEventListener('click', () => {
-//     togglePopup(index);
-//   });
-// });
-// // слушатель закрытия картинки по нажатию на крестик
-// popupsClose.forEach((element, index) => {
-//   element.addEventListener('click', () => {
-//     togglePopup(index);
-//     popup[popupImage].classList.remove('popup_background');
-//   });
-// });
-// // слушатель закрытия картинки по нажатию на оверлей
-// popupsOverlay.forEach((element, index) => {
-//   element.addEventListener('click', (event) => {
-//     if (event.target === event.currentTarget) {
-//       togglePopup(index);
-//       popup[popupImage].classList.remove('popup_background');
-//     }
-//   });
-// });
-// слушатель сабмитов форм
-// popupForms.forEach((element, index) => {
-//   element.addEventListener('submit', (event) => {
-//     event.preventDefault();
-//     if (index === 0) {
-//       changeProfile();
-//     }
-//     if (index === 1) {
-//       initialCards.unshift({
-//         name: placeName.value,
-//         link: placeUrl.value,
-//       });
-//       addCard(placeUrl.value, placeName.value);
-//       placeName.value = '';
-//       placeUrl.value = '';
-//     }
-//     togglePopup(index);
-//   });
-// });
-/////////////////////////////////////////////////////////////////////////////
 function openPopup(popup) {
   popup.classList.add('popup_open');
 }
@@ -176,7 +134,7 @@ closeButtons.forEach((button) => {
   button.addEventListener('click', () => closePopup(popup));
 });
 //закрытие попапов при нажатии на оверлей
-popupsOverlay.forEach((overlay) => {
+popupOverlays.forEach((overlay) => {
   const popup = overlay.closest('.popup');
   overlay.addEventListener('click', (event) => {
     if (event.target === event.currentTarget) {
