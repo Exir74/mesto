@@ -115,16 +115,14 @@ function closePopup(popup) {
 }
 //слушатель кнопки формы редактировани профиля
 profileForm.addEventListener('submit', (event) => {
-  const popup = profilePopup;
   event.preventDefault();
   changeProfile();
-  closePopup(popup);
+  closePopup(profilePopup);
 });
 //слушатель кнопки формы добавлени фото
 cardForm.addEventListener('submit', (event) => {
-  const popup = cardPopup;
   event.preventDefault();
-  closePopup(popup);
+  closePopup(cardPopup);
   renderUsersImages();
   event.target.reset();
 });
@@ -136,32 +134,29 @@ closeButtons.forEach((button) => {
 //закрытие попапов при нажатии на оверлей
 popupOverlays.forEach((overlay) => {
   const popup = overlay.closest('.popup');
-  overlay.addEventListener('click', (event) => {
+  overlay.addEventListener('mousedown', (event) => {
     if (event.target === event.currentTarget) {
       closePopup(popup);
     }
   });
 });
-// слушатель кнопок откртыия попапа добавления картинки
+// обработчик кнопок откртыия попапа добавления картинки
 imageAddButton.addEventListener('click', () => {
-  const popup = cardPopup;
-  openPopup(popup);
+  openPopup(cardPopup);
 });
-// слушатель кнопок откртыия попапа редактирования профиля
+// обработчик кнопок откртыия попапа редактирования профиля
 profileEditButton.addEventListener('click', () => {
-  const popup = profilePopup;
   fillProfileInputs();
   changeProfile();
-  openPopup(popup);
+  openPopup(profilePopup);
 });
-// обработьчик кнопки откртыия попапа fullscreen картинки
+// обработчик кнопки откртыия попапа fullscreen картинки
 function setImageClickListener(cardElement) {
   cardElement
     .querySelector('.card__button')
     .addEventListener('click', () => {
-      const popup = imagePopup;
       addNewContetntPopup(cardElement);
-      openPopup(popup);
+      openPopup(imagePopup);
     });
 }
 // добавление контента в фулл скрин картинки
