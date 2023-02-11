@@ -60,11 +60,18 @@ const initialCards = [
 ];
 renderInitialCards();
 //создание карточки
-function createCard() {
- const cardElement = imageTemplate.querySelector('.card').cloneNode(true);
-  addListener(cardElement);
+function createCard(cardLink, cardName) {
+  const cardElement = imageTemplate
+    .querySelector('.card')
+    .cloneNode(true);
+  const cardImage = cardElement.querySelector('.card__image');
+  const cardCaption = cardElement.querySelector('.card__caption');
+  setImageClickListener(cardElement);
   removeCard(cardElement);
   addLike(cardElement);
+  cardImage.src = cardLink;
+  cardImage.alt = cardName;
+  cardCaption.textContent = cardName;
   return cardElement;
 }
 //берем данные из массива
@@ -72,30 +79,23 @@ function renderInitialCards() {
   initialCards.forEach((element) => {
     const cardLink = element.link;
     const cardName = element.name;
-    addCardContent(cardLink, cardName, (append = true));
+    addCardContent(cardLink, cardName);
   });
 }
-//добавление 
+//добавление
 function addCardContent(cardLink, cardName, append = true) {
   const cardElement = createCard(cardLink, cardName);
-  cardElement.querySelector('.card__image').src = cardLink;
-  cardElement.querySelector('.card__image').alt = cardName;
-  cardElement.querySelector('.card__caption').textContent = cardName;
   if (append) {
     cards.append(cardElement);
   } else {
     cards.prepend(cardElement);
-    cardElement.querySelector('.card__image').src = cardLink;
-    cardElement.querySelector('.card__image').alt = cardName;
-    cardElement.querySelector('.card__caption').textContent =
-      cardName;
   }
 }
 //берем данные от пользователя
 function renderUsersImages() {
   const cardLink = placeUrl.value;
   const cardName = placeName.value;
-  addCardContent(cardLink, cardName, (append = false));
+  addCardContent(cardLink, cardName, false);
 }
 // заполнение данных в профиле
 function changeProfile() {
@@ -115,14 +115,14 @@ function closePopup(popup) {
 }
 //слушатель кнопки формы редактировани профиля
 profileForm.addEventListener('submit', (event) => {
-  const popup = profileForm.closest('.popup');
+  const popup = profilePopup;
   event.preventDefault();
   changeProfile();
   closePopup(popup);
 });
 //слушатель кнопки формы добавлени фото
 cardForm.addEventListener('submit', (event) => {
-  const popup = cardForm.closest('.popup');
+  const popup = cardPopup;
   event.preventDefault();
   closePopup(popup);
   renderUsersImages();
@@ -154,8 +154,8 @@ profileEditButton.addEventListener('click', () => {
   changeProfile();
   openPopup(popup);
 });
-// слушатель кнопок откртыия попапа fullscreen картинки
-function addListener(cardElement) {
+// обработьчик кнопки откртыия попапа fullscreen картинки
+function setImageClickListener(cardElement) {
   cardElement
     .querySelector('.card__button')
     .addEventListener('click', () => {
@@ -164,7 +164,7 @@ function addListener(cardElement) {
       openPopup(popup);
     });
 }
-//добавление контента в фулл скрин картинки
+// добавление контента в фулл скрин картинки
 function addNewContetntPopup(cardElement) {
   popupFullImage.src = cardElement.querySelector('.card__image').src;
   popupFullImage.alt =
