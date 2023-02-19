@@ -109,6 +109,7 @@ function fillProfileInputs() {
 }
 function openPopup(popup) {
   popup.classList.add('popup_open');
+  listenEscape(popup);
 }
 function closePopup(popup) {
   popup.classList.remove('popup_open');
@@ -140,6 +141,24 @@ popupOverlays.forEach((overlay) => {
     }
   });
 });
+
+//слушатель закрытия по escape
+const listenEscape = () => {
+  page.addEventListener('keydown', handlerPopupEscape);
+};
+
+// обработчик закрытия по esc
+const handlerPopupEscape = (event) => {
+  popups.forEach((popupsElement) => {
+    if (popupsElement.classList.contains('popup_open')) {
+      if (event.key === 'Escape') {
+        closePopup(popupsElement);
+        page.removeEventListener('keydown', handlerPopupEscape);
+      }
+    }
+  });
+};
+
 // обработчик кнопок откртыия попапа добавления картинки
 imageAddButton.addEventListener('click', () => {
   openPopup(cardPopup);
