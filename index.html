@@ -61,10 +61,15 @@
               alt="закрыть"
             />
           </button>
-          <form method="get" name="profile-form" class="popup__form">
+          <form
+            method="get"
+            name="profile-form"
+            class="popup__form"
+            novalidate
+          >
             <h3 class="popup__title">Редактировать профиль</h3>
             <input
-              class="popup__input popup__input_type_name"
+              class="popup__input popup__input_type_error"
               id="name-input"
               name="popup-name"
               type="text"
@@ -73,11 +78,9 @@
               minlength="2"
               maxlength="40"
             />
-            <span class="popup__span-error name-input-error"
-              ></span
-            >
+            <span class="popup__span-error name-input-error"></span>
             <input
-              class="popup__input popup__input_type_subtitle"
+              class="popup__input popup__input_type_error"
               id="subtitle-input"
               name="popup-subtitle"
               type="text"
@@ -88,8 +91,7 @@
             />
             <span
               class="popup__span-error subtitle-input-error"
-              ></span
-            >
+            ></span>
             <button type="submit" class="popup__button">
               Сохранить
             </button>
@@ -105,10 +107,15 @@
               alt="закрыть"
             />
           </button>
-          <form method="get" name="card-form" class="popup__form">
+          <form
+            method="get"
+            name="card-form"
+            class="popup__form"
+            novalidate
+          >
             <h3 class="popup__title">Новое место</h3>
             <input
-              class="popup__input popup__input_type_place-name"
+              class="popup__input popup__input_type__error"
               placeholder="Название"
               id="place-name-input"
               name="popup-place-name"
@@ -118,21 +125,17 @@
               minlength="2"
               maxlength="30"
             />
-            <span class="popup__span-error title-input-error"
-              ></span
-            >
+            <span class="popup__span-error title-input-error"></span>
             <input
-              class="popup__input popup__input_type_place-url"
+              class="popup__input popup__input_type__error"
               placeholder="Ссылка на картинку"
-              id="subtitle-input"
+              id="url-input"
               name="place-url-input"
-              type="text"
+              type="url"
               value=""
               required
             />
-            <span class="popup__span-error link-input-error"
-              ></span
-            >
+            <span class="popup__span-error link-input-error"></span>
             <button type="submit" class="popup__button">
               Создать
             </button>
