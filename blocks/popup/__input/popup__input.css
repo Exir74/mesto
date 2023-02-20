@@ -23,3 +23,6 @@
     margin: 0 22px 45px 22px;
   }
 }
+.popup__input:invalid{
+  border-bottom: 1px solid #FF0000;
+}

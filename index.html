@@ -68,6 +68,9 @@
               name="popup-name"
               type="text"
               value=""
+              required
+              minlength="2"
+              maxlength="40"
             />
             <span class = ""></span>
             <input
@@ -75,6 +78,9 @@
               name="popup-subtitle"
               type="text"
               value=""
+              required
+              minlength="2"
+              maxlength="200"
             />
             <span class = ""></span>
             <button type="submit" class="popup__button">
@@ -100,14 +106,18 @@
               name="popup-place-name"
               type="text"
               value=""
+              required
+              minlength="2"
+              maxlength="30"
             />
             <span></span>
             <input
               class="popup__input popup__input_type_place-url"
               placeholder="Ссылка на картинку"
               name="popup-place-url"
-              type="text"
+              type="url"
               value=""
+              required
             />
             <span></span>
             <button type="submit" class="popup__button">
