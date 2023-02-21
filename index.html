@@ -61,19 +61,25 @@
               alt="закрыть"
             />
           </button>
-          <form method="get" name="profile-form" class="popup__form">
+          <form method="get" name="profile-form" class="popup__form" novalidate>
             <h3 class="popup__title">Редактировать профиль</h3>
             <input
               class="popup__input popup__input_type_name"
               name="popup-name"
               type="text"
               value=""
+              required
+              minlength="2"
+              maxlength="40"
             />
             <input
               class="popup__input popup__input_type_subtitle"
               name="popup-subtitle"
               type="text"
               value=""
+              required
+              minlength="2"
+              maxlength="200"
             />
             <button type="submit" class="popup__button">
               Сохранить
@@ -90,7 +96,7 @@
               alt="закрыть"
             />
           </button>
-          <form method="get" name="card-form" class="popup__form">
+          <form method="get" name="card-form" class="popup__form" novalidate>
             <h3 class="popup__title">Новое место</h3>
             <input
               class="popup__input popup__input_type_place-name"
@@ -98,12 +104,15 @@
               name="popup-place-name"
               type="text"
               value=""
+              required
+              minlength="2"
+              maxlength="30"
             />
             <input
               class="popup__input popup__input_type_place-url"
               placeholder="Ссылка на картинку"
               name="popup-place-url"
-              type="text"
+              type="url"
               value=""
             />
             <button type="submit" class="popup__button">
@@ -112,7 +121,6 @@
           </form>
         </div>
       </div>
-
       <div class="popup image-popup">
         <div class="popup__content">
           <button type="button" class="popup__close hover">
@@ -148,5 +156,6 @@
       </div>
     </template>
     <script src="./script/script.js"></script>
+    <script src="./script/validate.js"></script>
   </body>
 </html>
