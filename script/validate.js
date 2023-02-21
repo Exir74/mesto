@@ -44,7 +44,9 @@ const setEventListeners = (formElement) => {
 };
 const hasInvalidInput = (inputList) => {
   return inputList.some((inputElement) => {
+    console.log(inputElement.validity.valid)
     return !inputElement.validity.valid;
+    
   })
 }
 const toggleButtonState = (inputList, buttonElement) => {
