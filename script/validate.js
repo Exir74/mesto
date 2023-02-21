@@ -11,33 +11,64 @@
 // const errorClass = formSelector.querySelector(
 //   '.popup__error_visible'
 // );
-// function enableValidation() {
-//}
-// console.log(formSelector)
-enableValidation({
+const showInputError = (formElement, inputElement, errorMessage) => {
+  const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
+  inputElement.classList.add('form__input_type_error');
+  errorElement.textContent = errorMessage;
+  errorElement.classList.add('form__input-error_active');
+};
+const hideInputError = (formElement, inputElement) => {
+  const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
+  inputElement.classList.remove('form__input_type_error');
+  errorElement.classList.remove('form__input-error_active');
+  errorElement.textContent = '';
+};
+const checkInputValidity = (formElement, inputElement) => {
+  if (!inputElement.validity.valid) {
+    showInputError(formElement, inputElement, inputElement.validationMessage);
+  } else {
+    hideInputError(formElement, inputElement);
+  }
+};
+
+const setEventListeners = (formElement) => {
+  const inputList = Array.from(formElement.querySelectorAll('.popup__input'));
+  const buttonElement = formElement.querySelector('.popup__button')
+  toggleButtonState(inputList, buttonElement)
+  inputList.forEach((inputElement) => {
+    inputElement.addEventListener('input', function () {
+      toggleButtonState(inputList, buttonElement)
+      checkInputValidity(formElement, inputElement);
+    });
+  });
+};
+const hasInvalidInput = (inputList) => {
+  return inputList.some((inputElement) => {
+    return !inputElement.validity.valid;
+  })
+}
+const toggleButtonState = (inputList, buttonElement) => {
+  if (hasInvalidInput(inputList)) {
+    buttonElement.classList.add('popup__button_inactive')
+  } else {
+    buttonElement.classList.remove('popup__button_inactive')
+  }
+}
+
+const enableValidation = () => {
+  const formList = Array.from(document.querySelectorAll('.popup__form'));
+  formList.forEach((formElement) => {
+    formElement.addEventListener('submit', function (evt) {
+      evt.preventDefault();
+    });
+    setEventListeners(formElement)
+  });
+};
+enableValidation ({
   formSelector: '.popup__form',
   inputSelector: '.popup__input',
   submitButtonSelector: '.popup__button',
   inactiveButtonClass: 'popup__button_disabled',
   inputErrorClass: 'popup__input_type_error',
-  //это класс  измененного INPUT
   errorClass: 'popup__error_visible'
-  //это будет класс спана
 });
-
-
-
-// inputSelector.addEventListener('input', function (evt) {
-//   // Выведем в консоль значение свойства validity.valid поля ввода, 
-//   // на котором слушаем событие input
-//   // console.log(evt.target.validity.valid);
-// }); 
-// const iterateForm = ()=> {
-//   Array.from(formSelector).forEach((item) => {
-//     console.log(item)
-//     item.addEventListener('input', (evt)=>{
-//       console.log(evt.target.validity.valid);
-//     })
-//   })
-// }
-// iterateForm(formSelector)

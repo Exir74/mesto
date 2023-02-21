@@ -103,7 +103,7 @@
           <form method="get" name="card-form" class="popup__form" novalidate>
             <h3 class="popup__title">Новое место</h3>
             <input
-              class="popup__input popup__input_type_place-name"
+              class="popup__input popup__input_type_error popup__input_type_place-name"
               placeholder="Название"
               name="popup-place-name"
               id="place-name-input"
@@ -113,16 +113,16 @@
               minlength="2"
               maxlength="30"
             />
-            <span class="place-name-input-error"></span>
+            <span class="popup__error-message place-name-input-error"></span>
             <input
-              class="popup__input popup__input_type_place-url"
+              class="popup__input popup__input_type_error popup__input_type_place-url"
               placeholder="Ссылка на картинку"
               name="popup-place-url"
               id="place-url-input"
               type="url"
               value=""
             />
-            <span class="place-url-input-error"></span>
+            <span class="popup__error-message place-url-input-error"></span>
             <button type="submit" class="popup__button">
               Создать
             </button>
