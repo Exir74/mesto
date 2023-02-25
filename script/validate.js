@@ -81,6 +81,7 @@ const formValidationConfig = {
   submitButtonSelector: '.popup__button',
   inactiveButtonClass: 'popup__button_disabled',
   inputErrorClass: 'popup__input_type_error',
+  errorClass: 'popup__error_visible'
 };
 
 function disableSubmit(event) {
@@ -106,16 +107,16 @@ function enableFormValidation(form, config) {
 
 function handleFormInput(event, config) {
   const input = event.target;
+  console.log();
   const inputId = input.id;
   const errorElement = document.querySelector(`#${inputId}-error`);
-  console.log(errorElement);
   if (input.validity.valid) {
     input.classList.remove(config.inputErrorClass);
-    input.classList.remove('popup__error_visible');
+    input.classList.remove(config.errorClass);
     errorElement.textContent = '';
   } else {
     input.classList.add(config.errorClass);
-    input.classList.add('popup__error_visible');
+    input.classList.add(config.errorClass);
     errorElement.textContent = input.validationMessage;
   }
 }

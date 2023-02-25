@@ -1,0 +1,19 @@
+.popup__error-wrapper {
+  box-sizing: border-box;
+  min-height: 18.5px;
+  margin: 5px 36px 10px 36px;
+  max-width: 358px;
+}
+
+.popup__error-wrapper:last-of-type {
+  margin-bottom: 31.34px;
+}
+
+@media screen and (max-width: 708px) {
+  .popup__error-wrapper {
+    margin: 0 22px 30px 22px;
+  }
+  .popup__input:last-of-type {
+    margin: 0 22px 45px 22px;
+  }
+}
