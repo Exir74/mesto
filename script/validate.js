@@ -74,13 +74,13 @@
 //   errorClass: 'popup__error_visible'
 // });
 // console.log(enableValidation.formSelector)
+
 const formValidationConfig = {
   formSelector: '.popup__form',
   inputSelector: '.popup__input',
-  errorClass: 'popup__input_type_error',
-  buttonSelector: '.popup__button',
+  submitButtonSelector: '.popup__button',
+  inputErrorClass: 'popup__input_type_error',
   inactiveButtonClass: 'popup__button_inactive',
-
 };
 
 function disableSubmit(event) {
@@ -88,36 +88,46 @@ function disableSubmit(event) {
 }
 
 function enableValidation(config) {
-  const form = document.querySelector(config.formSelector);
+  const formList = Array.from(
+    document.querySelectorAll(config.formSelector)
+  );
+  formList.forEach((form) => {
+    enableFormValidation(form, config);
+  });
+}
+function enableFormValidation(form, config) {
   form.addEventListener('submit', disableSubmit);
-  form.addEventListener('input', ()=>{
-    toggleButton(form, config)
-  })
-
+  form.addEventListener('input', () => {
+    toggleButton(form, config);
+  });
   addInputListners(form, config);
   toggleButton(form, config);
 }
+
 function handleFormInput(event, config) {
   const input = event.target;
   const inputId = input.id;
-  const errorElement = document.querySelector(`#${inputId}-error`)
-  console.log(errorElement)
+  const errorElement = document.querySelector(`#${inputId}-error`);
+  console.log(errorElement);
   if (input.validity.valid) {
-    input.classList.remove(config.errorClass);
-    input.classList.remove('popup__error_visible')
+    input.classList.remove(config.inputErrorClass);
+    input.classList.remove('popup__error_visible');
     errorElement.textContent = '';
   } else {
     input.classList.add(config.errorClass);
-    input.classList.add('popup__error_visible')
+    input.classList.add('popup__error_visible');
     errorElement.textContent = input.validationMessage;
   }
 }
 
-function toggleButton(form, config){
-  const buttonSubmit = form.querySelector(config.buttonSelector);
+function toggleButton(form, config) {
+  const buttonSubmit = form.querySelector(config.submitButtonSelector);
   const isFormValid = form.checkValidity();
-  buttonSubmit.disabled = !isFormValid
-  buttonSubmit.classList.toggle(config.inactiveButtonClass, !isFormValid)
+  buttonSubmit.disabled = !isFormValid;
+  buttonSubmit.classList.toggle(
+    config.inactiveButtonClass,
+    !isFormValid
+  );
 }
 
 function addInputListners(form, config) {
