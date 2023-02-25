@@ -1,5 +1,5 @@
 .popup__error-wrapper {
-  box-sizing: border-box;
+  /* box-sizing: border-box; */
   min-height: 18.5px;
   margin: 5px 36px 10px 36px;
   max-width: 358px;
