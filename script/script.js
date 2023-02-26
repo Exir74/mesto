@@ -151,9 +151,12 @@ const listenEscape = () => {
 // обработчик закрытия по esc
 const handlerPopupEscape = (event) => {
   popups.forEach((popupsElement) => {
-    if (popupsElement.classList.contains('popup_open') && event.key === 'Escape') {
-        closePopup(popupsElement);
-        page.removeEventListener('keydown', handlerPopupEscape);
+    if (
+      popupsElement.classList.contains('popup_open') &&
+      event.key === 'Escape'
+    ) {
+      closePopup(popupsElement);
+      page.removeEventListener('keydown', handlerPopupEscape);
     }
   });
 };
