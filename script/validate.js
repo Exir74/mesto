@@ -30,14 +30,22 @@ function handleFormInput(event, config) {
   const inputId = input.id;
   const errorElement = document.querySelector(`#${inputId}-error`);
   if (input.validity.valid) {
-    input.classList.remove(config.inputErrorClass);
-    errorElement.classList.remove(config.errorClass);
+    hideInputErrors(input, config, errorElement);
   } else {
-    input.classList.add(config.inputErrorClass);
-    errorElement.classList.add(config.errorClass);
-    errorElement.textContent = input.validationMessage;
+    showInputErrors(input, config, errorElement);
   }
 }
+function showInputErrors(input, config, errorElement) {
+  input.classList.add(config.inputErrorClass);
+  errorElement.classList.add(config.errorClass);
+  errorElement.textContent = input.validationMessage;
+}
+
+function hideInputErrors(input, config, errorElement) {
+  input.classList.remove(config.inputErrorClass);
+  errorElement.classList.remove(config.errorClass);
+}
+
 function toggleButton(form, config) {
   const buttonSubmit = form.querySelector(
     config.submitButtonSelector
