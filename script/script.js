@@ -58,7 +58,7 @@ const initialCards = [
     link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg',
   },
 ];
-fillProfileInputs()
+fillProfileInputs();
 renderInitialCards();
 //создание карточки
 function createCard(cardLink, cardName) {
@@ -110,20 +110,17 @@ function fillProfileInputs() {
 }
 function openPopup(popup) {
   popup.classList.add('popup_open');
+  listenEscape(popup);
 }
 function closePopup(popup) {
   popup.classList.remove('popup_open');
 }
 //слушатель кнопки формы редактировани профиля
-function addListnerProfileForm(){
 profileForm.addEventListener('submit', (event) => {
   event.preventDefault();
   changeProfile();
   closePopup(profilePopup);
 });
-return(true)
-}
-addListnerProfileForm()
 //слушатель кнопки формы добавлени фото
 cardForm.addEventListener('submit', (event) => {
   event.preventDefault();
@@ -145,6 +142,22 @@ popupOverlays.forEach((overlay) => {
     }
   });
 });
+
+//слушатель закрытия по escape
+const listenEscape = () => {
+  page.addEventListener('keydown', handlerPopupEscape);
+};
+
+// обработчик закрытия по esc
+const handlerPopupEscape = (event) => {
+  popups.forEach((popupsElement) => {
+    if (popupsElement.classList.contains('popup_open') && event.key === 'Escape') {
+        closePopup(popupsElement);
+        page.removeEventListener('keydown', handlerPopupEscape);
+    }
+  });
+};
+
 // обработчик кнопок откртыия попапа добавления картинки
 imageAddButton.addEventListener('click', () => {
   openPopup(cardPopup);
