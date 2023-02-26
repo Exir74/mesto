@@ -58,6 +58,7 @@ const initialCards = [
     link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg',
   },
 ];
+fillProfileInputs()
 renderInitialCards();
 //создание карточки
 function createCard(cardLink, cardName) {
@@ -114,11 +115,15 @@ function closePopup(popup) {
   popup.classList.remove('popup_open');
 }
 //слушатель кнопки формы редактировани профиля
+function addListnerProfileForm(){
 profileForm.addEventListener('submit', (event) => {
   event.preventDefault();
   changeProfile();
   closePopup(profilePopup);
 });
+return(true)
+}
+addListnerProfileForm()
 //слушатель кнопки формы добавлени фото
 cardForm.addEventListener('submit', (event) => {
   event.preventDefault();
@@ -146,7 +151,6 @@ imageAddButton.addEventListener('click', () => {
 });
 // обработчик кнопок откртыия попапа редактирования профиля
 profileEditButton.addEventListener('click', () => {
-  fillProfileInputs();
   changeProfile();
   openPopup(profilePopup);
 });
