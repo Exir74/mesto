@@ -5,8 +5,8 @@
   display: grid;
   align-content: center;
   justify-content: center;
-  grid-template-rows: 40px 330px 40px;
-  grid-template-columns: 40px 430px 40px;
+  grid-template-rows: 40px auto 40px;
+  grid-template-columns: 40px auto 40px;
 }
 @media screen and (max-width: 708px) {
   .popup__content {
