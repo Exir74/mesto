@@ -66,7 +66,7 @@ function createCard(cardLink, cardName) {
     .cloneNode(true);
   const cardImage = cardElement.querySelector('.card__image');
   const cardCaption = cardElement.querySelector('.card__caption');
-  setImageClickListener(cardElement);
+  setImageClickListener(cardElement, cardCaption);
   removeCard(cardElement);
   addLike(cardElement);
   cardImage.src = cardLink;
@@ -150,11 +150,11 @@ const listenEscape = () => {
 const handlerPopupEscape = (event) => {
   if (event.key === 'Escape') {
     popups.forEach((popupsElement) => {
-      popupsElement.classList.contains('popup_open')
+      popupsElement.classList.contains('popup_open');
       closePopup(popupsElement);
-    })
+    });
   }
-}
+};
 
 // обработчик кнопок откртыия попапа добавления картинки
 imageAddButton.addEventListener('click', () => {
@@ -166,21 +166,19 @@ profileEditButton.addEventListener('click', () => {
   openPopup(profilePopup);
 });
 // обработчик кнопки откртыия попапа fullscreen картинки
-function setImageClickListener(cardElement) {
+function setImageClickListener(cardElement, cardCaption) {
   cardElement
     .querySelector('.card__button')
     .addEventListener('click', () => {
-      addNewContetntPopup(cardElement);
+      addNewContetntPopup(cardElement, cardCaption);
       openPopup(imagePopup);
     });
 }
 // добавление контента в фулл скрин картинки
-function addNewContetntPopup(cardElement) {
+function addNewContetntPopup(cardElement, cardCaption) {
   popupFullImage.src = cardElement.querySelector('.card__image').src;
-  popupFullImage.alt =
-    cardElement.querySelector('.card__caption').textContent;
-  popupFullText.textContent =
-    cardElement.querySelector('.card__caption').textContent;
+  popupFullImage.alt = cardCaption.textContent;
+  popupFullText.textContent = cardCaption.textContent;
 }
 //удаление карточки
 function removeCard(cardElement) {
