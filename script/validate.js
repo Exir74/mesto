@@ -67,4 +67,4 @@ function addInputListners(form, config) {
     });
   });
 }
-// enableValidation(formValidationConfig);
+
