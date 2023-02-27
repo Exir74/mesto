@@ -67,4 +67,3 @@ function addInputListners(form, config) {
     });
   });
 }
-
