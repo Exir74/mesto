@@ -110,6 +110,7 @@ function fillProfileInputs() {
 function openPopup(popup) {
   popup.classList.add('popup_open');
   listenEscape(popup);
+  enableValidation(formValidationConfig);
 }
 function closePopup(popup) {
   popup.classList.remove('popup_open');
