@@ -67,9 +67,14 @@ function addInputListners(form, config) {
     });
   });
 }
-function disableSubmitButton(form, isFormValid){
-  const button = form.querySelector(formValidationConfig.submitButtonSelector)
-  button.classList.togle(formValidationConfig.inactiveButtonClass, !isFormValid)
-  form.disabled = !isFormValid
+function disableSubmitButton(popup, isFormValid) {
+  const buttonSubmit = popup.querySelector(
+    formValidationConfig.submitButtonSelector
+  );
+  buttonSubmit.disabled = !isFormValid;
+  buttonSubmit.classList.toggle(
+    formValidationConfig.inactiveButtonClass,
+    !isFormValid
+  );
 }
 enableValidation(formValidationConfig);
