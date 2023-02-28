@@ -67,3 +67,9 @@ function addInputListners(form, config) {
     });
   });
 }
+function disableSubmitButton(form, isFormValid){
+  const button = form.querySelector(formValidationConfig.submitButtonSelector)
+  button.classList.togle(formValidationConfig.inactiveButtonClass, !isFormValid)
+  form.disabled = !isFormValid
+}
+enableValidation(formValidationConfig);

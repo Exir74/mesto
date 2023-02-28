@@ -85,7 +85,6 @@ function fillProfileInputs() {
 function openPopup(popup) {
   popup.classList.add('popup_open');
   listenEscape(popup);
-  enableValidation(formValidationConfig);
 }
 function closePopup(popup) {
   popup.classList.remove('popup_open');
@@ -122,24 +121,26 @@ popupOverlays.forEach((overlay) => {
 const listenEscape = () => {
   page.addEventListener('keydown', handlerPopupEscape);
 };
-// обработчик закрытия по esc
-const handlerPopupEscape = (event) => {
+//обработчик закрытия по esc
+const handlerPopupEscape = (event) =>{
   if (event.key === 'Escape') {
-    popups.forEach((popupsElement) => {
-      popupsElement.classList.contains('popup_open');
-      closePopup(popupsElement);
-    });
+    const popupElement = page.querySelector('.popup_open')
+    closePopup(popupElement)
   }
-};
+}
 
 // обработчик кнопок откртыия попапа добавления картинки
 imageAddButton.addEventListener('click', () => {
   openPopup(cardPopup);
+  const isFormValid = false
+  disableSubmitButton(cardPopup, isFormValid)
 });
 // обработчик кнопок откртыия попапа редактирования профиля
 profileEditButton.addEventListener('click', () => {
   fillProfileInputs();
   openPopup(profilePopup);
+  const isFormValid = true
+  disableSubmitButton(profilePopup, isFormValid)
 });
 // обработчик кнопки откртыия попапа fullscreen картинки
 function setImageClickListener(cardElement, cardCaption) {
