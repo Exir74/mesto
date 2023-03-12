@@ -1,3 +1,5 @@
+import { renderCard } from "./Card.js";
+import { renderUserCard } from "./Card.js";
 const page = document.querySelector('.page');
 const popups = page.querySelectorAll('.popup');
 const profilePopup = page.querySelector('.profile-popup');
@@ -32,45 +34,45 @@ const buttonAddImage = page.querySelector('.profile__add-button');
 const buttonEditProfile = page.querySelector('.profile__edit-button');
 const cards = page.querySelector('.cards');
 const card = page.querySelector('.card');
-
-renderInitialCards();
+// renderInitialCards();
 //создание карточки
-function createCard(cardLink, cardName) {
-  const cardElement = imageTemplate
-    .querySelector('.card')
-    .cloneNode(true);
-  const cardImage = cardElement.querySelector('.card__image');
-  const cardCaption = cardElement.querySelector('.card__caption');
-  setImageClickListener(cardElement, cardCaption);
-  removeCard(cardElement);
-  addLike(cardElement);
-  cardImage.src = cardLink;
-  cardImage.alt = cardName;
-  cardCaption.textContent = cardName;
-  return cardElement;
-}
+// function createCard(cardLink, cardName) {
+//   const cardElement = imageTemplate
+//     .querySelector('.card')
+//     .cloneNode(true);
+//   const cardImage = cardElement.querySelector('.card__image');
+//   const cardCaption = cardElement.querySelector('.card__caption');
+//   setImageClickListener(cardElement, cardCaption);
+//   removeCard(cardElement);
+//   addLike(cardElement);
+//   cardImage.src = cardLink;
+//   cardImage.alt = cardName;
+//   cardCaption.textContent = cardName;
+//   return cardElement;
+// }
 //берем данные из массива
-function renderInitialCards() {
-  initialCards.forEach((element) => {
-    const cardLink = element.link;
-    const cardName = element.name;
-    addCardContent(cardLink, cardName);
-  });
-}
+// function renderInitialCards() {
+//   initialCards.forEach((element) => {
+//     const cardLink = element.link;
+//     const cardName = element.name;
+//     addCardContent(cardLink, cardName);
+//   });
+// }
 //добавление
-function addCardContent(cardLink, cardName, append = true) {
-  const cardElement = createCard(cardLink, cardName);
-  if (append) {
-    cards.append(cardElement);
-  } else {
-    cards.prepend(cardElement);
-  }
-}
+// function addCardContent(cardLink, cardName, append = true) {
+//   const cardElement = createCard(cardLink, cardName);
+//   if (append) {
+//     cards.append(cardElement);
+//   } else {
+//     cards.prepend(cardElement);
+//   }
+// }
 //берем данные от пользователя
 function renderUsersImages() {
   const cardLink = placeUrl.value;
   const cardName = placeName.value;
-  addCardContent(cardLink, cardName, false);
+  renderUserCard(cardLink, cardName)
+  // addCardContent(cardLink, cardName, false);
 }
 // заполнение данных в профиле
 function changeProfile() {
@@ -173,3 +175,5 @@ function addLike(cardElement) {
       event.target.classList.toggle('card__like_active');
     });
 }
+
+renderCard()
