@@ -1,5 +1,5 @@
 import { renderCard } from "./Card.js";
-import { renderUserCard } from "./Card.js";
+// import { renderUserCard } from "./Card.js";
 const page = document.querySelector('.page');
 const popups = page.querySelectorAll('.popup');
 const profilePopup = page.querySelector('.profile-popup');
@@ -68,12 +68,12 @@ const card = page.querySelector('.card');
 //   }
 // }
 //берем данные от пользователя
-function renderUsersImages() {
-  const cardLink = placeUrl.value;
-  const cardName = placeName.value;
-  renderUserCard(cardLink, cardName)
-  // addCardContent(cardLink, cardName, false);
-}
+// function renderUsersImages() {
+//   const cardLink = placeUrl.value;
+//   const cardName = placeName.value;
+//   renderUserCard(cardLink, cardName)
+//   // addCardContent(cardLink, cardName, false);
+// }
 // заполнение данных в профиле
 function changeProfile() {
   profileName.textContent = profileNamePopup.value;
@@ -144,36 +144,36 @@ profileEditButton.addEventListener('click', () => {
   const isFormValid = true
   disableSubmitButton(profilePopup, isFormValid)
 });
-// обработчик кнопки откртыия попапа fullscreen картинки
-function setImageClickListener(cardElement, cardCaption) {
-  cardElement
-    .querySelector('.card__button')
-    .addEventListener('click', () => {
-      addNewContetntPopup(cardElement, cardCaption);
-      openPopup(imagePopup);
-    });
-}
-// добавление контента в фулл скрин картинки
-function addNewContetntPopup(cardElement, cardCaption) {
-  popupFullImage.src = cardElement.querySelector('.card__image').src;
-  popupFullImage.alt = cardCaption.textContent;
-  popupFullText.textContent = cardCaption.textContent;
-}
+// // обработчик кнопки откртыия попапа fullscreen картинки
+// function setImageClickListener(cardElement, cardCaption) {
+//   cardElement
+//     .querySelector('.card__button')
+//     .addEventListener('click', () => {
+//       addNewContetntPopup(cardElement, cardCaption);
+//       openPopup(imagePopup);
+//     });
+// }
+// // добавление контента в фулл скрин картинки
+// function addNewContetntPopup(cardElement, cardCaption) {
+//   popupFullImage.src = cardElement.querySelector('.card__image').src;
+//   popupFullImage.alt = cardCaption.textContent;
+//   popupFullText.textContent = cardCaption.textContent;
+// }
 //удаление карточки
-function removeCard(cardElement) {
-  cardElement
-    .querySelector('.card__trash')
-    .addEventListener('click', () => {
-      cardElement.remove();
-    });
-}
+// function removeCard(cardElement) {
+//   cardElement
+//     .querySelector('.card__trash')
+//     .addEventListener('click', () => {
+//       cardElement.remove();
+//     });
+// }
 //лайк/дизлайк
-function addLike(cardElement) {
-  cardElement
-    .querySelector('.card__like')
-    .addEventListener('click', (event) => {
-      event.target.classList.toggle('card__like_active');
-    });
-}
+// function addLike(cardElement) {
+//   cardElement
+//     .querySelector('.card__like')
+//     .addEventListener('click', (event) => {
+//       event.target.classList.toggle('card__like_active');
+//     });
+// }
 
 renderCard()
