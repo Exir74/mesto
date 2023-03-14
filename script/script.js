@@ -1,5 +1,5 @@
 import { renderCard } from "./Card.js";
-// import { renderUserCard } from "./Card.js";
+import { renderUserCard } from "./Card.js";
 const page = document.querySelector('.page');
 const popups = page.querySelectorAll('.popup');
 const profilePopup = page.querySelector('.profile-popup');
@@ -35,7 +35,7 @@ const buttonEditProfile = page.querySelector('.profile__edit-button');
 const cards = page.querySelector('.cards');
 const card = page.querySelector('.card');
 // renderInitialCards();
-//создание карточки
+// создание карточки
 // function createCard(cardLink, cardName) {
 //   const cardElement = imageTemplate
 //     .querySelector('.card')
@@ -50,7 +50,7 @@ const card = page.querySelector('.card');
 //   cardCaption.textContent = cardName;
 //   return cardElement;
 // }
-//берем данные из массива
+// берем данные из массива
 // function renderInitialCards() {
 //   initialCards.forEach((element) => {
 //     const cardLink = element.link;
@@ -58,7 +58,7 @@ const card = page.querySelector('.card');
 //     addCardContent(cardLink, cardName);
 //   });
 // }
-//добавление
+// добавление
 // function addCardContent(cardLink, cardName, append = true) {
 //   const cardElement = createCard(cardLink, cardName);
 //   if (append) {
@@ -67,13 +67,13 @@ const card = page.querySelector('.card');
 //     cards.prepend(cardElement);
 //   }
 // }
-//берем данные от пользователя
-// function renderUsersImages() {
-//   const cardLink = placeUrl.value;
-//   const cardName = placeName.value;
-//   renderUserCard(cardLink, cardName)
-//   // addCardContent(cardLink, cardName, false);
-// }
+// берем данные от пользователя
+function renderUsersImages() {
+  const cardLink = placeUrl.value;
+  const cardName = placeName.value;
+  renderUserCard(cardLink, cardName)
+  // addCardContent(cardLink, cardName, false);
+}
 // заполнение данных в профиле
 function changeProfile() {
   profileName.textContent = profileNamePopup.value;

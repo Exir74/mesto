@@ -30,6 +30,12 @@ const imageTemplate =
 const imagePopup = page.querySelector('.image-popup');
 const popupFullImage = page.querySelector('.popup__full-image');
 const popupFullText = page.querySelector('.popup__image-text');
+const placeName = document.querySelector(
+  '.popup__input_type_place-name'
+);
+const placeUrl = document.querySelector(
+  '.popup__input_type_place-url'
+);
 class Card {
   constructor(data, imageTemplate) {
     this._image = data.link;
@@ -46,7 +52,7 @@ class Card {
     this._element
       .querySelector('.card__button')
       .addEventListener('click', () => {
-        this._openPopup(imagePopup);
+        this._togglePopup(imagePopup);
         this._addNewContetntPopup();
       });
     this._element
@@ -59,10 +65,20 @@ class Card {
       .addEventListener('click', (event) => {
         this._addLike(event);
       });
+      this._element.addEventListener('keydown', (event)=>{
+        this._handlerPopupEscape(event)
+      })
   }
 
-  _openPopup(popup) {
-    popup.classList.add('popup_open');
+  _togglePopup(popup) {
+    popup.classList.toggle('popup_open');
+  }
+
+  _handlerPopupEscape(event){
+    if (event.key === 'Escape'){
+      const popupElement = page.querySelector('.popup_open')
+    this._togglePopup(popupElement)
+    }
   }
   _addNewContetntPopup() {
     popupFullImage.src =
@@ -93,7 +109,7 @@ export function renderCard() {
     document.querySelector('.cards').append(cardElement);
   });
 }
-export function renderUserCard(cardLink, cardName, imageTemplate) {
+export function renderUserCard(cardLink, cardName) {
   const userCard = { name: cardName, link: cardLink };
   const card = new Card(userCard, imageTemplate);
   const cardElement = card.generateCard();
