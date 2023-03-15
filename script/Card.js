@@ -65,19 +65,18 @@ class Card {
       .addEventListener('click', (event) => {
         this._addLike(event);
       });
-      this._element.addEventListener('keydown', (event)=>{
-        this._handlerPopupEscape(event)
-      })
+    this._element.addEventListener('keydown', (event) => {
+      this._handlerPopupEscape(event);
+    });
   }
 
   _togglePopup(popup) {
     popup.classList.toggle('popup_open');
   }
-
-  _handlerPopupEscape(event){
-    if (event.key === 'Escape'){
-      const popupElement = page.querySelector('.popup_open')
-    this._togglePopup(popupElement)
+  _handlerPopupEscape(event) {
+    if (event.key === 'Escape') {
+      const popupElement = page.querySelector('.popup_open');
+      this._togglePopup(popupElement);
     }
   }
   _addNewContetntPopup() {
@@ -101,17 +100,17 @@ class Card {
     return this._element;
   }
 }
-
-export function renderCard() {
-  initialCards.forEach((item) => {
-    const card = new Card(item, imageTemplate);
+export function renderCard(cardLink, cardName, isUserData) {
+  if (isUserData) {
+    const userCard = { name: cardName, link: cardLink };
+    const card = new Card(userCard, imageTemplate);
     const cardElement = card.generateCard();
-    document.querySelector('.cards').append(cardElement);
-  });
-}
-export function renderUserCard(cardLink, cardName) {
-  const userCard = { name: cardName, link: cardLink };
-  const card = new Card(userCard, imageTemplate);
-  const cardElement = card.generateCard();
-  document.querySelector('.cards').prepend(cardElement);
+    document.querySelector('.cards').prepend(cardElement);
+  } else {
+    initialCards.forEach((item) => {
+      const card = new Card(item, imageTemplate);
+      const cardElement = card.generateCard();
+      document.querySelector('.cards').append(cardElement);
+    });
+  }
 }

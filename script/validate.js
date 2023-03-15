@@ -68,7 +68,7 @@
 //   });
 // }
 // function disableSubmitButton(popup, isFormValid) {
-//   const buttonSubmit = popup.querySelector(
+//   const buttonSubmit = popup.qauerySelector(
 //     formValidationConfig.submitButtonSelector
 //   );
 //   buttonSubmit.disabled = !isFormValid;

@@ -1,7 +1,6 @@
-import { renderCard } from "./Card.js";
-import { renderUserCard } from "./Card.js";
+import { renderCard } from './Card.js';
+import { enableValidation, disableSubmitButton } from './FormValidator.js';
 const page = document.querySelector('.page');
-const popups = page.querySelectorAll('.popup');
 const profilePopup = page.querySelector('.profile-popup');
 const cardPopup = page.querySelector('.card-popup');
 const imagePopup = page.querySelector('.image-popup');
@@ -67,11 +66,15 @@ const card = page.querySelector('.card');
 //     cards.prepend(cardElement);
 //   }
 // }
+import { formValidationConfig } from './FormValidator.js';
+
+enableValidation(formValidationConfig);
+
 // берем данные от пользователя
 function renderUsersImages() {
   const cardLink = placeUrl.value;
   const cardName = placeName.value;
-  renderUserCard(cardLink, cardName)
+  renderCard(cardLink, cardName, true);
   // addCardContent(cardLink, cardName, false);
 }
 // заполнение данных в профиле
@@ -124,25 +127,25 @@ const listenEscape = () => {
   page.addEventListener('keydown', handlerPopupEscape);
 };
 //обработчик закрытия по esc
-const handlerPopupEscape = (event) =>{
+const handlerPopupEscape = (event) => {
   if (event.key === 'Escape') {
-    const popupElement = page.querySelector('.popup_open')
-    closePopup(popupElement)
+    const popupElement = page.querySelector('.popup_open');
+    closePopup(popupElement);
   }
-}
+};
 
 // обработчик кнопок откртыия попапа добавления картинки
 imageAddButton.addEventListener('click', () => {
   openPopup(cardPopup);
-  const isFormValid = false
-  disableSubmitButton(cardPopup, isFormValid)
+  const isFormValid = false;
+  disableSubmitButton(cardPopup, isFormValid);
 });
 // обработчик кнопок откртыия попапа редактирования профиля
 profileEditButton.addEventListener('click', () => {
   fillProfileInputs();
   openPopup(profilePopup);
-  const isFormValid = true
-  disableSubmitButton(profilePopup, isFormValid)
+  const isFormValid = true;
+  disableSubmitButton(profilePopup, isFormValid);
 });
 // // обработчик кнопки откртыия попапа fullscreen картинки
 // function setImageClickListener(cardElement, cardCaption) {
@@ -176,4 +179,4 @@ profileEditButton.addEventListener('click', () => {
 //     });
 // }
 
-renderCard()
+renderCard(false);
