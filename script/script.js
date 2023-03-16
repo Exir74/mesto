@@ -1,14 +1,10 @@
 import { renderCard } from './Card.js';
-import { enableValidation, disableSubmitButton,formValidationConfig } from './FormValidator.js';
+import { enableValidation, disableSubmitButton } from './FormValidator.js';
 const page = document.querySelector('.page');
 const profilePopup = page.querySelector('.profile-popup');
 const cardPopup = page.querySelector('.card-popup');
-const imagePopup = page.querySelector('.image-popup');
-const imageTemplate =
-  document.querySelector('#card-template').content;
 const imageAddButton = page.querySelector('.profile__add-button');
 const profileEditButton = page.querySelector('.profile__edit-button');
-const cardImageButton = imageTemplate.querySelector('.card__button');
 const popupOverlays = page.querySelectorAll('.popup__content');
 const closeButtons = document.querySelectorAll('.popup__close');
 const profileName = page.querySelector('.profile__name');
@@ -27,12 +23,12 @@ const placeUrl = document.querySelector(
 );
 const profileForm = document.forms['profile-form'];
 const cardForm = document.forms['card-form'];
-const popupFullImage = document.querySelector('.popup__full-image');
-const popupFullText = document.querySelector('.popup__image-text');
-const buttonAddImage = page.querySelector('.profile__add-button');
-const buttonEditProfile = page.querySelector('.profile__edit-button');
-const cards = page.querySelector('.cards');
-const card = page.querySelector('.card');
+// const popupFullImage = document.querySelector('.popup__full-image');
+// const popupFullText = document.querySelector('.popup__image-text');
+// const buttonAddImage = page.querySelector('.profile__add-button');
+// const buttonEditProfile = page.querySelector('.profile__edit-button');
+// const cards = page.querySelector('.cards');
+// const card = page.querySelector('.card');
 enableValidation(formValidationConfig);
 // берем данные от пользователя
 function renderUsersImages() {
@@ -53,7 +49,7 @@ function fillProfileInputs() {
 }
 function openPopup(popup) {
   popup.classList.add('popup_open');
-  listenEscape(popup);
+  listenEscape();
 }
 function closePopup(popup) {
   popup.classList.remove('popup_open');
