@@ -8,7 +8,6 @@ const imageTemplate =
   document.querySelector('#card-template').content;
 const imageAddButton = page.querySelector('.profile__add-button');
 const profileEditButton = page.querySelector('.profile__edit-button');
-const cardImageButton = imageTemplate.querySelector('.card__button');
 const popupOverlays = page.querySelectorAll('.popup__content');
 const closeButtons = document.querySelectorAll('.popup__close');
 const profileName = page.querySelector('.profile__name');
