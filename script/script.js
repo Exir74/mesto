@@ -90,10 +90,16 @@ const handlerPopupEscape = (event) => {
     closePopup(popupElement);
   }
 };
+//очистка полей попапа картинки
+function cleanInput() {
+  placeName.value = '';
+  placeUrl.value = '';
+}
 
 // обработчик кнопок откртыия попапа добавления картинки
 imageAddButton.addEventListener('click', () => {
   openPopup(cardPopup);
+  cleanInput()
   const isFormValid = false;
   disableSubmitButton(cardPopup, isFormValid);
 });
