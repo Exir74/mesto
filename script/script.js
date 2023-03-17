@@ -1,5 +1,8 @@
-import { renderCard } from './Card.js';
-import { enableValidation, disableSubmitButton } from './FormValidator.js';
+import { Card, imageTemplate } from './Card.js';
+import {
+  enableValidation,
+  disableSubmitButton,
+} from './FormValidator.js';
 const page = document.querySelector('.page');
 const profilePopup = page.querySelector('.profile-popup');
 const cardPopup = page.querySelector('.card-popup');
@@ -34,7 +37,7 @@ enableValidation(formValidationConfig);
 function renderUsersImages() {
   const cardLink = placeUrl.value;
   const cardName = placeName.value;
-  renderCard(cardLink, cardName, true);
+  renderCard(cardLink, cardName);
   // addCardContent(cardLink, cardName, false);
 }
 // заполнение данных в профиле
@@ -107,4 +110,17 @@ profileEditButton.addEventListener('click', () => {
   const isFormValid = true;
   disableSubmitButton(profilePopup, isFormValid);
 });
-renderCard(false);
+renderInitialCard();
+function renderInitialCard() {
+  initialCards.forEach((item) => {
+    const card = new Card(item, imageTemplate);
+    const cardElement = card.generateCard();
+    document.querySelector('.cards').append(cardElement);
+  });
+}
+function renderCard(cardLink, cardName) {
+  const userCard = { name: cardName, link: cardLink };
+  const card = new Card(userCard, imageTemplate);
+  const cardElement = card.generateCard();
+  document.querySelector('.cards').prepend(cardElement);
+}

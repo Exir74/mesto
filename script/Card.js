@@ -1,5 +1,5 @@
 const page = document.querySelector('.page');
-const imageTemplate =
+export const imageTemplate =
   document.querySelector('#card-template').content;
 const imagePopup = page.querySelector('.image-popup');
 const popupFullImage = page.querySelector('.popup__full-image');
@@ -10,7 +10,7 @@ const popupFullText = page.querySelector('.popup__image-text');
 // const placeUrl = document.querySelector(
 //   '.popup__input_type_place-url'
 // );
-class Card {
+export class Card {
   constructor(data, imageTemplate) {
     this._image = data.link;
     this._name = data.name;
@@ -75,19 +75,5 @@ class Card {
       this._name;
     this._element.querySelector('.card__image').alt = this._name;
     return this._element;
-  }
-}
-export function renderCard(cardLink, cardName, isUserData) {
-  if (isUserData) {
-    const userCard = { name: cardName, link: cardLink };
-    const card = new Card(userCard, imageTemplate);
-    const cardElement = card.generateCard();
-    document.querySelector('.cards').prepend(cardElement);
-  } else {
-    initialCards.forEach((item) => {
-      const card = new Card(item, imageTemplate);
-      const cardElement = card.generateCard();
-      document.querySelector('.cards').append(cardElement);
-    });
   }
 }
