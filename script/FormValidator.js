@@ -1,5 +1,3 @@
-
-const popupForm = document.querySelector('.popup__form');
 class FormValidator {
   constructor(data, form) {
     this._formSelector = data.formSelector;
@@ -19,9 +17,6 @@ class FormValidator {
   choiseInput() {
     this._element = this._getInput();
     this._setListeners();
-    this._element.forEach((item) => {
-      this._input = item;
-    });
     return this._element;
   }
   _setListeners() {
