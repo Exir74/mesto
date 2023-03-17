@@ -26,19 +26,13 @@ const placeUrl = document.querySelector(
 );
 const profileForm = document.forms['profile-form'];
 const cardForm = document.forms['card-form'];
-// const popupFullImage = document.querySelector('.popup__full-image');
-// const popupFullText = document.querySelector('.popup__image-text');
-// const buttonAddImage = page.querySelector('.profile__add-button');
-// const buttonEditProfile = page.querySelector('.profile__edit-button');
 const cards = page.querySelector('.cards');
-// const card = page.querySelector('.card');
 enableValidation(formValidationConfig);
 // берем данные от пользователя
 function renderUsersImages() {
   const cardLink = placeUrl.value;
   const cardName = placeName.value;
   renderCard(cardLink, cardName);
-  // addCardContent(cardLink, cardName, false);
 }
 // заполнение данных в профиле
 function changeProfile() {
@@ -110,17 +104,18 @@ profileEditButton.addEventListener('click', () => {
   const isFormValid = true;
   disableSubmitButton(profilePopup, isFormValid);
 });
-renderInitialCard();
+function createCard(cardItem, imageTemplate) {
+  const card = new Card(cardItem, imageTemplate);
+  const cardElement = card.generateCard();
+  return cardElement;
+}
 function renderInitialCard() {
   initialCards.forEach((item) => {
-    const card = new Card(item, imageTemplate);
-    const cardElement = card.generateCard();
-    document.querySelector('.cards').append(cardElement);
+    cards.append(createCard(item));
   });
 }
 function renderCard(cardLink, cardName) {
   const userCard = { name: cardName, link: cardLink };
-  const card = new Card(userCard, imageTemplate);
-  const cardElement = card.generateCard();
-  document.querySelector('.cards').prepend(cardElement);
+  cards.prepend(createCard(userCard));
 }
+renderInitialCard();
