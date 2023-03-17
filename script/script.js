@@ -27,7 +27,7 @@ const cardForm = document.forms['card-form'];
 // const popupFullText = document.querySelector('.popup__image-text');
 // const buttonAddImage = page.querySelector('.profile__add-button');
 // const buttonEditProfile = page.querySelector('.profile__edit-button');
-// const cards = page.querySelector('.cards');
+const cards = page.querySelector('.cards');
 // const card = page.querySelector('.card');
 enableValidation(formValidationConfig);
 // берем данные от пользователя
