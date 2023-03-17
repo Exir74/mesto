@@ -4,12 +4,12 @@ const imageTemplate =
 const imagePopup = page.querySelector('.image-popup');
 const popupFullImage = page.querySelector('.popup__full-image');
 const popupFullText = page.querySelector('.popup__image-text');
-const placeName = document.querySelector(
-  '.popup__input_type_place-name'
-);
-const placeUrl = document.querySelector(
-  '.popup__input_type_place-url'
-);
+// const placeName = document.querySelector(
+//   '.popup__input_type_place-name'
+// );
+// const placeUrl = document.querySelector(
+//   '.popup__input_type_place-url'
+// );
 class Card {
   constructor(data, imageTemplate) {
     this._image = data.link;
