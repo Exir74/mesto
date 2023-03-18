@@ -49,9 +49,6 @@ export class Card {
       this._handlerPopupEscape(event);
     });
   }
-  // _togglePopup(popup) {
-  //   popup.classList.toggle('popup_open');
-  // }
   _handlerPopupEscape(event) {
     if (event.key === 'Escape') {
       const popupElement = page.querySelector('.popup_open');

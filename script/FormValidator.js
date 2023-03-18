@@ -1,4 +1,4 @@
-class FormValidator {
+export class FormValidator {
   constructor(data, form) {
     this._formSelector = data.formSelector;
     this._inputSelector = data.inputSelector;
@@ -14,7 +14,7 @@ class FormValidator {
     );
     return inputElement;
   }
-  choiseInput() {
+  enableValidation() {
     this._element = this._getInput();
     this._setListeners();
     return this._element;
@@ -73,22 +73,23 @@ class FormValidator {
   }
 }
 
-export function enableValidation(data) {
-  const formList = Array.from(
-    document.querySelectorAll(data.formSelector)
-  );
-  formList.forEach((form) => {
-    const formItem = new FormValidator(data, form);
-    formItem.choiseInput();
-  });
-}
-export function disableSubmitButton(popup, isFormValid) {
-  const buttonSubmit = popup.querySelector(
-    formValidationConfig.submitButtonSelector
-  );
-  buttonSubmit.disabled = !isFormValid;
-  buttonSubmit.classList.toggle(
-    formValidationConfig.inactiveButtonClass,
-    !isFormValid
-  );
-}
+// export function renderNewForm(data) {
+//   const formList = Array.from(
+//     document.querySelectorAll(data.formSelector)
+//   );
+//   formList.forEach((form) => {
+//     const formItem = new FormValidator(data, form);
+//     formItem.enableValidation();
+//   });
+// }
+
+// export function disableSubmitButton(popup, isFormValid) {
+//   const buttonSubmit = popup.querySelector(
+//     formValidationConfig.submitButtonSelector
+//   );
+//   buttonSubmit.disabled = !isFormValid;
+//   buttonSubmit.classList.toggle(
+//     formValidationConfig.inactiveButtonClass,
+//     !isFormValid
+//   );
+// }
