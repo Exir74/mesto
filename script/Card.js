@@ -33,9 +33,6 @@ export class Card {
       .addEventListener('click', (event) => {
         this._addLike(event);
       });
-    // this._element.addEventListener('keydown', (event) => {
-    //   this._handlerPopupEscape(event);
-    // });
   }
   _openPopup(popup){
     popup.classList.add('popup_open');
