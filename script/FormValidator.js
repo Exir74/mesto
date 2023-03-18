@@ -24,10 +24,11 @@ export class FormValidator {
       this._disableSubmit(event);
     });
     this._popupForm.addEventListener('input', () => {
-      this._toggleButton();
+      this.toggleButton();
     });
     this._addInputListners();
-    this._toggleButton();
+    this.toggleButton();
+    
   }
   _addInputListners() {
     this._element.forEach((item) => {
@@ -60,7 +61,7 @@ export class FormValidator {
   _disableSubmit(event) {
     event.preventDefault();
   }
-  _toggleButton() {
+  toggleButton() {
     const buttonSubmit = this._popupForm.querySelector(
       this._submitButtonSelector
     );
@@ -71,25 +72,5 @@ export class FormValidator {
       !isFormValid
     );
   }
+
 }
-
-// export function renderNewForm(data) {
-//   const formList = Array.from(
-//     document.querySelectorAll(data.formSelector)
-//   );
-//   formList.forEach((form) => {
-//     const formItem = new FormValidator(data, form);
-//     formItem.enableValidation();
-//   });
-// }
-
-// export function disableSubmitButton(popup, isFormValid) {
-//   const buttonSubmit = popup.querySelector(
-//     formValidationConfig.submitButtonSelector
-//   );
-//   buttonSubmit.disabled = !isFormValid;
-//   buttonSubmit.classList.toggle(
-//     formValidationConfig.inactiveButtonClass,
-//     !isFormValid
-//   );
-// }
