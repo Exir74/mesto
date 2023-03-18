@@ -1,8 +1,6 @@
 import { Card } from './Card.js';
-import {
-  // disableSubmitButton,
-  FormValidator,
-} from './FormValidator.js';
+import { FormValidator } from './FormValidator.js';
+let a;
 const page = document.querySelector('.page');
 const profilePopup = page.querySelector('.profile-popup');
 const cardPopup = page.querySelector('.card-popup');
@@ -23,6 +21,9 @@ const placeName = document.querySelector(
 );
 const placeUrl = document.querySelector(
   '.popup__input_type_place-url'
+);
+const formList = Array.from(
+  document.querySelectorAll(formValidationConfig.formSelector)
 );
 const profileForm = document.forms['profile-form'];
 const cardForm = document.forms['card-form'];
@@ -110,16 +111,13 @@ function cleanInput() {
 imageAddButton.addEventListener('click', () => {
   openPopup(cardPopup);
   cleanInput();
-  const isFormValid = false;
-
-  disableSubmitButton(cardPopup, isFormValid);
+  disableSubmitButton(formValidationConfig);
 });
 // обработчик кнопок откртыия попапа редактирования профиля
 profileEditButton.addEventListener('click', () => {
   fillProfileInputs();
   openPopup(profilePopup);
-  const isFormValid = true;
-  disableSubmitButton(profilePopup, isFormValid);
+  disableSubmitButton(formValidationConfig);
 });
 function createCard(cardItem, imageTemplate) {
   const card = new Card(cardItem, imageTemplate);
@@ -138,22 +136,14 @@ function renderCard(cardLink, cardName) {
 renderInitialCard();
 
 function renderNewForm(data) {
-  const formList = Array.from(
-    document.querySelectorAll(data.formSelector)
-  );
   formList.forEach((form) => {
     const formItem = new FormValidator(data, form);
     formItem.enableValidation();
   });
 }
-//??????????????????????????????????????????????????????
-function disableSubmitButton(popup, isFormValid) {
-  const buttonSubmit = popup.querySelector(
-    formValidationConfig.submitButtonSelector
-  );
-  buttonSubmit.disabled = !isFormValid;
-  buttonSubmit.classList.toggle(
-    formValidationConfig.inactiveButtonClass,
-    !isFormValid
-  );
+function disableSubmitButton(data) {
+  formList.forEach((form) => {
+    const formItem = new FormValidator(data, form);
+    formItem.disableSubmitButt();
+  });
 }

@@ -24,11 +24,10 @@ export class FormValidator {
       this._disableSubmit(event);
     });
     this._popupForm.addEventListener('input', () => {
-      this.toggleButton();
+      this._toggleButton();
     });
     this._addInputListners();
-    this.toggleButton();
-    
+    this._toggleButton();
   }
   _addInputListners() {
     this._element.forEach((item) => {
@@ -61,7 +60,7 @@ export class FormValidator {
   _disableSubmit(event) {
     event.preventDefault();
   }
-  toggleButton() {
+  _toggleButton() {
     const buttonSubmit = this._popupForm.querySelector(
       this._submitButtonSelector
     );
@@ -72,5 +71,7 @@ export class FormValidator {
       !isFormValid
     );
   }
-
+  disableSubmitButt(){
+    this._toggleButton()
+  }
 }
