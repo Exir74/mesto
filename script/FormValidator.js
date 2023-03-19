@@ -24,10 +24,10 @@ export class FormValidator {
       this._disableSubmit(event);
     });
     this._popupForm.addEventListener('input', () => {
-      this._toggleButton();
+      this.toggleButton();
     });
     this._addInputListners();
-    this._toggleButton();
+    this.toggleButton();
   }
   _addInputListners() {
     this._element.forEach((item) => {
@@ -60,7 +60,7 @@ export class FormValidator {
   _disableSubmit(event) {
     event.preventDefault();
   }
-  _toggleButton() {
+  toggleButton() {
     const buttonSubmit = this._popupForm.querySelector(
       this._submitButtonSelector
     );
@@ -72,13 +72,10 @@ export class FormValidator {
     );
   }
   disableSubmitButt() {
-    this._toggleButton();
+    this.toggleButton();
   }
-  removeValidationErrors() {
-    console.log(dd);
-    const inputs = Array.from(
-      this.querySelectorAll(this._formSelector)
-    );
+  removeValidationErrors(cardPopup) {
+    const inputs = cardPopup.querySelectorAll(this._inputSelector);
     inputs.forEach((input) => {
       const inputId = input.id;
       const errorElement = document.querySelector(
@@ -87,6 +84,5 @@ export class FormValidator {
       input.classList.remove(this._inputErrorClass);
       errorElement.classList.remove(this._errorClass);
     });
-    this.removeValidationErrors();
   }
 }

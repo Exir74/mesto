@@ -29,7 +29,6 @@ const formList = Array.from(
 const profileForm = document.forms['profile-form'];
 const cardForm = document.forms['card-form'];
 const cards = page.querySelector('.cards');
-renderNewForm(formValidationConfig);
 // берем данные от пользователя
 function renderUsersImages() {
   const cardLink = placeUrl.value;
@@ -111,15 +110,18 @@ function cleanInput() {
 imageAddButton.addEventListener('click', () => {
   openPopup(cardPopup);
   cleanInput();
-  // cleanError(cardPopup);
-  disableSubmitButton(formValidationConfig);
+  renderCardForm.toggleButton()
+  renderCardForm.removeValidationErrors(cardPopup)
+
+
 });
 // обработчик кнопок откртыия попапа редактирования профиля
 profileEditButton.addEventListener('click', () => {
   fillProfileInputs();
   openPopup(profilePopup);
-  // cleanError(profilePopup);
-  disableSubmitButton(formValidationConfig);
+  renderProfileForm.toggleButton()
+  renderProfileForm.removeValidationErrors(profilePopup)
+
 });
 function createCard(cardItem, imageTemplate) {
   const card = new Card(cardItem, imageTemplate, openPopup, closePopup, handlerPopupEscape);
@@ -137,15 +139,8 @@ function renderCard(cardLink, cardName) {
 }
 renderInitialCard();
 
-function renderNewForm(data) {
-  formList.forEach((form) => {
-    const formItem = new FormValidator(data, form);
-    formItem.enableValidation();
-  });
-}
-function disableSubmitButton(data) {
-  formList.forEach((form) => {
-    const formItem = new FormValidator(data, form);
-    formItem.disableSubmitButt();
-  });
-}
+
+const renderProfileForm = new FormValidator (formValidationConfig, profileForm)
+renderProfileForm.enableValidation()
+const renderCardForm = new FormValidator (formValidationConfig, cardForm)
+renderCardForm.enableValidation()
