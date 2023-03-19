@@ -1,6 +1,4 @@
 const page = document.querySelector('.page');
-export const imageTemplate =
-  document.querySelector('#card-template').content;
 const imagePopup = page.querySelector('.image-popup');
 const popupFullImage = page.querySelector('.popup__full-image');
 const popupFullText = page.querySelector('.popup__image-text');
@@ -11,7 +9,7 @@ export class Card {
     this._imageTemplate = imageTemplate;
   }
   _getTemplate() {
-    const cardElement = imageTemplate
+    const cardElement = this._imageTemplate
       .querySelector('.cards__item')
       .cloneNode(true);
     return cardElement;

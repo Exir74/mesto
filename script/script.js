@@ -1,5 +1,7 @@
 import { Card } from './Card.js';
 import { FormValidator } from './FormValidator.js';
+const imageTemplate =
+  document.querySelector('#card-template').content;
 let a;
 const page = document.querySelector('.page');
 const profilePopup = page.querySelector('.profile-popup');
@@ -126,12 +128,12 @@ function createCard(cardItem, imageTemplate) {
 }
 function renderInitialCard() {
   initialCards.forEach((item) => {
-    cards.append(createCard(item));
+    cards.append(createCard(item, imageTemplate));
   });
 }
 function renderCard(cardLink, cardName) {
   const userCard = { name: cardName, link: cardLink };
-  cards.prepend(createCard(userCard));
+  cards.prepend(createCard(userCard, imageTemplate));
 }
 renderInitialCard();
 
