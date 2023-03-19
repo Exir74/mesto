@@ -71,9 +71,6 @@ export class FormValidator {
       !isFormValid
     );
   }
-  disableSubmitButt() {
-    this.toggleButton();
-  }
   removeValidationErrors(cardPopup) {
     const inputs = cardPopup.querySelectorAll(this._inputSelector);
     inputs.forEach((input) => {
