@@ -93,7 +93,6 @@ function cleanInput() {
   placeName.value = '';
   placeUrl.value = '';
 }
-
 // обработчик кнопок откртыия попапа добавления картинки
 imageAddButton.addEventListener('click', () => {
   openPopup(cardPopup);
