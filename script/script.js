@@ -49,15 +49,6 @@ function openPopup(popup) {
   popup.classList.add('popup_open');
   listenEscape();
 }
-function cleanError(popup) {
-  const inputs = Array.from(popup.querySelectorAll('.popup__input'));
-  inputs.forEach((input) => {
-    const inputId = input.id;
-    const errorElement = document.querySelector(`#${inputId}-error`);
-    input.classList.remove(formValidationConfig.inputErrorClass);
-    errorElement.classList.remove(formValidationConfig.errorClass);
-  });
-}
 function closePopup(popup) {
   popup.classList.remove('popup_open');
   page.removeEventListener('keydown', handlerPopupEscape);
