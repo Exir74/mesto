@@ -97,15 +97,15 @@ function cleanInput() {
 imageAddButton.addEventListener('click', () => {
   openPopup(cardPopup);
   cleanInput();
-  renderCardForm.toggleButton();
-  renderCardForm.removeValidationErrors(cardPopup);
+  validatorAddCard.toggleButton();
+  validatorAddCard.removeValidationErrors(cardPopup);
 });
 // обработчик кнопок откртыия попапа редактирования профиля
 profileEditButton.addEventListener('click', () => {
   fillProfileInputs();
   openPopup(profilePopup);
-  renderProfileForm.toggleButton();
-  renderProfileForm.removeValidationErrors(profilePopup);
+  validatorEditProfile.toggleButton();
+  validatorEditProfile.removeValidationErrors(profilePopup);
 });
 function createCard(cardItem, imageTemplate) {
   const card = new Card(
@@ -128,13 +128,13 @@ function renderCard(cardLink, cardName) {
   cards.prepend(createCard(userCard, imageTemplate));
 }
 renderInitialCard();
-const renderProfileForm = new FormValidator(
+const validatorEditProfile = new FormValidator(
   formValidationConfig,
   profileForm
 );
-renderProfileForm.enableValidation();
-const renderCardForm = new FormValidator(
+validatorEditProfile.enableValidation();
+const validatorAddCard = new FormValidator(
   formValidationConfig,
   cardForm
 );
-renderCardForm.enableValidation();
+validatorAddCard.enableValidation();
