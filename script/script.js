@@ -2,7 +2,6 @@ import { Card } from './Card.js';
 import { FormValidator } from './FormValidator.js';
 const imageTemplate =
   document.querySelector('#card-template').content;
-let a;
 const page = document.querySelector('.page');
 const profilePopup = page.querySelector('.profile-popup');
 const cardPopup = page.querySelector('.card-popup');
@@ -50,7 +49,6 @@ function fillProfileInputs() {
 function openPopup(popup) {
   popup.classList.add('popup_open');
   listenEscape();
-  cleanError(popup);
 }
 function cleanError(popup) {
   const inputs = Array.from(popup.querySelectorAll('.popup__input'));
@@ -113,16 +111,18 @@ function cleanInput() {
 imageAddButton.addEventListener('click', () => {
   openPopup(cardPopup);
   cleanInput();
+  cleanError(cardPopup);
   disableSubmitButton(formValidationConfig);
 });
 // обработчик кнопок откртыия попапа редактирования профиля
 profileEditButton.addEventListener('click', () => {
   fillProfileInputs();
   openPopup(profilePopup);
+  cleanError(profilePopup);
   disableSubmitButton(formValidationConfig);
 });
 function createCard(cardItem, imageTemplate) {
-  const card = new Card(cardItem, imageTemplate);
+  const card = new Card(cardItem, imageTemplate, openPopup, closePopup, handlerPopupEscape);
   const cardElement = card.generateCard();
   return cardElement;
 }

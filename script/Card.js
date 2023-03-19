@@ -3,15 +3,16 @@ const imagePopup = page.querySelector('.image-popup');
 const popupFullImage = page.querySelector('.popup__full-image');
 const popupFullText = page.querySelector('.popup__image-text');
 export class Card {
-  constructor(data, imageTemplate) {
+  constructor(data, imageTemplate, openPopup) {
     this._image = data.link;
     this._name = data.name;
     this._imageTemplate = imageTemplate;
+    this._openPopup = openPopup;
   }
   _getTemplate() {
     const cardElement = this._imageTemplate
       .querySelector('.cards__item')
-      .cloneNode(true);
+      .cloneNode(true)
     return cardElement;
   }
   _setListeners() {
@@ -31,24 +32,6 @@ export class Card {
       .addEventListener('click', (event) => {
         this._addLike(event);
       });
-  }
-  _openPopup(popup){
-    popup.classList.add('popup_open');
-     this._element.addEventListener('keydown', (event) => {
-      this._handlerPopupEscape(event);
-    });
-  }
-  _closePopup(popup){
-    popup.classList.remove('popup_open');
-     this._element.removeEventListener('keydown', (event) => {
-      this._handlerPopupEscape(event);
-    });
-  }
-  _handlerPopupEscape(event) {
-    if (event.key === 'Escape') {
-      const popupElement = page.querySelector('.popup_open');
-      this._closePopup(popupElement);
-    }
   }
   _addNewContetntPopup() {
     popupFullImage.src =
