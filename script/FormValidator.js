@@ -71,7 +71,22 @@ export class FormValidator {
       !isFormValid
     );
   }
-  disableSubmitButt(){
-    this._toggleButton()
+  disableSubmitButt() {
+    this._toggleButton();
+  }
+  removeValidationErrors() {
+    console.log(dd);
+    const inputs = Array.from(
+      this.querySelectorAll(this._formSelector)
+    );
+    inputs.forEach((input) => {
+      const inputId = input.id;
+      const errorElement = document.querySelector(
+        `#${inputId}-error`
+      );
+      input.classList.remove(this._inputErrorClass);
+      errorElement.classList.remove(this._errorClass);
+    });
+    this.removeValidationErrors();
   }
 }

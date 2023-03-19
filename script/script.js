@@ -111,14 +111,14 @@ function cleanInput() {
 imageAddButton.addEventListener('click', () => {
   openPopup(cardPopup);
   cleanInput();
-  cleanError(cardPopup);
+  // cleanError(cardPopup);
   disableSubmitButton(formValidationConfig);
 });
 // обработчик кнопок откртыия попапа редактирования профиля
 profileEditButton.addEventListener('click', () => {
   fillProfileInputs();
   openPopup(profilePopup);
-  cleanError(profilePopup);
+  // cleanError(profilePopup);
   disableSubmitButton(formValidationConfig);
 });
 function createCard(cardItem, imageTemplate) {
