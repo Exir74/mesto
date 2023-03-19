@@ -23,9 +23,6 @@ const placeName = document.querySelector(
 const placeUrl = document.querySelector(
   '.popup__input_type_place-url'
 );
-const formList = Array.from(
-  document.querySelectorAll(formValidationConfig.formSelector)
-);
 const profileForm = document.forms['profile-form'];
 const cardForm = document.forms['card-form'];
 const cards = page.querySelector('.cards');
@@ -101,21 +98,24 @@ function cleanInput() {
 imageAddButton.addEventListener('click', () => {
   openPopup(cardPopup);
   cleanInput();
-  renderCardForm.toggleButton()
-  renderCardForm.removeValidationErrors(cardPopup)
-
-
+  renderCardForm.toggleButton();
+  renderCardForm.removeValidationErrors(cardPopup);
 });
 // обработчик кнопок откртыия попапа редактирования профиля
 profileEditButton.addEventListener('click', () => {
   fillProfileInputs();
   openPopup(profilePopup);
-  renderProfileForm.toggleButton()
-  renderProfileForm.removeValidationErrors(profilePopup)
-
+  renderProfileForm.toggleButton();
+  renderProfileForm.removeValidationErrors(profilePopup);
 });
 function createCard(cardItem, imageTemplate) {
-  const card = new Card(cardItem, imageTemplate, openPopup, closePopup, handlerPopupEscape);
+  const card = new Card(
+    cardItem,
+    imageTemplate,
+    openPopup,
+    closePopup,
+    handlerPopupEscape
+  );
   const cardElement = card.generateCard();
   return cardElement;
 }
@@ -129,9 +129,13 @@ function renderCard(cardLink, cardName) {
   cards.prepend(createCard(userCard, imageTemplate));
 }
 renderInitialCard();
-
-
-const renderProfileForm = new FormValidator (formValidationConfig, profileForm)
-renderProfileForm.enableValidation()
-const renderCardForm = new FormValidator (formValidationConfig, cardForm)
-renderCardForm.enableValidation()
+const renderProfileForm = new FormValidator(
+  formValidationConfig,
+  profileForm
+);
+renderProfileForm.enableValidation();
+const renderCardForm = new FormValidator(
+  formValidationConfig,
+  cardForm
+);
+renderCardForm.enableValidation();

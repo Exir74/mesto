@@ -12,7 +12,7 @@ export class Card {
   _getTemplate() {
     const cardElement = this._imageTemplate
       .querySelector('.cards__item')
-      .cloneNode(true)
+      .cloneNode(true);
     return cardElement;
   }
   _setListeners() {
