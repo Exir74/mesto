@@ -1,11 +1,10 @@
-import { renderCard } from './Card.js';
-import { enableValidation, disableSubmitButton,formValidationConfig } from './FormValidator.js';
+import { Card } from './Card.js';
+import { FormValidator } from './FormValidator.js';
+const imageTemplate =
+  document.querySelector('#card-template').content;
 const page = document.querySelector('.page');
 const profilePopup = page.querySelector('.profile-popup');
 const cardPopup = page.querySelector('.card-popup');
-const imagePopup = page.querySelector('.image-popup');
-const imageTemplate =
-  document.querySelector('#card-template').content;
 const imageAddButton = page.querySelector('.profile__add-button');
 const profileEditButton = page.querySelector('.profile__edit-button');
 const popupOverlays = page.querySelectorAll('.popup__content');
@@ -26,19 +25,12 @@ const placeUrl = document.querySelector(
 );
 const profileForm = document.forms['profile-form'];
 const cardForm = document.forms['card-form'];
-const popupFullImage = document.querySelector('.popup__full-image');
-const popupFullText = document.querySelector('.popup__image-text');
-const buttonAddImage = page.querySelector('.profile__add-button');
-const buttonEditProfile = page.querySelector('.profile__edit-button');
 const cards = page.querySelector('.cards');
-const card = page.querySelector('.card');
-enableValidation(formValidationConfig);
 // берем данные от пользователя
 function renderUsersImages() {
   const cardLink = placeUrl.value;
   const cardName = placeName.value;
-  renderCard(cardLink, cardName, true);
-  // addCardContent(cardLink, cardName, false);
+  renderCard(cardLink, cardName);
 }
 // заполнение данных в профиле
 function changeProfile() {
@@ -52,7 +44,7 @@ function fillProfileInputs() {
 }
 function openPopup(popup) {
   popup.classList.add('popup_open');
-  listenEscape(popup);
+  listenEscape();
 }
 function closePopup(popup) {
   popup.classList.remove('popup_open');
@@ -96,18 +88,53 @@ const handlerPopupEscape = (event) => {
     closePopup(popupElement);
   }
 };
-
+//очистка полей попапа добавления картинки
+function cleanInput() {
+  placeName.value = '';
+  placeUrl.value = '';
+}
 // обработчик кнопок откртыия попапа добавления картинки
 imageAddButton.addEventListener('click', () => {
   openPopup(cardPopup);
-  const isFormValid = false;
-  disableSubmitButton(cardPopup, isFormValid);
+  cleanInput();
+  validatorAddCard.toggleButton();
+  validatorAddCard.removeValidationErrors(cardPopup);
 });
 // обработчик кнопок откртыия попапа редактирования профиля
 profileEditButton.addEventListener('click', () => {
   fillProfileInputs();
   openPopup(profilePopup);
-  const isFormValid = true;
-  disableSubmitButton(profilePopup, isFormValid);
+  validatorEditProfile.toggleButton();
+  validatorEditProfile.removeValidationErrors(profilePopup);
 });
-renderCard(false);
+function createCard(cardItem, imageTemplate) {
+  const card = new Card(
+    cardItem,
+    imageTemplate,
+    openPopup,
+    closePopup,
+    handlerPopupEscape
+  );
+  const cardElement = card.generateCard();
+  return cardElement;
+}
+function renderInitialCard() {
+  initialCards.forEach((item) => {
+    cards.append(createCard(item, imageTemplate));
+  });
+}
+function renderCard(cardLink, cardName) {
+  const userCard = { name: cardName, link: cardLink };
+  cards.prepend(createCard(userCard, imageTemplate));
+}
+renderInitialCard();
+const validatorEditProfile = new FormValidator(
+  formValidationConfig,
+  profileForm
+);
+validatorEditProfile.enableValidation();
+const validatorAddCard = new FormValidator(
+  formValidationConfig,
+  cardForm
+);
+validatorAddCard.enableValidation();

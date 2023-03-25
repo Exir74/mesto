@@ -1,13 +1,4 @@
-export const formValidationConfig = {
-  formSelector: '.popup__form',
-  inputSelector: '.popup__input',
-  submitButtonSelector: '.popup__button',
-  inactiveButtonClass: 'popup__button_disabled',
-  inputErrorClass: 'popup__input_type_error',
-  errorClass: 'popup__error_visible',
-};
-const popupForm = document.querySelector('.popup__form');
-class FormValidator {
+export class FormValidator {
   constructor(data, form) {
     this._formSelector = data.formSelector;
     this._inputSelector = data.inputSelector;
@@ -23,12 +14,9 @@ class FormValidator {
     );
     return inputElement;
   }
-  choiseInput() {
+  enableValidation() {
     this._element = this._getInput();
     this._setListeners();
-    this._element.forEach((item) => {
-      this._input = item;
-    });
     return this._element;
   }
   _setListeners() {
@@ -36,10 +24,10 @@ class FormValidator {
       this._disableSubmit(event);
     });
     this._popupForm.addEventListener('input', () => {
-      this._toggleButton();
+      this.toggleButton();
     });
     this._addInputListners();
-    this._toggleButton();
+    this.toggleButton();
   }
   _addInputListners() {
     this._element.forEach((item) => {
@@ -72,7 +60,7 @@ class FormValidator {
   _disableSubmit(event) {
     event.preventDefault();
   }
-  _toggleButton() {
+  toggleButton() {
     const buttonSubmit = this._popupForm.querySelector(
       this._submitButtonSelector
     );
@@ -83,24 +71,15 @@ class FormValidator {
       !isFormValid
     );
   }
-}
-
-export function enableValidation(data) {
-  const formList = Array.from(
-    document.querySelectorAll(data.formSelector)
-  );
-  formList.forEach((form) => {
-    const formItem = new FormValidator(data, form);
-    formItem.choiseInput();
-  });
-}
-export function disableSubmitButton(popup, isFormValid) {
-  const buttonSubmit = popup.querySelector(
-    formValidationConfig.submitButtonSelector
-  );
-  buttonSubmit.disabled = !isFormValid;
-  buttonSubmit.classList.toggle(
-    formValidationConfig.inactiveButtonClass,
-    !isFormValid
-  );
+  removeValidationErrors(cardPopup) {
+    const inputs = cardPopup.querySelectorAll(this._inputSelector);
+    inputs.forEach((input) => {
+      const inputId = input.id;
+      const errorElement = document.querySelector(
+        `#${inputId}-error`
+      );
+      input.classList.remove(this._inputErrorClass);
+      errorElement.classList.remove(this._errorClass);
+    });
+  }
 }
