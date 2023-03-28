@@ -24,10 +24,9 @@ import {
   imagePopup,
 } from './constants.js';
 import { FormValidator } from './FormValidator.js';
+import { Popup } from './Popup.js';
+import { PopupWithForm } from './PopupWithForm.js';
 import { PopupWithImage } from './PopupWithImage.js';
-// import { Popup } from './Popup.js';
-// import { PopupWithForm } from './PopupWithForm.js';
-// import { PopupWithImage } from './PopupWithImage.js';
 import { Section } from './Section.js';
 
 // берем данные от пользователя
@@ -54,39 +53,64 @@ profileForm.addEventListener('submit', (event) => {
   closePopup(profilePopup);
 });
 //слушатель кнопки формы добавлени фото
-cardForm.addEventListener('submit', (event) => {
-  event.preventDefault();
-  const renderUserCard = new Section(
-    {
-      data: renderUsersImages(),
-      renderer: (item, isInitialCard) => {
-        const card = new Card(item, imageTemplate);
-        const cardElement = card.generateCard();
-        renderUserCard.addItem(cardElement, isInitialCard);
-        const popupImage = new PopupWithImage(imagePopup, item);
-        cardElement.addEventListener('click', () => {
-          popupImage.open();
-        });
-      },
-    },
-    containerSelector
-  );
-  renderUserCard.renderItem(false);
-  event.target.reset();
-});
+// cardForm.addEventListener('submit', (event) => {
+//   event.preventDefault();
+//   const renderUserCard = new Section(
+//     {
+//       data: renderUsersImages(),
+//       renderer: (item, isInitialCard) => {
+//         const card = new Card(item, imageTemplate);
+//         const cardElement = card.generateCard();
+//         renderUserCard.addItem(cardElement, isInitialCard);
+//         const popupImage = new PopupWithImage(imagePopup, item);
+//         cardElement.addEventListener('click', () => {
+//           popupImage.open();
+//         });
+//       },
+//     },
+//     containerSelector
+//   );
+//   renderUserCard.renderItem(false);
+//   event.target.reset();
+// });
 
 //очистка полей попапа добавления картинки
 function cleanInput() {
   placeName.value = '';
   placeUrl.value = '';
-}
-// обработчик кнопок откртыия попапа добавления картинки
+};
+
 imageAddButton.addEventListener('click', () => {
-  openPopup(cardPopup);
-  cleanInput();
+  const popupImageAdd = new PopupWithForm(cardPopup, {
+    hedlerPopupForm: () => {
+      cardForm.addEventListener('submit', (event) => {
+        event.preventDefault();
+        const renderUserCard = new Section(
+          {
+            data: renderUsersImages(),
+            renderer: (item, isInitialCard) => {
+              const card = new Card(item, imageTemplate);
+              const cardElement = card.generateCard();
+              renderUserCard.addItem(cardElement, isInitialCard);
+              const popupImage = new PopupWithImage(imagePopup, item);
+              cardElement.addEventListener('click', () => {
+                popupImage.open();
+              });
+            },
+          },
+          containerSelector
+        );
+        renderUserCard.renderItem(false);
+        event.target.reset();
+        popupImageAdd.close()
+      },{once: true});
+    },
+  });
+  popupImageAdd.open();
   validatorAddCard.toggleButton();
-  validatorAddCard.removeValidationErrors(cardPopup);
+  validatorAddCard.removeValidationErrors(cardPopup)
 });
+
 // обработчик кнопок откртыия попапа редактирования профиля
 profileEditButton.addEventListener('click', () => {
   fillProfileInputs();
@@ -103,7 +127,7 @@ const renderInitialCard = new Section(
       const cardElement = card.generateCard();
       renderInitialCard.addItem(cardElement, isInitialCard);
       const popupImage = new PopupWithImage(imagePopup, item);
-      cardElement.addEventListener('click', () => {
+      cardElement.querySelector('.card__image').addEventListener('click', () => {
         popupImage.open();
       });
     },

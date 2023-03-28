@@ -35,7 +35,8 @@
  export const imageTemplate =
   document.querySelector('#card-template').content;
  export const page = document.querySelector('.page');
- export const profilePopup = page.querySelector('.profile-popup');
+ export const profilePopup = page.querySelector('.profile-popup'); 
+// export const profilePopup = '.profile-popup';
  export const cardPopup = page.querySelector('.card-popup');
  export const imageAddButton = page.querySelector('.profile__add-button');
  export const profileEditButton = page.querySelector('.profile__edit-button');

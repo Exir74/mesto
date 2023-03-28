@@ -1,11 +1,12 @@
 export class Popup {
-  constructor(popupSelector) {
+  constructor(popupSelector,) {
     this._popupSelector = popupSelector;
     this._handleEscClose = this._handleEscClose.bind(this);
     this._handleCloseIcon = this._handleCloseIcon.bind(this);
     this._hendleCloseOverlay = this._hendleCloseOverlay.bind(this);
   }
   open() {
+    console.log(this);
     this._popupSelector.classList.add('popup_open');
     this.setEventListeners();
   }

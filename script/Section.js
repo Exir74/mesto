@@ -3,6 +3,7 @@ export class Section {
     this._renderedItems = data;
     this._container = document.querySelector(containerSelector);
     this._renderer = renderer;
+    
   }
   addItem(item, isInitialCard) {
     if (isInitialCard) {
