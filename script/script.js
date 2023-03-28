@@ -21,8 +21,10 @@ import {
   cards,
   containerSelector,
   popup,
+  imagePopup,
 } from './constants.js';
 import { FormValidator } from './FormValidator.js';
+import { PopupWithImage } from './PopupWithImage.js';
 // import { Popup } from './Popup.js';
 // import { PopupWithForm } from './PopupWithForm.js';
 // import { PopupWithImage } from './PopupWithImage.js';
@@ -44,10 +46,10 @@ function fillProfileInputs() {
   profileNamePopup.value = profileName.textContent;
   profileSubtitlePopup.value = profileSubtitle.textContent;
 }
-function openPopup(popup) {
-  popup.classList.add('popup_open');
-  listenEscape();
-}
+// function openPopup(popup) {
+//   popup.classList.add('popup_open');
+//   listenEscape();
+// }
 function closePopup(popup) {
   popup.classList.remove('popup_open');
   page.removeEventListener('keydown', handlerPopupEscape);
@@ -68,6 +70,10 @@ cardForm.addEventListener('submit', (event) => {
         const card = new Card(item, imageTemplate);
         const cardElement = card.generateCard();
         renderUserCard.addItem(cardElement, isInitialCard);
+        const popupImage = new PopupWithImage(imagePopup);
+        cardElement.addEventListener('click', () => {
+          popupImage.open();
+        });
       },
     },
     containerSelector
@@ -130,16 +136,21 @@ const renderInitialCard = new Section(
       const card = new Card(item, imageTemplate);
       const cardElement = card.generateCard();
       renderInitialCard.addItem(cardElement, isInitialCard);
+      //возможно тут слушателей вешать
+      const popupImage = new PopupWithImage(imagePopup);
+      cardElement.addEventListener('click', () => {
+        popupImage.open();
+      });
     },
   },
   containerSelector
 );
 renderInitialCard.renderItem(true);
 
-function renderCard(cardLink, cardName) {
-  const userCard = { name: cardName, link: cardLink };
-  cards.prepend(createCard(userCard, imageTemplate));
-}
+// function renderCard(cardLink, cardName) {
+//   const userCard = { name: cardName, link: cardLink };
+//   cards.prepend(createCard(userCard, imageTemplate));
+// }
 // renderInitialCard();
 const validatorEditProfile = new FormValidator(
   formValidationConfig,
