@@ -137,7 +137,7 @@ const renderInitialCard = new Section(
       const cardElement = card.generateCard();
       renderInitialCard.addItem(cardElement, isInitialCard);
       //возможно тут слушателей вешать
-      const popupImage = new PopupWithImage(imagePopup);
+      const popupImage = new PopupWithImage(imagePopup, item);
       cardElement.addEventListener('click', () => {
         popupImage.open();
       });
