@@ -85,19 +85,19 @@ cardForm.addEventListener('submit', (event) => {
   event.target.reset();
 });
 //закрытие попапов при нажатии на крестик
-closeButtons.forEach((button) => {
-  const popup = button.closest('.popup');
-  button.addEventListener('click', () => closePopup(popup));
-});
+// closeButtons.forEach((button) => {
+//   const popup = button.closest('.popup');
+//   button.addEventListener('click', () => closePopup(popup));
+// });
 //закрытие попапов при нажатии на оверлей
-popupOverlays.forEach((overlay) => {
-  const popup = overlay.closest('.popup');
-  overlay.addEventListener('mousedown', (event) => {
-    if (event.target === event.currentTarget) {
-      closePopup(popup);
-    }
-  });
-});
+// popupOverlays.forEach((overlay) => {
+//   const popup = overlay.closest('.popup');
+//   overlay.addEventListener('mousedown', (event) => {
+//     if (event.target === event.currentTarget) {
+//       closePopup(popup);
+//     }
+//   });
+// });
 //слушатель закрытия по escape
 const listenEscape = () => {
   page.addEventListener('keydown', handlerPopupEscape);
