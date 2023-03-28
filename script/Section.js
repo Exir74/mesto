@@ -1,16 +1,27 @@
-class Section {
-  constructor({items, renderer}, containerSelector){
-    this._rendererItems = items;
-    this._renderer = renderer;
-    this._container = document.querySelector(containerSelector)
-  }
-rendererItem(){
-  this._rendererItems.forEach((item) => {
-    this._renderer(item);
-  });
-}
+import { Card } from './Card.js';
+import { imageTemplate } from './constants.js';
 
-  setItem(element) {
-    this._container.append(element);
+export class Section {
+  constructor({ data }, containerSelector) {
+    this._renderedItems = data;
+    this._container = document.querySelector(containerSelector);
+  }
+  addItem(item, isInitialCard) {
+    console.log(isInitialCard);
+    if (isInitialCard){
+    this._container.append(item);
+    } else {
+      this._container.prepend(item);
+ 
+    }
+  }
+
+  renderItem(isInitialCard) {
+    this._renderedItems.forEach((item) => {
+      const card = new Card(item, imageTemplate);
+      console.log(this._container);
+      const cardElement = card.generateCard();
+      this.addItem(cardElement, isInitialCard);
+    });
   }
 }

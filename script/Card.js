@@ -1,7 +1,4 @@
-// const page = document.querySelector('.page');
-// const imagePopup = page.querySelector('.image-popup');
-// const popupFullImage = page.querySelector('.popup__full-image');
-// const popupFullText = page.querySelector('.popup__image-text');
+
 export class Card {
   constructor(data, imageTemplate, openPopup) {
     this._image = data.link;

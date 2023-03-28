@@ -23,41 +23,16 @@ import {
   popup,
 } from './constants.js';
 import { FormValidator } from './FormValidator.js';
-import { Popup } from './Popup.js';
-import { PopupWithForm } from './PopupWithForm.js';
-import { PopupWithImage } from './PopupWithImage.js';
+// import { Popup } from './Popup.js';
+// import { PopupWithForm } from './PopupWithForm.js';
+// import { PopupWithImage } from './PopupWithImage.js';
 import { Section } from './Section.js';
-const imageTemplate =
-  document.querySelector('#card-template').content;
-const page = document.querySelector('.page');
-const profilePopup = page.querySelector('.profile-popup');
-const cardPopup = page.querySelector('.card-popup');
-const imageAddButton = page.querySelector('.profile__add-button');
-const profileEditButton = page.querySelector('.profile__edit-button');
-const popupOverlays = page.querySelectorAll('.popup__content');
-const closeButtons = document.querySelectorAll('.popup__close');
-const profileName = page.querySelector('.profile__name');
-const profileSubtitle = page.querySelector('.profile__subtitle');
-const profileNamePopup = page.querySelector(
-  '.popup__input_type_name'
-);
-const profileSubtitlePopup = page.querySelector(
-  '.popup__input_type_subtitle'
-);
-const placeName = document.querySelector(
-  '.popup__input_type_place-name'
-);
-const placeUrl = document.querySelector(
-  '.popup__input_type_place-url'
-);
-const profileForm = document.forms['profile-form'];
-const cardForm = document.forms['card-form'];
-const cards = page.querySelector('.cards');
+
 // берем данные от пользователя
 function renderUsersImages() {
   const cardLink = placeUrl.value;
   const cardName = placeName.value;
-  renderCard(cardLink, cardName);
+  return [{ name: cardName, link: cardLink }];
 }
 // заполнение данных в профиле
 function changeProfile() {
@@ -86,8 +61,14 @@ profileForm.addEventListener('submit', (event) => {
 //слушатель кнопки формы добавлени фото
 cardForm.addEventListener('submit', (event) => {
   event.preventDefault();
-  closePopup(cardPopup);
-  renderUsersImages();
+  const renderUserCard = new Section(
+    { data: renderUsersImages() },
+    containerSelector
+  );
+  renderUserCard.renderItem(false);
+
+  // closePopup(cardPopup);
+  // renderUsersImages();
   event.target.reset();
 });
 //закрытие попапов при нажатии на крестик
@@ -134,27 +115,34 @@ profileEditButton.addEventListener('click', () => {
   validatorEditProfile.toggleButton();
   validatorEditProfile.removeValidationErrors(profilePopup);
 });
-function createCard(cardItem, imageTemplate) {
-  const card = new Card(
-    cardItem,
-    imageTemplate,
-    openPopup,
-    closePopup,
-    handlerPopupEscape
-  );
-  const cardElement = card.generateCard();
-  return cardElement;
-}
-function renderInitialCard() {
-  initialCards.forEach((item) => {
-    cards.append(createCard(item, imageTemplate));
-  });
-}
+// function createCard(cardItem, imageTemplate) {
+//   const card = new Card(
+//     cardItem,
+//     imageTemplate,
+//     openPopup,
+//     closePopup,
+//     handlerPopupEscape
+//   );
+//   const cardElement = card.generateCard();
+//   return cardElement;
+// }
+// function renderInitialCard() {
+//   initialCards.forEach((item) => {
+//     cards.append(createCard(item, imageTemplate));
+//   });
+// }
+
+const renderInitialCard = new Section(
+  { data: initialCards },
+  containerSelector
+);
+renderInitialCard.renderItem(true);
+
 function renderCard(cardLink, cardName) {
   const userCard = { name: cardName, link: cardLink };
   cards.prepend(createCard(userCard, imageTemplate));
 }
-renderInitialCard();
+// renderInitialCard();
 const validatorEditProfile = new FormValidator(
   formValidationConfig,
   profileForm
