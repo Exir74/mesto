@@ -62,7 +62,14 @@ profileForm.addEventListener('submit', (event) => {
 cardForm.addEventListener('submit', (event) => {
   event.preventDefault();
   const renderUserCard = new Section(
-    { data: renderUsersImages() },
+    {
+      data: renderUsersImages(),
+      renderer: (item, isInitialCard) => {
+        const card = new Card(item, imageTemplate);
+        const cardElement = card.generateCard();
+        renderUserCard.addItem(cardElement, isInitialCard);
+      },
+    },
     containerSelector
   );
   renderUserCard.renderItem(false);
@@ -115,25 +122,16 @@ profileEditButton.addEventListener('click', () => {
   validatorEditProfile.toggleButton();
   validatorEditProfile.removeValidationErrors(profilePopup);
 });
-// function createCard(cardItem, imageTemplate) {
-//   const card = new Card(
-//     cardItem,
-//     imageTemplate,
-//     openPopup,
-//     closePopup,
-//     handlerPopupEscape
-//   );
-//   const cardElement = card.generateCard();
-//   return cardElement;
-// }
-// function renderInitialCard() {
-//   initialCards.forEach((item) => {
-//     cards.append(createCard(item, imageTemplate));
-//   });
-// }
 
 const renderInitialCard = new Section(
-  { data: initialCards },
+  {
+    data: initialCards,
+    renderer: (item, isInitialCard) => {
+      const card = new Card(item, imageTemplate);
+      const cardElement = card.generateCard();
+      renderInitialCard.addItem(cardElement, isInitialCard);
+    },
+  },
   containerSelector
 );
 renderInitialCard.renderItem(true);
