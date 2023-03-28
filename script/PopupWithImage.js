@@ -9,7 +9,7 @@ export class PopupWithImage extends Popup {
   open(){
     this._renderUserImage()
     super.open()
-    console.log(this._popupSelector.querySelector('.popup__full-image'));
+    // console.log(this._popupSelector.querySelector('.popup__full-image'));
   }
   close(){
     super.close()

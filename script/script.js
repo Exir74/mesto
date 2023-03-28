@@ -50,10 +50,10 @@ function fillProfileInputs() {
 //   popup.classList.add('popup_open');
 //   listenEscape();
 // }
-function closePopup(popup) {
-  popup.classList.remove('popup_open');
-  page.removeEventListener('keydown', handlerPopupEscape);
-}
+// function closePopup(popup) {
+//   popup.classList.remove('popup_open');
+//   page.removeEventListener('keydown', handlerPopupEscape);
+// }
 //слушатель кнопки формы редактировани профиля
 profileForm.addEventListener('submit', (event) => {
   event.preventDefault();
@@ -70,7 +70,7 @@ cardForm.addEventListener('submit', (event) => {
         const card = new Card(item, imageTemplate);
         const cardElement = card.generateCard();
         renderUserCard.addItem(cardElement, isInitialCard);
-        const popupImage = new PopupWithImage(imagePopup);
+        const popupImage = new PopupWithImage(imagePopup, item);
         cardElement.addEventListener('click', () => {
           popupImage.open();
         });
@@ -136,7 +136,6 @@ const renderInitialCard = new Section(
       const card = new Card(item, imageTemplate);
       const cardElement = card.generateCard();
       renderInitialCard.addItem(cardElement, isInitialCard);
-      //возможно тут слушателей вешать
       const popupImage = new PopupWithImage(imagePopup, item);
       cardElement.addEventListener('click', () => {
         popupImage.open();
@@ -147,11 +146,6 @@ const renderInitialCard = new Section(
 );
 renderInitialCard.renderItem(true);
 
-// function renderCard(cardLink, cardName) {
-//   const userCard = { name: cardName, link: cardLink };
-//   cards.prepend(createCard(userCard, imageTemplate));
-// }
-// renderInitialCard();
 const validatorEditProfile = new FormValidator(
   formValidationConfig,
   profileForm
