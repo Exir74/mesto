@@ -52,27 +52,7 @@ profileForm.addEventListener('submit', (event) => {
   changeProfile();
   closePopup(profilePopup);
 });
-//слушатель кнопки формы добавлени фото
-// cardForm.addEventListener('submit', (event) => {
-//   event.preventDefault();
-//   const renderUserCard = new Section(
-//     {
-//       data: renderUsersImages(),
-//       renderer: (item, isInitialCard) => {
-//         const card = new Card(item, imageTemplate);
-//         const cardElement = card.generateCard();
-//         renderUserCard.addItem(cardElement, isInitialCard);
-//         const popupImage = new PopupWithImage(imagePopup, item);
-//         cardElement.addEventListener('click', () => {
-//           popupImage.open();
-//         });
-//       },
-//     },
-//     containerSelector
-//   );
-//   renderUserCard.renderItem(false);
-//   event.target.reset();
-// });
+
 
 //очистка полей попапа добавления картинки
 function cleanInput() {
