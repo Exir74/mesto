@@ -6,7 +6,6 @@ export class Popup {
     this._hendleCloseOverlay = this._hendleCloseOverlay.bind(this);
   }
   open() {
-    console.log(this);
     this._popupSelector.classList.add('popup_open');
     this.setEventListeners();
   }
@@ -26,7 +25,7 @@ export class Popup {
 
   close() {
     this._popupSelector.classList.remove('popup_open');
-    this._removeEventListeners();
+    this.removeEventListeners();
   }
   setEventListeners() {
     document.addEventListener('keydown', this._handleEscClose);
@@ -37,7 +36,7 @@ export class Popup {
       .querySelector('.popup__content')
       .addEventListener('mousedown', this._hendleCloseOverlay);
   }
-  _removeEventListeners() {
+  removeEventListeners() {
     document.removeEventListener('keydown', this._handleEscClose);
     this._popupSelector
       .querySelector('.popup__close')
