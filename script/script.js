@@ -24,7 +24,7 @@ import {
   imagePopup,
 } from './constants.js';
 import { FormValidator } from './FormValidator.js';
-import { Popup } from './Popup.js';
+import { UserInfo } from './UserInfo.js';
 import { PopupWithForm } from './PopupWithForm.js';
 import { PopupWithImage } from './PopupWithImage.js';
 import { Section } from './Section.js';
@@ -53,7 +53,6 @@ profileForm.addEventListener('submit', (event) => {
   closePopup(profilePopup);
 });
 
-
 //очистка полей попапа добавления картинки
 function cleanInput() {
   placeName.value = '';
@@ -66,7 +65,7 @@ imageAddButton.addEventListener('click', () => {
       popupImageAdd.close();
       const renderUserCard = new Section(
         {
-          data: data,
+          data,
           renderer: (item, isInitialCard) => {
             const {
               ['popup-place-name']: name,
@@ -96,10 +95,20 @@ imageAddButton.addEventListener('click', () => {
   validatorAddCard.removeValidationErrors(cardPopup);
 });
 
-// обработчик кнопок откртыия попапа редактирования профиля
 profileEditButton.addEventListener('click', () => {
-  fillProfileInputs();
-  openPopup(profilePopup);
+  const addUserInfo = new UserInfo({
+    name: profileName,
+    userInfo: profileSubtitle,
+  });
+  addUserInfo.setUserInfo();
+
+  const popupEditForm = new PopupWithForm(profilePopup, {
+    hedlerPopupForm: (data) => {
+      addUserInfo.getUserInfo();
+      popupEditForm.close();
+    },
+  });
+  popupEditForm.open();
   validatorEditProfile.toggleButton();
   validatorEditProfile.removeValidationErrors(profilePopup);
 });

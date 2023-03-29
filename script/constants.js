@@ -36,7 +36,6 @@
   document.querySelector('#card-template').content;
  export const page = document.querySelector('.page');
  export const profilePopup = page.querySelector('.profile-popup'); 
-// export const profilePopup = '.profile-popup';
  export const cardPopup = page.querySelector('.card-popup');
  export const imageAddButton = page.querySelector('.profile__add-button');
  export const profileEditButton = page.querySelector('.profile__edit-button');
@@ -44,8 +43,10 @@
  export const popupOverlay = page.querySelector('.popup__content');
  export const closeButtons = document.querySelectorAll('.popup__close');
  export const closeButton = document.querySelector('.popup__close');
- export const profileName = page.querySelector('.profile__name');
- export const profileSubtitle = page.querySelector('.profile__subtitle');
+ export const profileName = '.profile__name';
+ export const profileSubtitle = '.profile__subtitle';
+//  export const profileName = page.querySelector('.profile__name');
+//  export const profileSubtitle = page.querySelector('.profile__subtitle');
  export const profileNamePopup = page.querySelector(
   '.popup__input_type_name'
 );
