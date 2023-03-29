@@ -1,3 +1,4 @@
+import { popupFullImage, popupFullText } from './constants.js';
 import { Popup } from './Popup.js';
 
 export class PopupWithImage extends Popup {
@@ -14,12 +15,11 @@ export class PopupWithImage extends Popup {
     super.close();
   }
   _renderUserImage() {
-    this._popupSelector.querySelector('.popup__full-image').src =
+    this._popupSelector.querySelector(popupFullImage).src =
       this._link;
-    this._popupSelector.querySelector('.popup__full-image').alt =
+    this._popupSelector.querySelector(popupFullImage).alt =
       this._name;
-    this._popupSelector.querySelector(
-      '.popup__image-text'
-    ).textContent = this._name;
+    this._popupSelector.querySelector(popupFullText).textContent =
+      this._name;
   }
 }
