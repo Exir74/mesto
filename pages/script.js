@@ -12,7 +12,7 @@ import {
   cardForm,
   containerSelector,
   imagePopup,
-} from './constants.js';
+} from '../components/constants.js';
 import { Card } from '../components/Card.js';
 import { FormValidator } from '../components/FormValidator.js';
 import { UserInfo } from '../components/UserInfo.js';
