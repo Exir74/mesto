@@ -78,37 +78,39 @@ profileForm.addEventListener('submit', (event) => {
 function cleanInput() {
   placeName.value = '';
   placeUrl.value = '';
-};
+}
 
 imageAddButton.addEventListener('click', () => {
   const popupImageAdd = new PopupWithForm(cardPopup, {
-    hedlerPopupForm: () => {
-      cardForm.addEventListener('submit', (event) => {
-        event.preventDefault();
-        const renderUserCard = new Section(
-          {
-            data: renderUsersImages(),
-            renderer: (item, isInitialCard) => {
-              const card = new Card(item, imageTemplate);
-              const cardElement = card.generateCard();
-              renderUserCard.addItem(cardElement, isInitialCard);
-              const popupImage = new PopupWithImage(imagePopup, item);
-              cardElement.addEventListener('click', () => {
+    hedlerPopupForm: (data) => {
+      popupImageAdd.close();
+      //// cardForm.addEventListener('submit', (event) => {
+      // event.preventDefault();
+      const renderUserCard = new Section(
+        {
+          data: renderUsersImages(),
+          renderer: (item, isInitialCard) => {
+            const card = new Card(item, imageTemplate);
+            const cardElement = card.generateCard();
+            renderUserCard.addItem(cardElement, isInitialCard);
+            const popupImage = new PopupWithImage(imagePopup, item);
+            cardElement
+              .querySelector('.card__image')
+              .addEventListener('click', () => {
                 popupImage.open();
               });
-            },
           },
-          containerSelector
-        );
-        renderUserCard.renderItem(false);
-        event.target.reset();
-        popupImageAdd.close()
-      },{once: true});
+        },
+        containerSelector
+      );
+      renderUserCard.renderItem(false);
+      // event.target.reset();
+      //// },{once: true});
     },
   });
   popupImageAdd.open();
   validatorAddCard.toggleButton();
-  validatorAddCard.removeValidationErrors(cardPopup)
+  validatorAddCard.removeValidationErrors(cardPopup);
 });
 
 // обработчик кнопок откртыия попапа редактирования профиля
@@ -127,9 +129,11 @@ const renderInitialCard = new Section(
       const cardElement = card.generateCard();
       renderInitialCard.addItem(cardElement, isInitialCard);
       const popupImage = new PopupWithImage(imagePopup, item);
-      cardElement.querySelector('.card__image').addEventListener('click', () => {
-        popupImage.open();
-      });
+      cardElement
+        .querySelector('.card__image')
+        .addEventListener('click', () => {
+          popupImage.open();
+        });
     },
   },
   containerSelector
