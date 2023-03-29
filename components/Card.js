@@ -1,26 +1,31 @@
+import {
+  cardCaption,
+  cardImage,
+  cardItem,
+  cardLike,
+  cardTrash,
+} from './constants.js';
 
 export class Card {
   constructor(data, imageTemplate, openPopup) {
-
     this._image = data.link;
     this._name = data.name;
     this._imageTemplate = imageTemplate;
-
   }
   _getTemplate() {
     const cardElement = this._imageTemplate
-      .querySelector('.cards__item')
+      .querySelector(cardItem)
       .cloneNode(true);
     return cardElement;
   }
   _setListeners() {
     this._element
-      .querySelector('.card__trash')
+      .querySelector(cardTrash)
       .addEventListener('click', () => {
         this._removeCard();
       });
     this._element
-      .querySelector('.card__like')
+      .querySelector(cardLike)
       .addEventListener('click', (event) => {
         this._addLike(event);
       });
@@ -34,10 +39,9 @@ export class Card {
   generateCard() {
     this._element = this._getTemplate();
     this._setListeners();
-    this._element.querySelector('.card__image').src = this._image;
-    this._element.querySelector('.card__caption').textContent =
-      this._name;
-    this._element.querySelector('.card__image').alt = this._name;
+    this._element.querySelector(cardImage).src = this._image;
+    this._element.querySelector(cardCaption).textContent = this._name;
+    this._element.querySelector(cardImage).alt = this._name;
     return this._element;
   }
 }

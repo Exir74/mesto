@@ -1,3 +1,5 @@
+import { closeButton, popupOverlay } from "./constants.js";
+
 export class Popup {
   constructor(popupSelector,) {
     this._popupSelector = popupSelector;
@@ -31,19 +33,19 @@ export class Popup {
   setEventListeners() {
     document.addEventListener('keydown', this._handleEscClose);
     this._popupSelector
-      .querySelector('.popup__close')
+      .querySelector(closeButton)
       .addEventListener('click', this._handleCloseIcon);
     this._popupSelector
-      .querySelector('.popup__content')
+      .querySelector(popupOverlay)
       .addEventListener('mousedown', this._hendleCloseOverlay);
   }
   removeEventListeners() {
     document.removeEventListener('keydown', this._handleEscClose);
     this._popupSelector
-      .querySelector('.popup__close')
+      .querySelector(closeButton)
       .removeEventListener('click', this._handleCloseIcon);
     this._popupSelector
-      .querySelector('.popup__content')
+      .querySelector(popupOverlay)
       .removeEventListener('mousedown', this._hendleCloseOverlay);
   }
 }
