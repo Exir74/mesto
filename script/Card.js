@@ -1,10 +1,11 @@
 
 export class Card {
   constructor(data, imageTemplate, openPopup) {
+    console.log(data);
     this._image = data.link;
     this._name = data.name;
     this._imageTemplate = imageTemplate;
-    // this._openPopup = openPopup;
+    console.log(data['name']);
   }
   _getTemplate() {
     const cardElement = this._imageTemplate

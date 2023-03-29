@@ -84,13 +84,12 @@ imageAddButton.addEventListener('click', () => {
   const popupImageAdd = new PopupWithForm(cardPopup, {
     hedlerPopupForm: (data) => {
       popupImageAdd.close();
-      //// cardForm.addEventListener('submit', (event) => {
-      // event.preventDefault();
       const renderUserCard = new Section(
         {
-          data: renderUsersImages(),
+          data: data,
           renderer: (item, isInitialCard) => {
-            const card = new Card(item, imageTemplate);
+            const {['popup-place-name']: name, ['popup-place-url']: link} = item
+            const card = new Card({name,link}, imageTemplate);
             const cardElement = card.generateCard();
             renderUserCard.addItem(cardElement, isInitialCard);
             const popupImage = new PopupWithImage(imagePopup, item);
@@ -104,8 +103,6 @@ imageAddButton.addEventListener('click', () => {
         containerSelector
       );
       renderUserCard.renderItem(false);
-      // event.target.reset();
-      //// },{once: true});
     },
   });
   popupImageAdd.open();
