@@ -12,7 +12,7 @@ export class PopupWithForm extends Popup {
   close() {
     this._getInputValues();
     super.close();
-    this._popupSelector.querySelector('.popup__form').reset()
+    this._popupSelector.querySelector('.popup__form').reset();
   }
   _headlerClickSubmit(event) {
     event.preventDefault();
