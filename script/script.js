@@ -1,63 +1,25 @@
-import { Card } from './Card.js';
+
 import {
   initialCards,
   formValidationConfig,
   imageTemplate,
-  page,
   profilePopup,
   cardPopup,
   imageAddButton,
   profileEditButton,
-  popupOverlays,
-  closeButtons,
   profileName,
   profileSubtitle,
-  profileNamePopup,
-  profileSubtitlePopup,
-  placeName,
-  placeUrl,
   profileForm,
   cardForm,
-  cards,
   containerSelector,
-  popup,
   imagePopup,
 } from './constants.js';
+import { Card } from './Card.js';
 import { FormValidator } from './FormValidator.js';
 import { UserInfo } from './UserInfo.js';
 import { PopupWithForm } from './PopupWithForm.js';
 import { PopupWithImage } from './PopupWithImage.js';
 import { Section } from './Section.js';
-
-// берем данные от пользователя
-function renderUsersImages() {
-  const cardLink = placeUrl.value;
-  const cardName = placeName.value;
-  return [{ name: cardName, link: cardLink }];
-}
-// заполнение данных в профиле
-function changeProfile() {
-  profileName.textContent = profileNamePopup.value;
-  profileSubtitle.textContent = profileSubtitlePopup.value;
-}
-// заполнение данных в popup
-function fillProfileInputs() {
-  profileNamePopup.value = profileName.textContent;
-  profileSubtitlePopup.value = profileSubtitle.textContent;
-}
-
-//слушатель кнопки формы редактировани профиля
-profileForm.addEventListener('submit', (event) => {
-  event.preventDefault();
-  changeProfile();
-  closePopup(profilePopup);
-});
-
-//очистка полей попапа добавления картинки
-function cleanInput() {
-  placeName.value = '';
-  placeUrl.value = '';
-}
 
 imageAddButton.addEventListener('click', () => {
   const popupImageAdd = new PopupWithForm(cardPopup, {
@@ -101,7 +63,6 @@ profileEditButton.addEventListener('click', () => {
     userInfo: profileSubtitle,
   });
   addUserInfo.setUserInfo();
-
   const popupEditForm = new PopupWithForm(profilePopup, {
     hedlerPopupForm: (data) => {
       addUserInfo.getUserInfo();
