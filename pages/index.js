@@ -13,6 +13,9 @@ import {
   cardForm,
   containerSelector,
   imagePopup,
+  popupPlaceName,
+  popupPlaceUrl,
+  cardImage,
 } from '../components/constants.js';
 import { Card } from '../components/Card.js';
 import { FormValidator } from '../components/FormValidator.js';
@@ -31,8 +34,8 @@ imageAddButton.addEventListener('click', () => {
           data,
           renderer: (item, isInitialCard) => {
             const {
-              ['popup-place-name']: name,
-              ['popup-place-url']: link,
+              [popupPlaceName]: name,
+              [popupPlaceUrl]: link,
             } = item;
             const card = new Card({ name, link }, imageTemplate);
             const cardElement = card.generateCard();
@@ -42,7 +45,7 @@ imageAddButton.addEventListener('click', () => {
               link,
             });
             cardElement
-              .querySelector('.card__image')
+              .querySelector(cardImage)
               .addEventListener('click', () => {
                 popupImage.open();
               });
@@ -84,7 +87,7 @@ const renderInitialCard = new Section(
       renderInitialCard.addItem(cardElement, isInitialCard);
       const popupImage = new PopupWithImage(imagePopup, item);
       cardElement
-        .querySelector('.card__image')
+        .querySelector(cardImage)
         .addEventListener('click', () => {
           popupImage.open();
         });

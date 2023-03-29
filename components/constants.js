@@ -45,8 +45,8 @@
  export const closeButton = document.querySelector('.popup__close');
  export const profileName = '.profile__name';
  export const profileSubtitle = '.profile__subtitle';
-//  export const profileName = page.querySelector('.profile__name');
-//  export const profileSubtitle = page.querySelector('.profile__subtitle');
+ export const popupPlaceName = 'popup-place-name'
+ export const popupPlaceUrl = 'popup-place-url'
  export const profileNamePopup = page.querySelector(
   '.popup__input_type_name'
 );
@@ -67,3 +67,4 @@
  export const popupFullImage = page.querySelector('.popup__full-image');
  export const popupFullText = page.querySelector('.popup__image-text');
  export const popup = '.popup'
+ export const cardImage = '.card__image'
