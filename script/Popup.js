@@ -6,6 +6,7 @@ export class Popup {
     this._hendleCloseOverlay = this._hendleCloseOverlay.bind(this);
   }
   open() {
+    console.log(this);
     this._popupSelector.classList.add('popup_open');
     this.setEventListeners();
   }

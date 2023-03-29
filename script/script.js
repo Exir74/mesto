@@ -88,11 +88,17 @@ imageAddButton.addEventListener('click', () => {
         {
           data: data,
           renderer: (item, isInitialCard) => {
-            const {['popup-place-name']: name, ['popup-place-url']: link} = item
-            const card = new Card({name,link}, imageTemplate);
+            const {
+              ['popup-place-name']: name,
+              ['popup-place-url']: link,
+            } = item;
+            const card = new Card({ name, link }, imageTemplate);
             const cardElement = card.generateCard();
             renderUserCard.addItem(cardElement, isInitialCard);
-            const popupImage = new PopupWithImage(imagePopup, item);
+            const popupImage = new PopupWithImage(imagePopup, {
+              name,
+              link,
+            });
             cardElement
               .querySelector('.card__image')
               .addEventListener('click', () => {
