@@ -1,3 +1,4 @@
+import './index.css'
 import {
   initialCards,
   formValidationConfig,
@@ -19,6 +20,7 @@ import { UserInfo } from '../components/UserInfo.js';
 import { PopupWithForm } from '../components/PopupWithForm.js';
 import { PopupWithImage } from '../components/PopupWithImage.js';
 import { Section } from '../components/Section.js';
+
 
 imageAddButton.addEventListener('click', () => {
   const popupImageAdd = new PopupWithForm(cardPopup, {

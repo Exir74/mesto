@@ -19,7 +19,7 @@
         <section class="profile">
           <img
             class="profile__avatar"
-            src="./image/avatar.jpg"
+            src="<%=require('./image/avatar.jpg')%>"
             alt="Аватар"
           />
           <div class="profile__info">
@@ -28,7 +28,7 @@
             <button type="button" class="profile__edit-button hover">
               <img
                 class="profile__edit-image prof"
-                src="./image/Edit-Button.svg"
+                src="<%=require('./image/Edit-Button.svg')%>"
                 alt="изменить"
               />
             </button>
@@ -36,12 +36,12 @@
           <button type="button" class="profile__add-button hover">
             <picture>
               <source
-                srcset="./image/Add-Button-S.svg"
+              srcset="<%=require('./image/Add-Button-S.svg')%>"
                 media="(min-width: 708px)"
               />
               <img
                 class="profile__add-image"
-                src="./image/Add-Button-L.svg"
+                src="<%=require('./image/Add-Button-L.svg')%>"
                 alt="добавить"
               />
             </picture>
@@ -57,7 +57,7 @@
           <button type="button" class="popup__close hover">
             <img
               class="popup__close-icon"
-              src="./image/Close-Icon.svg"
+              src="<%=require('./image/Close-Icon.svg')%>"
               alt="закрыть"
             />
           </button>
@@ -115,7 +115,7 @@
           <button type="button" class="popup__close hover">
             <img
               class="popup__close-icon"
-              src="./image/Close-Icon.svg"
+              src="<%=require('./image/Close-Icon.svg')%>"
               alt="закрыть"
             />
           </button>
@@ -171,16 +171,12 @@
           <button type="button" class="popup__close hover">
             <img
               class="popup__close-icon"
-              src="./image/Close-Icon.svg"
+              src="<%=require('./image/Close-Icon.svg')%>"
               alt="закрыть"
             />
           </button>
           <div class="popup__image">
-            <img
-              class="popup__full-image"
-              src=""
-              alt=""
-            />
+            <img class="popup__full-image" src="" alt="" />
           </div>
           <div class="popup__image-name">
             <p class="popup__image-text"></p>
@@ -200,7 +196,5 @@
         </div>
       </div>
     </template>
-    <!-- <script src="./script/constants.js"></script> -->
-    <script type="module" src="./pages/script.js"></script>
   </body>
 </html>
