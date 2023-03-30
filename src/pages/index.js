@@ -11,7 +11,7 @@ import {
   profileSubtitle,
   profileForm,
   cardForm,
-  containerSelector,
+  cardContainer,
   imagePopup,
   popupPlaceName,
   popupPlaceUrl,
@@ -93,7 +93,7 @@ const renderInitialCard = new Section(
         });
     },
   },
-  containerSelector
+  cardContainer
 );
 renderInitialCard.renderItem(true);
 
