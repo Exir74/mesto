@@ -5,15 +5,16 @@ export class PopupWithForm extends Popup {
     super(popup);
     this._hedlerPopupForm = hedlerPopupForm;
     this._headlerClickSubmit = this._headlerClickSubmit.bind(this);
+    this._popupForm = this._popup.querySelector('.popup__form');
+    this._inputList =
+      this._popupForm.querySelectorAll('.popup__input');
   }
   open() {
-    console.log(this);
     super.open();
   }
   close() {
-    this._getInputValues();
     super.close();
-    this._popup.querySelector('.popup__form').reset();
+    this._popupForm.reset();
   }
   _headlerClickSubmit(event) {
     event.preventDefault();
@@ -21,22 +22,24 @@ export class PopupWithForm extends Popup {
   }
   setEventListeners() {
     super.setEventListeners();
-    this._popup
-      .querySelector('.popup__button')
-      .addEventListener('click', this._headlerClickSubmit);
+    this._popupForm.addEventListener(
+      'submit',
+      this._headlerClickSubmit
+    );
   }
-  removeEventListeners() {
-    super.removeEventListeners();
-    this._popup
-      .querySelector('.popup__button')
-      .removeEventListener('click', this._headlerClickSubmit);
-  }
+  // removeEventListeners() {
+  //   super.removeEventListeners();
+  //   this._popupForm
+  //     .addEventListener('submit', this._headlerClickSubmit);
+  // }
   _getInputValues() {
-    this._inputList = this._popup.querySelectorAll('.popup__input');
+    // this._inputList = this._popup.querySelectorAll('.popup__input');
     this._formValues = {};
     this._inputList.forEach((input) => {
       this._formValues[input.name] = input.value;
     });
-    return [this._formValues];
+    // Все работало пока было обернуто в массив
+    // return this._formValues
+    return this._formValues;
   }
 }
