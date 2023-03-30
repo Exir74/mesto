@@ -1,4 +1,4 @@
-import './index.css'
+import './index.css';
 import {
   initialCards,
   formValidationConfig,
@@ -24,39 +24,67 @@ import { PopupWithForm } from '../components/PopupWithForm.js';
 import { PopupWithImage } from '../components/PopupWithImage.js';
 import { Section } from '../components/Section.js';
 
+const popupWithForm = new PopupWithForm(cardPopup, {
+  hedlerPopupForm: (data) => {
+    popupWithForm.close();
+    const renderUserCard = new Section(
+      {
+        data,
+        renderer: (item, isInitialCard) => {
+          const { [popupPlaceName]: name, [popupPlaceUrl]: link } =
+            item;
+          const card = new Card({ name, link }, imageTemplate);
+          const cardElement = card.generateCard();
+          renderUserCard.addItem(cardElement, isInitialCard);
+          const popupImage = new PopupWithImage(imagePopup, {
+            name,
+            link,
+          });
+          cardElement
+            .querySelector(cardImage)
+            .addEventListener('click', () => {
+              popupImage.open();
+            });
+        },
+      },
+      cardContainer
+    );
+    renderUserCard.renderItem(false);
+  },
+});
 
 imageAddButton.addEventListener('click', () => {
-  const popupImageAdd = new PopupWithForm(cardPopup, {
-    hedlerPopupForm: (data) => {
-      popupImageAdd.close();
-      const renderUserCard = new Section(
-        {
-          data,
-          renderer: (item, isInitialCard) => {
-            const {
-              [popupPlaceName]: name,
-              [popupPlaceUrl]: link,
-            } = item;
-            const card = new Card({ name, link }, imageTemplate);
-            const cardElement = card.generateCard();
-            renderUserCard.addItem(cardElement, isInitialCard);
-            const popupImage = new PopupWithImage(imagePopup, {
-              name,
-              link,
-            });
-            cardElement
-              .querySelector(cardImage)
-              .addEventListener('click', () => {
-                popupImage.open();
-              });
-          },
-        },
-        containerSelector
-      );
-      renderUserCard.renderItem(false);
-    },
-  });
-  popupImageAdd.open();
+  console.log(cardPopup);
+  popupWithForm.open()
+  //    {
+  //   hedlerPopupForm: (data) => {
+  //     popupWithForm.close();
+  //     const renderUserCard = new Section(
+  //       {
+  //         data,
+  //         renderer: (item, isInitialCard) => {
+  //           const { [popupPlaceName]: name, [popupPlaceUrl]: link } =
+  //             item;
+  //           const card = new Card({ name, link }, imageTemplate);
+  //           const cardElement = card.generateCard();
+  //           renderUserCard.addItem(cardElement, isInitialCard);
+  //           const popupImage = new PopupWithImage(imagePopup, {
+  //             name,
+  //             link,
+  //           });
+  //           cardElement
+  //             .querySelector(cardImage)
+  //             .addEventListener('click', () => {
+  //               popupImage.open();
+  //             });
+  //         },
+  //       },
+  //       cardContainer
+  //     );
+  //     renderUserCard.renderItem(false);
+  //   },
+  // });
+  popupWithForm.open();
   validatorAddCard.toggleButton();
   validatorAddCard.removeValidationErrors(cardPopup);
 });
@@ -78,13 +106,13 @@ profileEditButton.addEventListener('click', () => {
   validatorEditProfile.removeValidationErrors(profilePopup);
 });
 
-const renderInitialCard = new Section(
+const initialCardElement = new Section(
   {
     data: initialCards,
     renderer: (item, isInitialCard) => {
       const card = new Card(item, imageTemplate);
       const cardElement = card.generateCard();
-      renderInitialCard.addItem(cardElement, isInitialCard);
+      initialCardElement.addItem(cardElement, isInitialCard);
       const popupImage = new PopupWithImage(imagePopup, item);
       cardElement
         .querySelector(cardImage)
@@ -95,7 +123,7 @@ const renderInitialCard = new Section(
   },
   cardContainer
 );
-renderInitialCard.renderItem(true);
+initialCardElement.renderItem(true);
 
 const validatorEditProfile = new FormValidator(
   formValidationConfig,
