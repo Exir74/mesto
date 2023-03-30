@@ -33,7 +33,9 @@ const popupWithForm = new PopupWithForm(cardPopup, {
         renderer: (item, isInitialCard) => {
           const { [popupPlaceName]: name, [popupPlaceUrl]: link } =
             item;
-          const card = new Card({ name, link }, imageTemplate);
+          const card = new Card({ name, link }, imageTemplate, {handleCardClick: ()=>{
+            console.log('dddd');
+          }});
           const cardElement = card.generateCard();
           renderUserCard.addItem(cardElement, isInitialCard);
           const popupImage = new PopupWithImage(imagePopup, {

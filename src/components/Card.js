@@ -12,12 +12,11 @@ export class Card {
     return cardElement;
   }
   _setListeners() {
-    console.log(this._handleCardClick());
-    // this._element
-    //   .querySelector('.card__button')
-    //   .addEventListener(
-    //     'click',this._handleCardClick()
-    //     )
+    this._element
+      .querySelector('.card__button')
+      .addEventListener(
+        'click',console.log(this)
+        )
       
     this._element
       .querySelector('.card__trash')
