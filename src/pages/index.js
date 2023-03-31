@@ -127,7 +127,11 @@ import { Section } from '../components/Section.js';
 // );
 // initialCardElement.renderItem(true);
 const createCard = (item) => {
-  const card = new Card(item, imageTemplate);
+  const card = new Card(item, imageTemplate,{handleCardClick: (card)=>{
+    console.log(card);
+    // ПЕРЕМЕННУЮ КАРД  ПАРАМЕТРЕ ХЭНДКАРДКЛИК РАДИ ТЕСТА
+    //СЮДА ОТКРЫВАШКУ ПОПАПА  
+  }});
   const cardElement = card.generateCard();
  return cardElement
 };
@@ -137,11 +141,11 @@ const initialCardElement = new Section(
     renderer: (item) => {
       const cardElement = createCard(item)
       initialCardElement.addItem(cardElement);
-      cardElement
-        .querySelector(cardImage)
-        .addEventListener('click', () => {
-          popupImage.open();
-        });
+      // cardElement
+      //   .querySelector(cardImage)
+      //   .addEventListener('click', () => {
+      //     popupImage.open();
+      //   });
     },
   },
   cardContainer

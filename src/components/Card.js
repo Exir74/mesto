@@ -1,5 +1,5 @@
 export class Card {
-  constructor(data, imageTemplate, handleCardClick) {
+  constructor(data, imageTemplate, { handleCardClick }) {
     this._image = data.link;
     this._name = data.name;
     this._imageTemplate = imageTemplate;
@@ -14,10 +14,10 @@ export class Card {
   _setListeners() {
     this._element
       .querySelector('.card__button')
-      .addEventListener(
-        'click',console.log(this)
-        )
-      
+      .addEventListener('click', () => {
+        this._handleCardClick(this._element);
+      });
+
     this._element
       .querySelector('.card__trash')
       .addEventListener('click', () => {
