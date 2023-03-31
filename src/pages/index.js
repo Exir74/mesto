@@ -139,19 +139,6 @@ const createCard = (item) => {
 };
 const initialCardElement = new Section(
   {
-    data: initialCards,
-    renderer: (item) => {
-      const cardElement = createCard(item);
-      initialCardElement.addItem(cardElement);
-    },
-  },
-  cardContainer
-);
-initialCardElement.renderItem();
-
-
-const userCardElement = new Section(
-  {
     data: [],
     renderer: (item) => {
       const cardElement = createCard(item);
@@ -160,12 +147,25 @@ const userCardElement = new Section(
   },
   cardContainer
 );
+initialCardElement.renderItem(initialCards);
+
+
+// const userCardElement = new Section(
+//   {
+//     data: [],
+//     renderer: (item) => {
+//       const cardElement = createCard(item);
+//       initialCardElement.addItem(cardElement);
+//     },
+//   },
+//   cardContainer
+// );
 
 
 const popupImageAdd = new PopupWithForm(cardPopup, {
   hedlerPopupForm: (items) => {
     console.log(items);
-    userCardElement.renderItem()
+    initialCardElement.renderItem([items])
     popupImageAdd.close()
   },
 });
