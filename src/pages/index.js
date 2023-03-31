@@ -126,30 +126,28 @@ import { Section } from '../components/Section.js';
 //   cardContainer
 // );
 // initialCardElement.renderItem(true);
-const popupImage = new PopupWithImage(imagePopup, {})
+const popupImage = new PopupWithImage(imagePopup);
 const createCard = (item) => {
-  const card = new Card(item, imageTemplate,{handleCardClick: (card)=>{
-    console.log(item);
-    console.log(imagePopup);
-    // ПЕРЕМЕННУЮ КАРД  ПАРАМЕТРЕ ХЭНДКАРДКЛИК РАДИ ТЕСТА
-    //СЮДА ОТКРЫВАШКУ ПОПАПА  
-  }});
+  const card = new Card(item, imageTemplate, {
+    handleCardClick: (card) => {
+      popupImage.open(item);
+      popupImage.setEventListeners();
+    },
+  });
   const cardElement = card.generateCard();
- return cardElement
+  return cardElement;
 };
 const initialCardElement = new Section(
   {
     data: initialCards,
     renderer: (item) => {
-      const cardElement = createCard(item)
+      const cardElement = createCard(item);
       initialCardElement.addItem(cardElement);
     },
   },
   cardContainer
 );
 initialCardElement.renderItem();
-
-
 
 const validatorEditProfile = new FormValidator(
   formValidationConfig,
