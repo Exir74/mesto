@@ -129,7 +129,7 @@ import { Section } from '../components/Section.js';
 const popupImage = new PopupWithImage(imagePopup);
 const createCard = (item) => {
   const card = new Card(item, imageTemplate, {
-    handleCardClick: (card) => {
+    handleCardClick: () => {
       popupImage.open(item);
       popupImage.setEventListeners();
     },
@@ -148,6 +148,27 @@ const initialCardElement = new Section(
   cardContainer
 );
 initialCardElement.renderItem();
+
+
+// const userCardElement = new Section(
+//   {
+//     data: initialCards,
+//     renderer: (item) => {
+//       const cardElement = createCard(item);
+//       initialCardElement.addItem(cardElement);
+//     },
+//   },
+//   cardContainer
+// );
+
+
+const popupImageAdd = new PopupWithForm(cardPopup, {
+  hedlerPopupForm: () => {
+  },
+});
+imageAddButton.addEventListener('click', () => {
+    popupImageAdd.open()
+});
 
 const validatorEditProfile = new FormValidator(
   formValidationConfig,

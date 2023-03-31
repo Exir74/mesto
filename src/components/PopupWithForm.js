@@ -27,11 +27,7 @@ export class PopupWithForm extends Popup {
       this._headlerClickSubmit
     );
   }
-  // removeEventListeners() {
-  //   super.removeEventListeners();
-  //   this._popupForm
-  //     .addEventListener('submit', this._headlerClickSubmit);
-  // }
+
   _getInputValues() {
     // this._inputList = this._popup.querySelectorAll('.popup__input');
     this._formValues = {};
