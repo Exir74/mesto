@@ -150,24 +150,28 @@ const initialCardElement = new Section(
 initialCardElement.renderItem();
 
 
-// const userCardElement = new Section(
-//   {
-//     data: initialCards,
-//     renderer: (item) => {
-//       const cardElement = createCard(item);
-//       initialCardElement.addItem(cardElement);
-//     },
-//   },
-//   cardContainer
-// );
+const userCardElement = new Section(
+  {
+    data: [],
+    renderer: (item) => {
+      const cardElement = createCard(item);
+      initialCardElement.addItem(cardElement);
+    },
+  },
+  cardContainer
+);
 
 
 const popupImageAdd = new PopupWithForm(cardPopup, {
-  hedlerPopupForm: () => {
+  hedlerPopupForm: (items) => {
+    console.log(items);
+    userCardElement.renderItem()
+    popupImageAdd.close()
   },
 });
 imageAddButton.addEventListener('click', () => {
     popupImageAdd.open()
+    popupImageAdd.setEventListeners()
 });
 
 const validatorEditProfile = new FormValidator(

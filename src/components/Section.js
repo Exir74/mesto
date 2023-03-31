@@ -8,7 +8,9 @@ export class Section {
   addItem(item) {
     this._container.append(item);
   }
-  renderItem(isInitialCard) {
+  renderItem() {
+    this._renderedItems
+    console.log('jj');
     this._renderedItems.forEach((item) => {
       this._renderer(item);
     });
