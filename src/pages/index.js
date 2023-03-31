@@ -143,11 +143,6 @@ const initialCardElement = new Section(
     renderer: (item) => {
       const cardElement = createCard(item)
       initialCardElement.addItem(cardElement);
-      // cardElement
-      //   .querySelector(cardImage)
-      //   .addEventListener('click', () => {
-      //     popupImage.open();
-      //   });
     },
   },
   cardContainer
