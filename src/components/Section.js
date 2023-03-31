@@ -3,17 +3,14 @@ export class Section {
     this._renderedItems = data;
     this._container = document.querySelector(containerSelector);
     this._renderer = renderer;
+    console.log(this);
   }
-  addItem(item, isInitialCard) {
-    if (isInitialCard) {
-      this._container.append(item);
-    } else {
-      this._container.prepend(item);
-    }
+  addItem(item) {
+    this._container.append(item);
   }
   renderItem(isInitialCard) {
     this._renderedItems.forEach((item) => {
-      this._renderer(item, isInitialCard);
+      this._renderer(item);
     });
   }
 }
