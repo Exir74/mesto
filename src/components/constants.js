@@ -48,12 +48,12 @@ export const popupOverlay = '.popup__content';
 export const closeButtons =
   document.querySelectorAll('.popup__close');
 export const closeButton = '.popup__close';
-export const profileName = '.profile__name';
-export const profileSubtitle = '.profile__subtitle';
+export const profileName = page.querySelector('.profile__name');
+export const profileSubtitle = page.querySelector('.profile__subtitle');
 export const popupPlaceName = 'popup-place-name';
 export const popupPlaceUrl = 'popup-place-url';
-export const profileNamePopup = '.popup__input_type_name';
-export const profileSubtitlePopup = '.popup__input_type_subtitle';
+export const profileNamePopup = document.querySelector('.popup__input_type_name');
+export const profileSubtitlePopup = document.querySelector('.popup__input_type_subtitle');
 export const placeName = document.querySelector(
   '.popup__input_type_place-name'
 );

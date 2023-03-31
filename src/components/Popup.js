@@ -8,7 +8,6 @@ export class Popup {
   }
   open() {
     this._popup.classList.add('popup_open');
-    // this.setEventListeners();
   }
   _handleEscClose(event) {
     if (event.key === 'Escape') {
@@ -39,11 +38,5 @@ export class Popup {
   }
   removeEventListeners() {
     document.removeEventListener('keydown', this._handleEscClose);
-    // this._popup
-    //   .querySelector('.popup__close')
-    //   .removeEventListener('click', this._handleCloseIcon);
-    // this._popup
-    //   .querySelector('.popup__content')
-    //   .removeEventListener('mousedown', this._hendleCloseOverlay);
   }
 }

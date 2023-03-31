@@ -17,24 +17,18 @@ export class Card {
       .addEventListener('click', () => {
         this._handleCardClick(this._element);
       });
-
     this._element
       .querySelector('.card__trash')
       .addEventListener('click', () => {
         this._removeCard();
       });
-    this._element
-      .querySelector('.card__like')
-      .addEventListener('click', (event) => {
-        this._addLike(event);
-      });
+    this._cardLikeButton = this._element.querySelector('.card__like');
+    this._cardLikeButton.addEventListener('click', () => {
+      this._cardLikeButton.classList.toggle('card__like_active');
+    });
   }
-
   _removeCard() {
     this._element.remove();
-  }
-  _addLike(event) {
-    event.target.classList.toggle('card__like_active');
   }
   generateCard() {
     this._element = this._getTemplate();

@@ -29,13 +29,10 @@ export class PopupWithForm extends Popup {
   }
 
   _getInputValues() {
-    // this._inputList = this._popup.querySelectorAll('.popup__input');
     this._formValues = {};
     this._inputList.forEach((input) => {
       this._formValues[input.name] = input.value;
     });
-    // Все работало пока было обернуто в массив
-    // return this._formValues
     return this._formValues;
   }
 }

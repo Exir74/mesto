@@ -7,22 +7,21 @@ export class FormValidator {
     this._inputErrorClass = data.inputErrorClass;
     this._errorClass = data.errorClass;
     this._popupForm = form;
+    this._buttonSubmit = this._popupForm.querySelector(
+      this._submitButtonSelector
+    );
   }
   _getInput() {
-    const inputElement = Array.from(
+    const inputList = Array.from(
       this._popupForm.querySelectorAll(this._inputSelector)
     );
-    return inputElement;
+    return inputList;
   }
   enableValidation() {
-    this._element = this._getInput();
+    this._elementList = this._getInput();
     this._setListeners();
-    return this._element;
   }
   _setListeners() {
-    this._popupForm.addEventListener('submit', (event) => {
-      this._disableSubmit(event);
-    });
     this._popupForm.addEventListener('input', () => {
       this.toggleButton();
     });
@@ -30,7 +29,7 @@ export class FormValidator {
     this.toggleButton();
   }
   _addInputListners() {
-    this._element.forEach((item) => {
+    this._elementList.forEach((item) => {
       item.addEventListener('input', (event) => {
         this._handleFormInput(event);
       });
@@ -57,29 +56,13 @@ export class FormValidator {
     errorElement.classList.remove(this._errorClass);
   }
 
-  _disableSubmit(event) {
-    event.preventDefault();
-  }
   toggleButton() {
-    const buttonSubmit = this._popupForm.querySelector(
-      this._submitButtonSelector
-    );
+    
     const isFormValid = this._popupForm.checkValidity();
-    buttonSubmit.disabled = !isFormValid;
-    buttonSubmit.classList.toggle(
+    this._buttonSubmit.disabled = !isFormValid;
+    this._buttonSubmit.classList.toggle(
       this._inactiveButtonClass,
       !isFormValid
     );
-  }
-  removeValidationErrors(cardPopup) {
-    const inputs = cardPopup.querySelectorAll(this._inputSelector);
-    inputs.forEach((input) => {
-      const inputId = input.id;
-      const errorElement = document.querySelector(
-        `#${inputId}-error`
-      );
-      input.classList.remove(this._inputErrorClass);
-      errorElement.classList.remove(this._errorClass);
-    });
   }
 }
