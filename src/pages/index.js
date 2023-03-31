@@ -126,9 +126,11 @@ import { Section } from '../components/Section.js';
 //   cardContainer
 // );
 // initialCardElement.renderItem(true);
+const popupImage = new PopupWithImage(imagePopup, {})
 const createCard = (item) => {
   const card = new Card(item, imageTemplate,{handleCardClick: (card)=>{
-    console.log(card);
+    console.log(item);
+    console.log(imagePopup);
     // ПЕРЕМЕННУЮ КАРД  ПАРАМЕТРЕ ХЭНДКАРДКЛИК РАДИ ТЕСТА
     //СЮДА ОТКРЫВАШКУ ПОПАПА  
   }});
