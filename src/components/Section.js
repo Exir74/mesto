@@ -5,13 +5,11 @@ export class Section {
     this._renderer = renderer;
   }
   addItem(item) {
-    // console.log(item, 'ADDITEM');
-    this._container.append(item);
+    this._container.prepend(item);
   }
   renderItem(items) {
-    // console.log(items,'RENDERITEM');
-    this._renderedItems = items
-    this._renderedItems.forEach((item) => {
+    this._renderedItems = items;
+    this._renderedItems.reverse().forEach((item) => {
       this._renderer(item);
     });
   }

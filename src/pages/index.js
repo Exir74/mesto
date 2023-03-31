@@ -16,6 +16,9 @@ import {
   popupPlaceName,
   popupPlaceUrl,
   cardImage,
+  profileNamePopup,
+  popupName,
+  poppupSubtitle,
 } from '../components/constants.js';
 import { Card } from '../components/Card.js';
 import { FormValidator } from '../components/FormValidator.js';
@@ -137,41 +140,45 @@ const createCard = (item) => {
   const cardElement = card.generateCard();
   return cardElement;
 };
-const initialCardElement = new Section(
+const cardItem = new Section(
   {
     data: [],
     renderer: (item) => {
       const cardElement = createCard(item);
-      initialCardElement.addItem(cardElement);
+      cardItem.addItem(cardElement);
     },
   },
   cardContainer
 );
-initialCardElement.renderItem(initialCards);
-
-
-// const userCardElement = new Section(
-//   {
-//     data: [],
-//     renderer: (item) => {
-//       const cardElement = createCard(item);
-//       initialCardElement.addItem(cardElement);
-//     },
-//   },
-//   cardContainer
-// );
-
+cardItem.renderItem(initialCards);
 
 const popupImageAdd = new PopupWithForm(cardPopup, {
   hedlerPopupForm: (items) => {
-    console.log(items);
-    initialCardElement.renderItem([items])
-    popupImageAdd.close()
+    const { [popupPlaceName]: name, [popupPlaceUrl]: link } = items;
+    cardItem.renderItem([{ name, link }]);
+    popupImageAdd.close();
   },
 });
 imageAddButton.addEventListener('click', () => {
-    popupImageAdd.open()
-    popupImageAdd.setEventListeners()
+  popupImageAdd.open();
+  popupImageAdd.setEventListeners();
+});
+
+const userInfoPopup = new UserInfo({ profileName, profileSubtitle });
+const popupEditForm = new PopupWithForm(profilePopup, {
+  hedlerPopupForm: (items) => {
+    const { [popupName]: name, [poppupSubtitle]: subtitle } = items;
+    userInfoPopup.setUserInfo({
+      name,
+      subtitle,
+    });
+    popupEditForm.close();
+  },
+});
+
+profileEditButton.addEventListener('click', () => {
+  popupEditForm.open();
+  popupEditForm.setEventListeners();
 });
 
 const validatorEditProfile = new FormValidator(

@@ -76,3 +76,5 @@ export const cardCaption = '.card__caption';
 export const popupForm = '.popup__form';
 export const popupButton = '.popup__button';
 export const popupInput = '.popup__input';
+export const popupName = 'popup-name' 
+export const poppupSubtitle = 'popup-subtitle'
