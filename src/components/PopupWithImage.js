@@ -9,17 +9,13 @@ export class PopupWithImage extends Popup {
     );
   }
   open({ name, link }) {
-    this._name = name;
-    this._link = link;
-    this._renderUserImage(this._name, this._link);
+    this._fullImage.src = link;
+    this._fullImage.alt = name;
+    this._fullImageText.textContent = name;
     super.open();
   }
   close() {
     super.close();
   }
-  _renderUserImage() {
-    this._fullImage.src = this._link;
-    this._fullImage.alt = this._name;
-    this._fullImageText.textContent = this._name;
-  }
+
 }

@@ -15,7 +15,7 @@ export class Card {
     this._element
       .querySelector('.card__button')
       .addEventListener('click', () => {
-        this._handleCardClick(this._element);
+        this._handleCardClick(this._name, this._link);
       });
     this._element
       .querySelector('.card__trash')
