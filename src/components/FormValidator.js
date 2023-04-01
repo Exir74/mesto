@@ -7,14 +7,15 @@ export class FormValidator {
     this._inputErrorClass = data.inputErrorClass;
     this._errorClass = data.errorClass;
     this._popupForm = form;
+    this._formInputs = this._popupForm.querySelectorAll(
+      this._inputSelector
+    );
     this._buttonSubmit = this._popupForm.querySelector(
       this._submitButtonSelector
     );
   }
   _getInput() {
-    const inputList = Array.from(
-      this._popupForm.querySelectorAll(this._inputSelector)
-    );
+    const inputList = Array.from(this._formInputs);
     return inputList;
   }
   enableValidation() {
@@ -57,12 +58,21 @@ export class FormValidator {
   }
 
   toggleButton() {
-    
     const isFormValid = this._popupForm.checkValidity();
     this._buttonSubmit.disabled = !isFormValid;
     this._buttonSubmit.classList.toggle(
       this._inactiveButtonClass,
       !isFormValid
     );
+  }
+  removeValidationErrors() {
+    this._formInputs.forEach((input) => {
+      const inputId = input.id;
+      const errorElement = document.querySelector(
+        `#${inputId}-error`
+      );
+      input.classList.remove(this._inputErrorClass);
+      errorElement.classList.remove(this._errorClass);
+    });
   }
 }

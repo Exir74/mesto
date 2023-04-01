@@ -60,6 +60,7 @@ const popupImageAdd = new PopupWithForm(cardPopup, {
 popupImageAdd.setEventListeners();
 imageAddButton.addEventListener('click', () => {
   popupImageAdd.open();
+  validatorAddCard.removeValidationErrors()
   validatorAddCard.toggleButton();
 });
 
@@ -81,6 +82,7 @@ profileEditButton.addEventListener('click', () => {
   profileNamePopup.value = userData.name;
   profileSubtitlePopup.value = userData.subtitle;
   popupEditForm.open();
+  validatorEditProfile.removeValidationErrors()
   validatorEditProfile.toggleButton();
 });
 
@@ -92,5 +94,6 @@ const validatorAddCard = new FormValidator(
   formValidationConfig,
   cardForm
 );
+
 validatorEditProfile.enableValidation();
 validatorAddCard.enableValidation();
