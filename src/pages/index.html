@@ -6,10 +6,8 @@
       name="viewport"
       content="width=device-width, initial-scale=1.0"
     />
-    <link rel="stylesheet" href="./pages/index.css" />
     <title>Mesto</title>
   </head>
-
   <body>
     <div class="page">
       <header class="header">
@@ -19,7 +17,7 @@
         <section class="profile">
           <img
             class="profile__avatar"
-            src="./image/avatar.jpg"
+            src="<%=require('../image/avatar.jpg')%>"
             alt="Аватар"
           />
           <div class="profile__info">
@@ -28,7 +26,7 @@
             <button type="button" class="profile__edit-button hover">
               <img
                 class="profile__edit-image prof"
-                src="./image/Edit-Button.svg"
+                src="<%=require('../image/Edit-Button.svg')%>"
                 alt="изменить"
               />
             </button>
@@ -36,12 +34,12 @@
           <button type="button" class="profile__add-button hover">
             <picture>
               <source
-                srcset="./image/Add-Button-S.svg"
+              srcset="<%=require('../image/Add-Button-S.svg')%>"
                 media="(min-width: 708px)"
               />
               <img
                 class="profile__add-image"
-                src="./image/Add-Button-L.svg"
+                src="<%=require('../image/Add-Button-L.svg')%>"
                 alt="добавить"
               />
             </picture>
@@ -57,24 +55,53 @@
           <button type="button" class="popup__close hover">
             <img
               class="popup__close-icon"
-              src="./image/Close-Icon.svg"
+              src="<%=require('../image/Close-Icon.svg')%>"
               alt="закрыть"
             />
           </button>
-          <form method="get" name="profile-form" class="popup__form">
+          <form
+            method="get"
+            name="profile-form"
+            class="popup__form"
+            novalidate
+          >
             <h3 class="popup__title">Редактировать профиль</h3>
             <input
               class="popup__input popup__input_type_name"
               name="popup-name"
+              id="name-input"
+              placeholder="Имя"
               type="text"
               value=""
+              required
+              minlength="2"
+              maxlength="40"
             />
+            <div class="popup__error-wrapper">
+              <label
+                for="name-input"
+                class="popup__error-message"
+                id="name-input-error"
+              ></label>
+            </div>
             <input
               class="popup__input popup__input_type_subtitle"
               name="popup-subtitle"
+              id="subtitle-input"
+              placeholder="Вид деятельности"
               type="text"
               value=""
+              required
+              minlength="2"
+              maxlength="200"
             />
+            <div class="popup__error-wrapper">
+              <label
+                for="subtitle-input"
+                class="popup__error-message"
+                id="subtitle-input-error"
+              ></label>
+            </div>
             <button type="submit" class="popup__button">
               Сохранить
             </button>
@@ -86,48 +113,68 @@
           <button type="button" class="popup__close hover">
             <img
               class="popup__close-icon"
-              src="./image/Close-Icon.svg"
+              src="<%=require('../image/Close-Icon.svg')%>"
               alt="закрыть"
             />
           </button>
-          <form method="get" name="card-form" class="popup__form">
+          <form
+            novalidate
+            method="get"
+            name="card-form"
+            class="popup__form"
+          >
             <h3 class="popup__title">Новое место</h3>
             <input
               class="popup__input popup__input_type_place-name"
               placeholder="Название"
               name="popup-place-name"
+              id="place-name-input"
               type="text"
               value=""
+              required
+              minlength="2"
+              maxlength="30"
             />
+            <div class="popup__error-wrapper">
+              <label
+                for="place-name-input"
+                class="popup__error-message"
+                id="place-name-input-error"
+              ></label>
+            </div>
             <input
               class="popup__input popup__input_type_place-url"
               placeholder="Ссылка на картинку"
               name="popup-place-url"
-              type="text"
+              id="place-url-input"
+              type="url"
               value=""
+              required
             />
+            <div class="popup__error-wrapper">
+              <label
+                for="place-url-input"
+                class="popup__error-message"
+                id="place-url-input-error"
+              ></label>
+            </div>
             <button type="submit" class="popup__button">
               Создать
             </button>
           </form>
         </div>
       </div>
-
       <div class="popup image-popup">
         <div class="popup__content">
           <button type="button" class="popup__close hover">
             <img
               class="popup__close-icon"
-              src="./image/Close-Icon.svg"
+              src="<%=require('../image/Close-Icon.svg')%>"
               alt="закрыть"
             />
           </button>
           <div class="popup__image">
-            <img
-              class="popup__full-image"
-              src="https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg"
-              alt=""
-            />
+            <img class="popup__full-image" />
           </div>
           <div class="popup__image-name">
             <p class="popup__image-text"></p>
@@ -147,6 +194,5 @@
         </div>
       </div>
     </template>
-    <script src="./script/script.js"></script>
   </body>
 </html>
