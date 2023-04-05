@@ -25,7 +25,6 @@ export class Popup {
 
   close() {
     this._popup.classList.remove('popup_open');
-    this.removeEventListeners();
     document.removeEventListener('keydown', this._handleEscClose);
   }
   setEventListeners() {
@@ -35,8 +34,5 @@ export class Popup {
     this._popup
       .querySelector('.popup__content')
       .addEventListener('mousedown', this._hendleCloseOverlay);
-  }
-  removeEventListeners() {
-    document.removeEventListener('keydown', this._handleEscClose);
   }
 }
