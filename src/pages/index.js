@@ -26,8 +26,14 @@ import { UserInfo } from '../components/UserInfo.js';
 import { PopupWithForm } from '../components/PopupWithForm.js';
 import { PopupWithImage } from '../components/PopupWithImage.js';
 import { Section } from '../components/Section.js';
-import {Api} from '../components/Api.js'
+import { Api } from '../components/Api.js';
 
+const api = new Api({
+  baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-64',
+  headers: {
+    authorization: '70f54093-bc83-47bc-b65d-881ab4394db0',
+  },
+});
 const popupImage = new PopupWithImage(imagePopup);
 const createCard = (item) => {
   const card = new Card(item, imageTemplate, {
@@ -50,6 +56,7 @@ const cardItem = new Section(
   cardContainer
 );
 // cardItem.renderItem(initialCards);
+api.getInitialCards(cardItem);
 
 const popupImageAdd = new PopupWithForm(cardPopup, {
   hedlerPopupForm: (items) => {
@@ -62,7 +69,6 @@ imageAddButton.addEventListener('click', () => {
   popupImageAdd.open();
   popupImageAdd.setEventListeners();
   validatorAddCard.toggleButton();
-
 });
 
 const userInfoPopup = new UserInfo({ profileName, profileSubtitle });
@@ -77,8 +83,12 @@ const popupEditForm = new PopupWithForm(profilePopup, {
   },
 });
 
+api.getUserInformation(userInfoPopup)
+
 profileEditButton.addEventListener('click', () => {
-  const userData = userInfoPopup.getUserInfo();
+  // const userData = userInfoPopup.getUserInfo();
+  const userData = api.setUserInformation(userInfoPopup)
+console.log(userData);
   profileNamePopup.value = userData.name;
   profileSubtitlePopup.value = userData.subtitle;
   popupEditForm.open();
@@ -106,17 +116,6 @@ validatorAddCard.enableValidation();
 //   .then(res => res.json())
 //   .then((result) => {
 //     console.log(result);
-//   }); 
-const api = new Api({
-  baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-64',
-  headers: {
-    authorization: '70f54093-bc83-47bc-b65d-881ab4394db0',
-    'Content-Type': 'application/json'
-  }
-});
-// api.getInitialCards(cardItem.renderItem)
-api.getInitialCards()
-// console.log(api.getInitialCards().then())
-// cardItem.renderItem(api.getInitialCards());
+//   });
 
-// api.getUserInformation()
+// api.getInitialCards(cardItem.renderItem)
