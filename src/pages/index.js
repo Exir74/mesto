@@ -26,6 +26,7 @@ import { UserInfo } from '../components/UserInfo.js';
 import { PopupWithForm } from '../components/PopupWithForm.js';
 import { PopupWithImage } from '../components/PopupWithImage.js';
 import { Section } from '../components/Section.js';
+import {Api} from '../components/Api.js'
 
 const popupImage = new PopupWithImage(imagePopup);
 const createCard = (item) => {
@@ -48,7 +49,7 @@ const cardItem = new Section(
   },
   cardContainer
 );
-cardItem.renderItem(initialCards);
+// cardItem.renderItem(initialCards);
 
 const popupImageAdd = new PopupWithForm(cardPopup, {
   hedlerPopupForm: (items) => {
@@ -95,3 +96,27 @@ const validatorAddCard = new FormValidator(
 );
 validatorEditProfile.enableValidation();
 validatorAddCard.enableValidation();
+
+// fetch('https://nomoreparties.co/v1/cohort-64/users/me', {
+//   method: 'GET',
+//   headers: {
+//     authorization: '70f54093-bc83-47bc-b65d-881ab4394db0'
+//   }
+// })
+//   .then(res => res.json())
+//   .then((result) => {
+//     console.log(result);
+//   }); 
+const api = new Api({
+  baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-64',
+  headers: {
+    authorization: '70f54093-bc83-47bc-b65d-881ab4394db0',
+    'Content-Type': 'application/json'
+  }
+});
+// api.getInitialCards(cardItem.renderItem)
+api.getInitialCards()
+// console.log(api.getInitialCards().then())
+// cardItem.renderItem(api.getInitialCards());
+
+// api.getUserInformation()

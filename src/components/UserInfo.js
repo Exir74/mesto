@@ -5,8 +5,8 @@ export class UserInfo {
    
   }
   setUserInfo({ name, subtitle }) {
-    this._profileName.textContent = name;
-    this._profileSubtitle.textContent = subtitle;
+      this._profileName.textContent = name;
+      this._profileSubtitle.textContent = subtitle;
   }
 
   getUserInfo() {
