@@ -34,6 +34,7 @@ const api = new Api({
     authorization: '70f54093-bc83-47bc-b65d-881ab4394db0',
   },
 });
+
 const popupImage = new PopupWithImage(imagePopup);
 const createCard = (item) => {
   const card = new Card(item, imageTemplate, {
@@ -84,6 +85,7 @@ const popupEditForm = new PopupWithForm(profilePopup, {
     popupEditForm.close();
   },
 });
+
 api.getUserInformation(userInfoPopup)
 profileEditButton.addEventListener('click', () => {
   const userData = userInfoPopup.getUserInfo();

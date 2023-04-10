@@ -18,12 +18,15 @@ export class Api {
         return Promise.reject(`Ошибка: ${res.status}`);
       })
       .then((userInfo) => {
-        userInfoPopup._profileName.textContent = userInfo.name;
-        userInfoPopup._profileSubtitle.textContent = userInfo.about;
+        console.log(userInfo);
+        userInfoPopup.setUserInfo({name:[userInfo.name], subtitle:[userInfo.about]})
+        // userInfoPopup._profileName.textContent = userInfo.name;
+        // userInfoPopup._profileSubtitle.textContent = userInfo.about;
+        return userInfo
       })
       .catch((reject) => {
         console.log(reject);
-      });
+      })
   }
 
   getInitialCards(cardItem) {
@@ -72,6 +75,7 @@ export class Api {
         console.log(reject);
       });
   }
+
   addUserCard(name, link){
     fetch(this.baseUrl + '/cards', {
       method:'POST',
@@ -97,4 +101,7 @@ export class Api {
         console.log(reject);
       });
   }
+  
 }
+
+
