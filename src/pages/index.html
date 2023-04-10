@@ -35,7 +35,7 @@
           <button type="button" class="profile__add-button hover">
             <picture>
               <source
-              srcset="<%=require('../image/Add-Button-S.svg')%>"
+                srcset="<%=require('../image/Add-Button-S.svg')%>"
                 media="(min-width: 708px)"
               />
               <img
@@ -180,6 +180,25 @@
           <div class="popup__image-name">
             <p class="popup__image-text"></p>
           </div>
+        </div>
+      </div>
+      <div class="popup confirm-popup">
+        <div class="popup__content">
+          <button type="button" class="popup__close hover">
+            <img
+              class="popup__close-icon"
+              src="<%=require('../image/Close-Icon.svg')%>"
+              alt="закрыть"
+            />
+          </button>
+          <form
+            method="get"
+            name="confirm-form"
+            class="popup__form"
+          >
+            <h3 class="popup__title">Вы уверены?</h3>
+            <button type="submit" class="popup__button">Да</button>
+          </form>
         </div>
       </div>
     </div>
