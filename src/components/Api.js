@@ -2,8 +2,6 @@ export class Api {
   constructor(options) {
     this.baseUrl = options.baseUrl;
     this.headers = options.headers;
-    // console.log(this.baseUrl)
-    // console.log(this.headers.authorization)
   }
 
   getUserInformation(userInfoPopup) {
@@ -42,7 +40,7 @@ export class Api {
       })
       .then((result) => {
         cardItem.renderItem(result);
-        console.log(result);
+
       })
       .catch((reject) => {
         console.log(reject);
