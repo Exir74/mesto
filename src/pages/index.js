@@ -61,6 +61,7 @@ api.getInitialCards(cardItem);
 const popupImageAdd = new PopupWithForm(cardPopup, {
   hedlerPopupForm: (items) => {
     const { [popupPlaceName]: name, [popupPlaceUrl]: link } = items;
+    api.addUserCard(name, link)
     cardItem.renderItem([{ name, link }]);
     popupImageAdd.close();
   },
@@ -75,6 +76,7 @@ const userInfoPopup = new UserInfo({ profileName, profileSubtitle });
 const popupEditForm = new PopupWithForm(profilePopup, {
   hedlerPopupForm: (items) => {
     const { [popupName]: name, [poppupSubtitle]: subtitle } = items;
+    api.setUserInformation(name, subtitle)
     userInfoPopup.setUserInfo({
       name,
       subtitle,
@@ -82,18 +84,15 @@ const popupEditForm = new PopupWithForm(profilePopup, {
     popupEditForm.close();
   },
 });
-
 api.getUserInformation(userInfoPopup)
-
 profileEditButton.addEventListener('click', () => {
-  // const userData = userInfoPopup.getUserInfo();
-  const userData = api.setUserInformation(userInfoPopup)
-console.log(userData);
+  const userData = userInfoPopup.getUserInfo();
   profileNamePopup.value = userData.name;
   profileSubtitlePopup.value = userData.subtitle;
   popupEditForm.open();
   popupEditForm.setEventListeners();
   validatorEditProfile.toggleButton();
+  // api.setUserInform
 });
 
 const validatorEditProfile = new FormValidator(
