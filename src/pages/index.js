@@ -45,7 +45,6 @@ const createCard = (item) => {
     },
   });
   const cardElement = card.generateCard();
-  // console.log(cardElement);
   return cardElement;
 };
 const cardItem = new Section(

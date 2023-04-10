@@ -39,6 +39,7 @@ export class Api {
         return Promise.reject(`Ошибка: ${res.status}`);
       })
       .then((result) => {
+        console.log(result);
         cardItem.renderItem(result);
 
       })
@@ -89,7 +90,6 @@ export class Api {
         return Promise.reject(`Ошибка: ${res.status}`);
       })
       .then((result) => {
-        console.log(result);
         cardItem.renderItem([result]);
 
       })
