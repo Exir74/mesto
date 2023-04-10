@@ -18,11 +18,7 @@ export class Api {
         return Promise.reject(`Ошибка: ${res.status}`);
       })
       .then((userInfo) => {
-        console.log(userInfo);
         userInfoPopup.setUserInfo({name:[userInfo.name], subtitle:[userInfo.about]})
-        // userInfoPopup._profileName.textContent = userInfo.name;
-        // userInfoPopup._profileSubtitle.textContent = userInfo.about;
-        return userInfo
       })
       .catch((reject) => {
         console.log(reject);
@@ -31,6 +27,7 @@ export class Api {
 
   getInitialCards(cardItem) {
     fetch(this.baseUrl + '/cards', {
+      method: 'GET',
       headers: {
         authorization: this.headers.authorization,
       },
@@ -50,7 +47,7 @@ export class Api {
       });
   }
 
-  setUserInformation(name, about) {
+  setUserInformation(name, subtitle) {
     fetch(this.baseUrl + '/users/me', {
       method: 'PATCH',
       headers: {
@@ -59,7 +56,7 @@ export class Api {
       },
       body: JSON.stringify({
         name: name,
-        about: about,
+        about: subtitle,
       }),
     })
       .then((res) => {
@@ -68,15 +65,12 @@ export class Api {
         }
         return Promise.reject(`Ошибка: ${res.status}`);
       })
-      .then((userInfo) => {
-        return userInfo;
-      })
       .catch((reject) => {
         console.log(reject);
       });
   }
 
-  addUserCard(name, link){
+  addUserCard(name, link, cardItem){
     fetch(this.baseUrl + '/cards', {
       method:'POST',
       headers: {
@@ -95,13 +89,24 @@ export class Api {
         return Promise.reject(`Ошибка: ${res.status}`);
       })
       .then((result) => {
-        return result;
+        console.log(result);
+        cardItem.renderItem([result]);
+
       })
       .catch((reject) => {
         console.log(reject);
       });
   }
-  
+  delet(){
+    fetch('https://mesto.nomoreparties.co/v1/cohort-64/cards/64342a86f8da8847e97be7c9',{
+      method: 'DELETE',
+      headers: {
+        authorization: this.headers.authorization,
+        'Content-Type': 'application/json',
+      }
+    })
+
+  }
 }
 
 

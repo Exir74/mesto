@@ -34,9 +34,10 @@ const api = new Api({
     authorization: '70f54093-bc83-47bc-b65d-881ab4394db0',
   },
 });
-
+api.delet()
 const popupImage = new PopupWithImage(imagePopup);
 const createCard = (item) => {
+
   const card = new Card(item, imageTemplate, {
     handleCardClick: () => {
       popupImage.open(item);
@@ -44,6 +45,7 @@ const createCard = (item) => {
     },
   });
   const cardElement = card.generateCard();
+  // console.log(cardElement);
   return cardElement;
 };
 const cardItem = new Section(
@@ -62,8 +64,7 @@ api.getInitialCards(cardItem);
 const popupImageAdd = new PopupWithForm(cardPopup, {
   hedlerPopupForm: (items) => {
     const { [popupPlaceName]: name, [popupPlaceUrl]: link } = items;
-    api.addUserCard(name, link)
-    cardItem.renderItem([{ name, link }]);
+    api.addUserCard(name, link, cardItem)
     popupImageAdd.close();
   },
 });

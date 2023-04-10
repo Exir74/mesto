@@ -49,4 +49,7 @@ export class Card {
     this._element.querySelector('.card__like-quantity').textContent = this._likes.length
     return this._element;
   }
+  delete(user){
+    console.log(user);
+  }
 }
