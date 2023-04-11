@@ -40,8 +40,8 @@ api.delet();
 
 const popupConfirm = new PopupWithConfirm(popupConfirmSelector, {
   handlePopupForm: (item) => {
-    // item.remove();
-    console.log(item, 'FORM');
+    item.remove();
+    popupConfirm.close()
   },
 });
 const popupImage = new PopupWithImage(imagePopup);
@@ -57,8 +57,8 @@ const createCard = (item) => {
     },
     {
       handleTrashClick: (item) => {
-        console.log(item);
-        popupConfirm.open();
+   
+        popupConfirm.open(item);
         popupConfirm.setEventListeners();
       },
     }
