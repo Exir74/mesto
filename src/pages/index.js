@@ -36,12 +36,12 @@ const api = new Api({
     authorization: '70f54093-bc83-47bc-b65d-881ab4394db0',
   },
 });
-api.delet();
+// api.delet();
 
 const popupConfirm = new PopupWithConfirm(popupConfirmSelector, {
   handlePopupForm: (item) => {
     item.remove();
-    popupConfirm.close()
+    popupConfirm.close();
   },
 });
 const popupImage = new PopupWithImage(imagePopup);
@@ -56,11 +56,11 @@ const createCard = (item) => {
       },
     },
     {
-      handleTrashClick: (item) => {
+      handleTrashClick: (item, data) => {
         popupConfirm.open(item);
         popupConfirm.setEventListeners();
       },
-    }
+    },
   );
   const cardElement = card.generateCard();
   return cardElement;

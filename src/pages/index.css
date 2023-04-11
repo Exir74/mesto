@@ -46,3 +46,4 @@
 @import url(../blocks/popup/__error-wrapper/popup__error-wrapper.css);
 @import url(../blocks/card/__like-wrapper/card__like-wrapper.css);
 @import url(../blocks/card/__like-quantity/card__like-quantity.css);
+@import url(../blocks/card/__trash/_active/card__trash_active.css);

@@ -6,7 +6,7 @@ export class Card {
     this._imageTemplate = imageTemplate;
     this._handleCardClick = handleCardClick;
     this._handleTrashClick = handleTrashClick
-this._data= data
+    this._data= data
   
   }
   _getTemplate() {
@@ -24,7 +24,7 @@ this._data= data
     this._element
       .querySelector('.card__trash')
       .addEventListener('click', () => {
-        this._handleTrashClick(this._element)
+        this._handleTrashClick(this._element, this._data)
       });
     this._cardLikeButton = this._element.querySelector('.card__like');
     this._cardLikeButton.addEventListener('click', () => {
@@ -32,10 +32,9 @@ this._data= data
     });
   }
   generateCard() {
-    console.log(this._data);
+    // console.log(this._data);
     this._element = this._getTemplate();
     this._setListeners();
-    // this._removeCard()
     this._element.querySelector('.card__image').src = this._image;
     this._element.querySelector('.card__caption').textContent =
       this._name;
@@ -43,7 +42,7 @@ this._data= data
     this._element.querySelector('.card__like-quantity').textContent = this._likes.length
     return this._element;
   }
-  delete(user){
+  checkOwner(user){
     console.log(user);
   }
 }

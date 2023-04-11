@@ -97,16 +97,6 @@ export class Api {
         console.log(reject);
       });
   }
-  delet(){
-    fetch('https://mesto.nomoreparties.co/v1/cohort-64/cards/64342a86f8da8847e97be7c9',{
-      method: 'DELETE',
-      headers: {
-        authorization: this.headers.authorization,
-        'Content-Type': 'application/json',
-      }
-    })
-
-  }
 }
 
 
