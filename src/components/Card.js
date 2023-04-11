@@ -6,7 +6,7 @@ export class Card {
     this._imageTemplate = imageTemplate;
     this._handleCardClick = handleCardClick;
     this._handleTrashClick = handleTrashClick
-
+this._data= data
   
   }
   _getTemplate() {
@@ -25,22 +25,14 @@ export class Card {
       .querySelector('.card__trash')
       .addEventListener('click', () => {
         this._handleTrashClick(this._element)
-        // this._element.remove();
       });
     this._cardLikeButton = this._element.querySelector('.card__like');
     this._cardLikeButton.addEventListener('click', () => {
       this._cardLikeButton.classList.toggle('card__like_active');
     });
   }
-  // _removeCard() {
-  //   this._element
-  //     .querySelector('.card__trash')
-  //     .addEventListener('click', () => {
-  //       this._removeCard();
-  //     });
-  //   this._element.remove();
-  // }
   generateCard() {
+    console.log(this._data);
     this._element = this._getTemplate();
     this._setListeners();
     // this._removeCard()

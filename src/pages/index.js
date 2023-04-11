@@ -57,7 +57,6 @@ const createCard = (item) => {
     },
     {
       handleTrashClick: (item) => {
-   
         popupConfirm.open(item);
         popupConfirm.setEventListeners();
       },
