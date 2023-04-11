@@ -92,19 +92,19 @@ imageAddButton.addEventListener('click', () => {
   validatorAddCard.toggleButton();
 });
 
-const userInfoPopup = new UserInfo({ profileName, profileSubtitle });
+const userInfoPopup = new UserInfo({ profileName, profileSubtitle});
 const popupEditForm = new PopupWithForm(profilePopup, {
   hedlerPopupForm: (items) => {
-    const { [popupName]: name, [poppupSubtitle]: subtitle } = items;
+    const { [popupName]: name, [poppupSubtitle]: subtitle, } = items;
     api.setUserInformation(name, subtitle);
     userInfoPopup.setUserInfo({
       name,
       subtitle,
     });
     popupEditForm.close();
+    
   },
 });
-
 api.getUserInformation(userInfoPopup);
 profileEditButton.addEventListener('click', () => {
   const userData = userInfoPopup.getUserInfo();

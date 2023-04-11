@@ -45,4 +45,5 @@ export class Card {
   checkOwner(user){
     console.log(user);
   }
+  
 }

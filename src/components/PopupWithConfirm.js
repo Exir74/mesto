@@ -23,7 +23,6 @@ export class PopupWithConfirm extends Popup {
     this._popupForm.addEventListener(
       'submit',
       this._headlerClickSubmit
-      // console.log(this._item)
     );
   }
 }

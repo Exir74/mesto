@@ -18,7 +18,7 @@ export class Api {
         return Promise.reject(`Ошибка: ${res.status}`);
       })
       .then((userInfo) => {
-        userInfoPopup.setUserInfo({name:[userInfo.name], subtitle:[userInfo.about]})
+        userInfoPopup.setUserInfo({name:[userInfo.name], subtitle:[userInfo.about],})
       })
       .catch((reject) => {
         console.log(reject);
