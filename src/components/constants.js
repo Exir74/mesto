@@ -78,3 +78,4 @@ export const popupButton = '.popup__button';
 export const popupInput = '.popup__input';
 export const popupName = 'popup-name' 
 export const poppupSubtitle = 'popup-subtitle'
+export const popupConfirmSelector = page.querySelector('.confirm-popup')

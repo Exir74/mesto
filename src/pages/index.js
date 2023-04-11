@@ -19,6 +19,7 @@ import {
   popupName,
   poppupSubtitle,
   profileSubtitlePopup,
+  popupConfirmSelector,
 } from '../components/constants.js';
 import { Card } from '../components/Card.js';
 import { FormValidator } from '../components/FormValidator.js';
@@ -27,6 +28,7 @@ import { PopupWithForm } from '../components/PopupWithForm.js';
 import { PopupWithImage } from '../components/PopupWithImage.js';
 import { Section } from '../components/Section.js';
 import { Api } from '../components/Api.js';
+import { PopupWithConfirm } from '../components/PopupWithConfirm.js';
 
 const api = new Api({
   baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-64',
@@ -34,16 +36,33 @@ const api = new Api({
     authorization: '70f54093-bc83-47bc-b65d-881ab4394db0',
   },
 });
-api.delet()
+api.delet();
+
+const popupConfirm = new PopupWithConfirm(popupConfirmSelector, {
+  handlePopupForm: (item) => {
+    // item.remove();
+    console.log(item, 'FORM');
+  },
+});
 const popupImage = new PopupWithImage(imagePopup);
 const createCard = (item) => {
-
-  const card = new Card(item, imageTemplate, {
-    handleCardClick: () => {
-      popupImage.open(item);
-      popupImage.setEventListeners();
+  const card = new Card(
+    item,
+    imageTemplate,
+    {
+      handleCardClick: () => {
+        popupImage.open(item);
+        popupImage.setEventListeners();
+      },
     },
-  });
+    {
+      handleTrashClick: (item) => {
+        console.log(item);
+        popupConfirm.open();
+        popupConfirm.setEventListeners();
+      },
+    }
+  );
   const cardElement = card.generateCard();
   return cardElement;
 };
@@ -57,13 +76,14 @@ const cardItem = new Section(
   },
   cardContainer
 );
+
 // cardItem.renderItem(initialCards);
 api.getInitialCards(cardItem);
 
 const popupImageAdd = new PopupWithForm(cardPopup, {
   hedlerPopupForm: (items) => {
     const { [popupPlaceName]: name, [popupPlaceUrl]: link } = items;
-    api.addUserCard(name, link, cardItem)
+    api.addUserCard(name, link, cardItem);
     popupImageAdd.close();
   },
 });
@@ -77,7 +97,7 @@ const userInfoPopup = new UserInfo({ profileName, profileSubtitle });
 const popupEditForm = new PopupWithForm(profilePopup, {
   hedlerPopupForm: (items) => {
     const { [popupName]: name, [poppupSubtitle]: subtitle } = items;
-    api.setUserInformation(name, subtitle)
+    api.setUserInformation(name, subtitle);
     userInfoPopup.setUserInfo({
       name,
       subtitle,
@@ -86,7 +106,7 @@ const popupEditForm = new PopupWithForm(profilePopup, {
   },
 });
 
-api.getUserInformation(userInfoPopup)
+api.getUserInformation(userInfoPopup);
 profileEditButton.addEventListener('click', () => {
   const userData = userInfoPopup.getUserInfo();
   profileNamePopup.value = userData.name;
