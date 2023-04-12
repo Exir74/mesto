@@ -46,9 +46,10 @@ const popupConfirm = new PopupWithConfirm(popupConfirmSelector, {
   },
 });
 const popupImage = new PopupWithImage(imagePopup);
-const createCard = (item) => {
+const createCard = (item, user) => {
   const card = new Card(
     item,
+    user,
     imageTemplate,
     {
       handleCardClick: () => {
@@ -70,6 +71,13 @@ const createCard = (item) => {
             .classList.add('card__trash_active');
         }
       },
+    },
+    {
+      handleLikes: ()=>{
+        console.log(user===item.likes);
+        console.log(user);
+        console.log(item.likes);
+      }
     }
   );
   const cardElement = card.generateCard();
@@ -78,8 +86,8 @@ const createCard = (item) => {
 const cardItem = new Section(
   {
     data: [],
-    renderer: (item) => {
-      const cardElement = createCard(item);
+    renderer: (item, user) => {
+      const cardElement = createCard(item, user);
       cardItem.addItem(cardElement);
     },
   },
@@ -90,7 +98,7 @@ api.getUserInformation().then((user) => {
     result.forEach((element) => {
       checkOwnerImage(user, element);
     });
-    cardItem.renderItem(result);
+    cardItem.renderItem(result, user);
   });
 });
 function checkOwnerImage(user, element) {
@@ -107,7 +115,7 @@ const popupImageAdd = new PopupWithForm(cardPopup, {
     const { [popupPlaceName]: name, [popupPlaceUrl]: link } = items;
     api.addUserCard(name, link).then((result) => {
       result.control = true;
-      cardItem.renderItem([result]);
+      cardItem.renderItem([result], result.owner);
     });
     popupImageAdd.close();
   },

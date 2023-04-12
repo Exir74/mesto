@@ -1,10 +1,12 @@
 export class Card {
   constructor(
     data,
+    user,
     imageTemplate,
     { handleCardClick },
     { handleTrashClick },
-    { handleOwner }
+    { handleOwner },
+    {handleLikes}
   ) {
     this._image = data.link;
     this._name = data.name;
@@ -13,7 +15,9 @@ export class Card {
     this._handleCardClick = handleCardClick;
     this._handleTrashClick = handleTrashClick;
     this._data = data;
+    this._user= user
     this._handleOwner = handleOwner;
+    this._handleLikes = handleLikes
   }
   _getTemplate() {
     const cardElement = this._imageTemplate
@@ -35,6 +39,7 @@ export class Card {
     this._cardLikeButton = this._element.querySelector('.card__like');
     this._cardLikeButton.addEventListener('click', () => {
       this._cardLikeButton.classList.toggle('card__like_active');
+      this._handleLikes()
     });
   }
   generateCard() {
