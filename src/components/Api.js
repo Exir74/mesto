@@ -18,15 +18,15 @@ export class Api {
         return Promise.reject(`Ошибка: ${res.status}`);
       })
       .then((result) => {
-        return result
+        return result;
       })
       .catch((reject) => {
         console.log(reject);
-      })
+      });
   }
 
   getInitialCards() {
-   return fetch(this.baseUrl + '/cards', {
+    return fetch(this.baseUrl + '/cards', {
       method: 'GET',
       headers: {
         authorization: this.headers.authorization,
@@ -40,9 +40,8 @@ export class Api {
       })
       .then((result) => {
         // console.log(result);
-        return result
+        return result;
         // cardItem.renderItem(result);
-
       })
       .catch((reject) => {
         console.log(reject);
@@ -72,17 +71,17 @@ export class Api {
       });
   }
 
-  addUserCard(name, link){
+  addUserCard(name, link) {
     return fetch(this.baseUrl + '/cards', {
-      method:'POST',
+      method: 'POST',
       headers: {
         authorization: this.headers.authorization,
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
         name: name,
-        link: link
-      })
+        link: link,
+      }),
     })
       .then((res) => {
         if (res.ok) {
@@ -92,36 +91,25 @@ export class Api {
       })
       .then((result) => {
         // console.log(result);
-        return result
+        return result;
         // cardItem.renderItem([result]);
-
       })
       .catch((reject) => {
         console.log(reject);
       });
   }
-
-
-  // getUser1() {
-  //   return fetch(this.baseUrl + '/users/me', {
-  //     method: 'GET',
-  //     headers: {
-  //       authorization: this.headers.authorization,
-  //     },
-  //   })
-  //     .then((res) => {
-  //       if (res.ok) {
-  //         return res.json();
-  //       }
-  //       return Promise.reject(`Ошибка: ${res.status}`);
-  //     })
-  //     .then((result) => {
-  //       return (result)
-  //     })
-  //     .catch((reject) => {
-  //       console.log(reject);
-  //     })
-  // }
+  deletUserCard(cardId) {
+      fetch(this.baseUrl + '/cards/' + cardId, {
+      method: 'DELETE',
+      headers: {
+        authorization: this.headers.authorization,
+      }
+    })
+    .then((res) => {
+      if (res.ok) {
+        return res.json();
+      }
+      return Promise.reject(`Ошибка: ${res.status}`);
+    })
+  }
 }
-
-

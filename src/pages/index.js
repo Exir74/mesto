@@ -36,10 +36,10 @@ const api = new Api({
     authorization: '70f54093-bc83-47bc-b65d-881ab4394db0',
   },
 });
-// api.delet();
 
 const popupConfirm = new PopupWithConfirm(popupConfirmSelector, {
-  handlePopupForm: (item) => {
+  handlePopupForm: (item, id) => {
+    api.deletUserCard(id);
     item.remove();
     popupConfirm.close();
   },
@@ -56,9 +56,18 @@ const createCard = (item) => {
       },
     },
     {
-      handleTrashClick: (item, data) => {
-        popupConfirm.open(item);
+      handleTrashClick: (item, id) => {
+        popupConfirm.open(item, id);
         popupConfirm.setEventListeners();
+      },
+    },
+    {
+      handleOwner: (control, element) => {
+        if (control === true) {
+          element
+            .querySelector('.card__trash')
+            .classList.add('card__trash_active');
+        }
       },
     }
   );
@@ -75,31 +84,33 @@ const cardItem = new Section(
   },
   cardContainer
 );
-
-api.getInitialCards().then((result) => {
-  cardItem.renderItem(result);
+api.getUserInformation().then((userId) => {
+  api.getInitialCards().then((result) => {
+    result.forEach((element) => {
+      checkOwnerImage(userId, element)
+    });
+    cardItem.renderItem(result);
+  });
 });
+function checkOwnerImage(userId, element) {
+  if (userId._id === element.owner._id) {
+    console.log(element);
+    element.control = true;
+  } else {
+    element.control = false;
+  }
+}
 
 const popupImageAdd = new PopupWithForm(cardPopup, {
   hedlerPopupForm: (items) => {
     const { [popupPlaceName]: name, [popupPlaceUrl]: link } = items;
-    // api.addUserCard(name, link, cardItem);
     api.addUserCard(name, link).then((result) => {
+      result.control = true;
       cardItem.renderItem([result]);
-      console.log(result);
     });
     popupImageAdd.close();
   },
 });
-
-// const popupImageAdd = new PopupWithForm(cardPopup, {
-//   hedlerPopupForm: (items) => {
-//     const { [popupPlaceName]: name, [popupPlaceUrl]: link } = items;
-//     const cardElement = createCard({ name, link });
-//     cardItem.addItem(cardElement);
-//     popupImageAdd.close();
-//   },
-// });
 
 imageAddButton.addEventListener('click', () => {
   popupImageAdd.open();
@@ -119,7 +130,6 @@ const popupEditForm = new PopupWithForm(profilePopup, {
     popupEditForm.close();
   },
 });
-
 api.getUserInformation().then((result) => {
   userInfoPopup.setUserInfo({
     name: [result.name],
@@ -134,7 +144,6 @@ profileEditButton.addEventListener('click', () => {
   popupEditForm.open();
   popupEditForm.setEventListeners();
   validatorEditProfile.toggleButton();
-  // api.setUserInform
 });
 
 const validatorEditProfile = new FormValidator(
@@ -147,11 +156,3 @@ const validatorAddCard = new FormValidator(
 );
 validatorEditProfile.enableValidation();
 validatorAddCard.enableValidation();
-
-// const a = ()=>{
-//   api.getUser1()
-//   .then((res)=>{
-//     console.log(res);
-//   })
-// }
-// a()

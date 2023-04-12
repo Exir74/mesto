@@ -7,8 +7,9 @@ export class PopupWithConfirm extends Popup {
     this._headlerClickSubmit = this._headlerClickSubmit.bind(this);
 
   }
-  open(item) {
+  open(item, id) {
     this._item = item
+    this._id = id
     super.open();
   }
   close() {
@@ -16,7 +17,8 @@ export class PopupWithConfirm extends Popup {
   }
   _headlerClickSubmit(event) {
     event.preventDefault();
-    this.handlePopupForm(this._item);
+    console.log(this._id);
+    this.handlePopupForm(this._item, this._id);
   }
   setEventListeners() {
     super.setEventListeners();
