@@ -84,14 +84,23 @@ const popupImageAdd = new PopupWithForm(cardPopup, {
   hedlerPopupForm: (items) => {
     const { [popupPlaceName]: name, [popupPlaceUrl]: link } = items;
     // api.addUserCard(name, link, cardItem);
-    api.addUserCard()
-    .then((result)=>{
-      // cardItem.renderItem([result]);
+    api.addUserCard(name, link).then((result) => {
+      cardItem.renderItem([result]);
       console.log(result);
-    })
+    });
     popupImageAdd.close();
   },
 });
+
+// const popupImageAdd = new PopupWithForm(cardPopup, {
+//   hedlerPopupForm: (items) => {
+//     const { [popupPlaceName]: name, [popupPlaceUrl]: link } = items;
+//     const cardElement = createCard({ name, link });
+//     cardItem.addItem(cardElement);
+//     popupImageAdd.close();
+//   },
+// });
+
 imageAddButton.addEventListener('click', () => {
   popupImageAdd.open();
   popupImageAdd.setEventListeners();

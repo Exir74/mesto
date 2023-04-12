@@ -91,6 +91,7 @@ export class Api {
         return Promise.reject(`Ошибка: ${res.status}`);
       })
       .then((result) => {
+        // console.log(result);
         return result
         // cardItem.renderItem([result]);
 
