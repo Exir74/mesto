@@ -112,11 +112,31 @@ export class Api {
     });
   }
   setLike(cardId) {
-    fetch(this.baseUrl + '/cards/' + cardId, {
+    fetch(this.baseUrl + '/cards/' + cardId + '/likes', {
       method: 'PUT',
       headers: {
         authorization: this.headers.authorization,
+        'Content-Type': 'application/json',
       },
+      body: JSON.stringify({
+     //--------------????
+      }),
+    }).then((res) => {
+      if (res.ok) {
+        return res.json();
+      }
+      return Promise.reject(`Ошибка: ${res.status}`);
+    });
+  }
+  removeLike(cardId) {
+    fetch(this.baseUrl + '/cards/' + cardId + '/likes', {
+      method: 'DELET',
+      headers: {
+        authorization: this.headers.authorization,
+      },
+      body: JSON.stringify({
+     //--------------????
+      }),
     }).then((res) => {
       if (res.ok) {
         return res.json();
