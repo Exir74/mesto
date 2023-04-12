@@ -85,16 +85,16 @@ const cardItem = new Section(
   },
   cardContainer
 );
-api.getUserInformation().then((userId) => {
+api.getUserInformation().then((user) => {
   api.getInitialCards().then((result) => {
     result.forEach((element) => {
-      checkOwnerImage(userId, element);
+      checkOwnerImage(user, element);
     });
     cardItem.renderItem(result);
   });
 });
-function checkOwnerImage(userId, element) {
-  if (userId._id === element.owner._id) {
+function checkOwnerImage(user, element) {
+  if (user._id === element.owner._id) {
     console.log(element);
     element.control = true;
   } else {
