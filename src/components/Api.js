@@ -111,7 +111,7 @@ export class Api {
       return Promise.reject(`Ошибка: ${res.status}`);
     });
   }
-  setLike(cardId) {
+  setLike(cardId, newLikesArr) {
     fetch(this.baseUrl + '/cards/' + cardId + '/likes', {
       method: 'PUT',
       headers: {
@@ -120,6 +120,7 @@ export class Api {
       },
       body: JSON.stringify({
      //--------------????
+     likes: newLikesArr 
       }),
     }).then((res) => {
       if (res.ok) {
@@ -128,7 +129,7 @@ export class Api {
       return Promise.reject(`Ошибка: ${res.status}`);
     });
   }
-  removeLike(cardId) {
+  removeLike(cardId, newLikesArr) {
     fetch(this.baseUrl + '/cards/' + cardId + '/likes', {
       method: 'DELET',
       headers: {
@@ -136,7 +137,7 @@ export class Api {
       },
       body: JSON.stringify({
      //--------------????
-     
+     likes: newLikesArr 
       }),
     }).then((res) => {
       if (res.ok) {

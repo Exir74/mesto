@@ -47,6 +47,7 @@ const popupConfirm = new PopupWithConfirm(popupConfirmSelector, {
 });
 const popupImage = new PopupWithImage(imagePopup);
 const createCard = (item, user) => {
+  // console.log(user);
   const card = new Card(
     item,
     user,
@@ -64,7 +65,8 @@ const createCard = (item, user) => {
       },
     },
     {
-      handleOwner: (control, element) => {
+      handleOwner: (control, element, a,b) => {
+        // if (a.owner ==b){
         if (control === true) {
           element
             .querySelector('.card__trash')
@@ -73,10 +75,12 @@ const createCard = (item, user) => {
       },
     },
     {
-      handleLikes: ()=>{
-        console.log(user===item.likes);
-        console.log(user);
-        console.log(item.likes);
+      handleLikes: (user,data, likeClassList)=>{
+        api.setLike(data._id, data.likes.push(user))
+        console.log((likeClassList.value));
+        // if (likeClassList.includes('card__like_active')){
+        //   console.log('a');
+        // }
       }
     }
   );
