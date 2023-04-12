@@ -126,7 +126,11 @@ const validatorAddCard = new FormValidator(
 );
 validatorEditProfile.enableValidation();
 validatorAddCard.enableValidation();
-
+const a = ()=>{
+  console.log(api.getUser1())
+}
+a()
+// api.getUser1()
 // fetch('https://nomoreparties.co/v1/cohort-64/users/me', {
 //   method: 'GET',
 //   headers: {

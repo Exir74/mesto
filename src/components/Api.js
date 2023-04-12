@@ -97,6 +97,28 @@ export class Api {
         console.log(reject);
       });
   }
+
+
+  getUser1() {
+    return fetch(this.baseUrl + '/users/me', {
+      method: 'GET',
+      headers: {
+        authorization: this.headers.authorization,
+      },
+    })
+      .then((res) => {
+        if (res.ok) {
+          return res.json();
+        }
+        return Promise.reject(`Ошибка: ${res.status}`);
+      })
+      .then((result) => {
+        return Promise.resolve(result.name)
+      })
+      .catch((reject) => {
+        console.log(reject);
+      })
+  }
 }
 
 
