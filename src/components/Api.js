@@ -99,17 +99,29 @@ export class Api {
       });
   }
   deletUserCard(cardId) {
-      fetch(this.baseUrl + '/cards/' + cardId, {
+    fetch(this.baseUrl + '/cards/' + cardId, {
       method: 'DELETE',
       headers: {
         authorization: this.headers.authorization,
-      }
-    })
-    .then((res) => {
+      },
+    }).then((res) => {
       if (res.ok) {
         return res.json();
       }
       return Promise.reject(`Ошибка: ${res.status}`);
-    })
+    });
+  }
+  setLike(cardId) {
+    fetch(this.baseUrl + '/cards/' + cardId, {
+      method: 'PUT',
+      headers: {
+        authorization: this.headers.authorization,
+      },
+    }).then((res) => {
+      if (res.ok) {
+        return res.json();
+      }
+      return Promise.reject(`Ошибка: ${res.status}`);
+    });
   }
 }

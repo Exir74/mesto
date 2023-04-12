@@ -39,6 +39,7 @@ const api = new Api({
 
 const popupConfirm = new PopupWithConfirm(popupConfirmSelector, {
   handlePopupForm: (item, id) => {
+    console.log();
     api.deletUserCard(id);
     item.remove();
     popupConfirm.close();
