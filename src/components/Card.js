@@ -4,7 +4,6 @@ export class Card {
     imageTemplate,
     { handleCardClick },
     { handleTrashClick },
-    // { getUserId }
     { handleOwner }
   ) {
     this._image = data.link;
@@ -13,8 +12,6 @@ export class Card {
     this._imageTemplate = imageTemplate;
     this._handleCardClick = handleCardClick;
     this._handleTrashClick = handleTrashClick;
-    // this._checkOwner = checkOwner
-    // this._getUserId = getUserId;
     this._data = data;
     this._handleOwner = handleOwner;
   }
@@ -41,7 +38,6 @@ export class Card {
     });
   }
   generateCard() {
-    // console.log(this._data.owner._id);
     this._element = this._getTemplate();
     this._setListeners();
     this._element.querySelector('.card__image').src = this._image;

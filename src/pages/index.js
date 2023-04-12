@@ -87,7 +87,7 @@ const cardItem = new Section(
 api.getUserInformation().then((userId) => {
   api.getInitialCards().then((result) => {
     result.forEach((element) => {
-      checkOwnerImage(userId, element)
+      checkOwnerImage(userId, element);
     });
     cardItem.renderItem(result);
   });

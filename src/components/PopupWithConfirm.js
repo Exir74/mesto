@@ -5,11 +5,10 @@ export class PopupWithConfirm extends Popup {
     this.handlePopupForm = handlePopupForm;
     this._popupForm = this._popup.querySelector('.popup__form');
     this._headlerClickSubmit = this._headlerClickSubmit.bind(this);
-
   }
   open(item, id) {
-    this._item = item
-    this._id = id
+    this._item = item;
+    this._id = id;
     super.open();
   }
   close() {
