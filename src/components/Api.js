@@ -4,29 +4,8 @@ export class Api {
     this.headers = options.headers;
   }
 
-  getUserInformation(userInfoPopup) {
-    fetch(this.baseUrl + '/users/me', {
-      method: 'GET',
-      headers: {
-        authorization: this.headers.authorization,
-      },
-    })
-      .then((res) => {
-        if (res.ok) {
-          return res.json();
-        }
-        return Promise.reject(`Ошибка: ${res.status}`);
-      })
-      .then((userInfo) => {
-        userInfoPopup.setUserInfo({name:[userInfo.name], subtitle:[userInfo.about],})
-      })
-      .catch((reject) => {
-        console.log(reject);
-      })
-  }
-
-  getInitialCards(cardItem) {
-    fetch(this.baseUrl + '/cards', {
+  getUserInformation() {
+    return fetch(this.baseUrl + '/users/me', {
       method: 'GET',
       headers: {
         authorization: this.headers.authorization,
@@ -39,8 +18,30 @@ export class Api {
         return Promise.reject(`Ошибка: ${res.status}`);
       })
       .then((result) => {
-        console.log(result);
-        cardItem.renderItem(result);
+        return result
+      })
+      .catch((reject) => {
+        console.log(reject);
+      })
+  }
+
+  getInitialCards() {
+   return fetch(this.baseUrl + '/cards', {
+      method: 'GET',
+      headers: {
+        authorization: this.headers.authorization,
+      },
+    })
+      .then((res) => {
+        if (res.ok) {
+          return res.json();
+        }
+        return Promise.reject(`Ошибка: ${res.status}`);
+      })
+      .then((result) => {
+        // console.log(result);
+        return result
+        // cardItem.renderItem(result);
 
       })
       .catch((reject) => {
@@ -49,7 +50,7 @@ export class Api {
   }
 
   setUserInformation(name, subtitle) {
-    fetch(this.baseUrl + '/users/me', {
+    return fetch(this.baseUrl + '/users/me', {
       method: 'PATCH',
       headers: {
         authorization: this.headers.authorization,
@@ -71,8 +72,8 @@ export class Api {
       });
   }
 
-  addUserCard(name, link, cardItem){
-    fetch(this.baseUrl + '/cards', {
+  addUserCard(name, link){
+    return fetch(this.baseUrl + '/cards', {
       method:'POST',
       headers: {
         authorization: this.headers.authorization,
@@ -90,7 +91,8 @@ export class Api {
         return Promise.reject(`Ошибка: ${res.status}`);
       })
       .then((result) => {
-        cardItem.renderItem([result]);
+        return result
+        // cardItem.renderItem([result]);
 
       })
       .catch((reject) => {
@@ -99,26 +101,26 @@ export class Api {
   }
 
 
-  getUser1() {
-    return fetch(this.baseUrl + '/users/me', {
-      method: 'GET',
-      headers: {
-        authorization: this.headers.authorization,
-      },
-    })
-      .then((res) => {
-        if (res.ok) {
-          return res.json();
-        }
-        return Promise.reject(`Ошибка: ${res.status}`);
-      })
-      .then((result) => {
-        return Promise.resolve(result.name)
-      })
-      .catch((reject) => {
-        console.log(reject);
-      })
-  }
+  // getUser1() {
+  //   return fetch(this.baseUrl + '/users/me', {
+  //     method: 'GET',
+  //     headers: {
+  //       authorization: this.headers.authorization,
+  //     },
+  //   })
+  //     .then((res) => {
+  //       if (res.ok) {
+  //         return res.json();
+  //       }
+  //       return Promise.reject(`Ошибка: ${res.status}`);
+  //     })
+  //     .then((result) => {
+  //       return (result)
+  //     })
+  //     .catch((reject) => {
+  //       console.log(reject);
+  //     })
+  // }
 }
 
 

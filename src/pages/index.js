@@ -60,7 +60,7 @@ const createCard = (item) => {
         popupConfirm.open(item);
         popupConfirm.setEventListeners();
       },
-    },
+    }
   );
   const cardElement = card.generateCard();
   return cardElement;
@@ -76,13 +76,19 @@ const cardItem = new Section(
   cardContainer
 );
 
-// cardItem.renderItem(initialCards);
-api.getInitialCards(cardItem);
+api.getInitialCards().then((result) => {
+  cardItem.renderItem(result);
+});
 
 const popupImageAdd = new PopupWithForm(cardPopup, {
   hedlerPopupForm: (items) => {
     const { [popupPlaceName]: name, [popupPlaceUrl]: link } = items;
-    api.addUserCard(name, link, cardItem);
+    // api.addUserCard(name, link, cardItem);
+    api.addUserCard()
+    .then((result)=>{
+      // cardItem.renderItem([result]);
+      console.log(result);
+    })
     popupImageAdd.close();
   },
 });
@@ -92,20 +98,26 @@ imageAddButton.addEventListener('click', () => {
   validatorAddCard.toggleButton();
 });
 
-const userInfoPopup = new UserInfo({ profileName, profileSubtitle});
+const userInfoPopup = new UserInfo({ profileName, profileSubtitle });
 const popupEditForm = new PopupWithForm(profilePopup, {
   hedlerPopupForm: (items) => {
-    const { [popupName]: name, [poppupSubtitle]: subtitle, } = items;
+    const { [popupName]: name, [poppupSubtitle]: subtitle } = items;
     api.setUserInformation(name, subtitle);
     userInfoPopup.setUserInfo({
       name,
       subtitle,
     });
     popupEditForm.close();
-    
   },
 });
-api.getUserInformation(userInfoPopup);
+
+api.getUserInformation().then((result) => {
+  userInfoPopup.setUserInfo({
+    name: [result.name],
+    subtitle: [result.about],
+  });
+});
+
 profileEditButton.addEventListener('click', () => {
   const userData = userInfoPopup.getUserInfo();
   profileNamePopup.value = userData.name;
@@ -126,20 +138,11 @@ const validatorAddCard = new FormValidator(
 );
 validatorEditProfile.enableValidation();
 validatorAddCard.enableValidation();
-const a = ()=>{
-  console.log(api.getUser1())
-}
-a()
-// api.getUser1()
-// fetch('https://nomoreparties.co/v1/cohort-64/users/me', {
-//   method: 'GET',
-//   headers: {
-//     authorization: '70f54093-bc83-47bc-b65d-881ab4394db0'
-//   }
-// })
-//   .then(res => res.json())
-//   .then((result) => {
-//     console.log(result);
-//   });
 
-// api.getInitialCards(cardItem.renderItem)
+// const a = ()=>{
+//   api.getUser1()
+//   .then((res)=>{
+//     console.log(res);
+//   })
+// }
+// a()
