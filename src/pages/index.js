@@ -104,6 +104,26 @@ const createCard = (item, user) => {
           console.log(item);
         });
       },
+    },
+    {
+      headleNewLike: (user, data, likeClassList) => {
+        if (likeClassList.value.includes('_active')) {
+          // api.removeLike(data._id, data.likes.filter((f)=>{return f !== user}))
+          // console.log(data.likes.filter((f)=>{return f !== user}));
+          data.likes.forEach(item=>{
+          // api.removeLike(data._id, data.likes.filter((f)=>{console.log(f)}))
+          console.log('ffffffffff',data.likes.filter((f)=>{return f !== user}));
+          console.log([item._id].includes(user._id));
+          })
+
+        } else {
+          api
+            .setLike(data._id, data.likes.push(user))
+            .then((result) => {
+              console.log(result);
+            });
+        }
+      },
     }
   );
   const cardElement = card.generateCard();

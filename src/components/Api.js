@@ -135,10 +135,12 @@ export class Api {
       });
   }
   removeLike(cardId, newLikesArr) {
-    fetch(this.baseUrl + '/cards/' + cardId + '/likes', {
+    return fetch(this.baseUrl + '/cards/' + cardId + '/likes', {
       method: 'DELET',
       headers: {
         authorization: this.headers.authorization,
+        'Content-Type': 'application/json',
+
       },
       body: JSON.stringify({
         //--------------????
@@ -149,6 +151,9 @@ export class Api {
         return res.json();
       }
       return Promise.reject(`Ошибка: ${res.status}`);
+    })
+    .then((result)=>{
+      return result
     });
   }
 }

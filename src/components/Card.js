@@ -6,7 +6,8 @@ export class Card {
     { handleCardClick },
     { handleTrashClick },
     { handleOwner },
-    { handleLikes }
+    { handleLikes },
+    {headleNewLike},
   ) {
     this._image = data.link;
     this._name = data.name;
@@ -18,6 +19,7 @@ export class Card {
     this._user = user;
     this._handleOwner = handleOwner;
     this._handleLikes = handleLikes;
+    this._handleNewLike = headleNewLike
   }
   _getTemplate() {
     const cardElement = this._imageTemplate
@@ -39,7 +41,10 @@ export class Card {
     this._cardLikeButton = this._element.querySelector('.card__like');
     this._cardLikeButton.addEventListener('click', () => {
       // this._cardLikeButton.classList.toggle('card__like_active');
+      this._handleNewLike(this._user, this._data, this._cardLikeButton.classList)
       this.setLikes()
+      this._element.querySelector('.card__like-quantity').textContent =
+      this._likes.length;
       //  this._handleLikes(this._user, this._data, this._cardLikeButton.classList)
     });
   }
