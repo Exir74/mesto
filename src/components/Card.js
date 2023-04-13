@@ -40,17 +40,13 @@ export class Card {
       });
     this._cardLikeButton = this._element.querySelector('.card__like');
     this._cardLikeButton.addEventListener('click', () => {
-      // this._cardLikeButton.classList.toggle('card__like_active');
       this._handleNewLike(
         this._user,
         this._data,
         this._cardLikeButton
       );
-      // this._element.querySelector('.card__like-quantity').textContent =
-      // this._likes.length;
       this.setLikes();
 
-      //  this._handleLikes(this._user, this._data, this._cardLikeButton.classList)
     });
   }
   setLikes() {
@@ -72,7 +68,6 @@ export class Card {
       this._user
     );
     this._handleLikes(this._user, this._data);
-
     return this._element;
   }
 }

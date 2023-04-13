@@ -64,8 +64,7 @@ const createCard = (item, user) => {
       },
     },
     {
-      handleOwner: (control, element, a, b) => {
-        // if (a.owner ==b){
+      handleOwner: (control, element,) => {
         if (control === true) {
           element
             .querySelector('.card__trash')
