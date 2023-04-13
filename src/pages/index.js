@@ -65,7 +65,7 @@ const createCard = (item, user) => {
       },
     },
     {
-      handleOwner: (control, element, a,b) => {
+      handleOwner: (control, element, a, b) => {
         // if (a.owner ==b){
         if (control === true) {
           element
@@ -74,14 +74,36 @@ const createCard = (item, user) => {
         }
       },
     },
+    // {
+    //   handleLikes: (user, data, likeClassList) => {
+    //     if (likeClassList.value.includes('_active')) {
+
+    //     }
+    //     else{
+    //       api
+    //       .setLike(data._id, data.likes.push(user))
+    //       .then((result) => {
+    //         console.log(result);
+    //       });
+    //     }
+
+    //     // api.setLike(data._id, data.likes.push(user)).then((result)=>{
+
+    //     // })
+    //     // if (likeClassList.includes('card__like_active')){
+    //     //   console.log('a');
+    //     // }
+    //   },
+    // }
     {
-      handleLikes: (user,data, likeClassList)=>{
-        api.setLike(data._id, data.likes.push(user))
-        console.log((likeClassList.value));
-        // if (likeClassList.includes('card__like_active')){
-        //   console.log('a');
-        // }
-      }
+      handleLikes: (user, data) => {
+        data.likes.forEach((item) => {
+          if (item._id === user._id) {
+            card.setLikes();
+          }
+          console.log(item);
+        });
+      },
     }
   );
   const cardElement = card.generateCard();
@@ -107,7 +129,6 @@ api.getUserInformation().then((user) => {
 });
 function checkOwnerImage(user, element) {
   if (user._id === element.owner._id) {
-    console.log(element);
     element.control = true;
   } else {
     element.control = false;

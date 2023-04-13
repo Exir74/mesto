@@ -112,22 +112,27 @@ export class Api {
     });
   }
   setLike(cardId, newLikesArr) {
-    fetch(this.baseUrl + '/cards/' + cardId + '/likes', {
+    return fetch(this.baseUrl + '/cards/' + cardId + '/likes', {
       method: 'PUT',
       headers: {
         authorization: this.headers.authorization,
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-     //--------------????
-     likes: newLikesArr 
+        //--------------????
+        likes: newLikesArr,
       }),
-    }).then((res) => {
-      if (res.ok) {
-        return res.json();
-      }
-      return Promise.reject(`Ошибка: ${res.status}`);
-    });
+    })
+      .then((res) => {
+        if (res.ok) {
+          return res.json();
+        }
+        return Promise.reject(`Ошибка: ${res.status}`);
+      })
+      .then((result) => {
+        // console.log(result);
+        return result;
+      });
   }
   removeLike(cardId, newLikesArr) {
     fetch(this.baseUrl + '/cards/' + cardId + '/likes', {
@@ -136,8 +141,8 @@ export class Api {
         authorization: this.headers.authorization,
       },
       body: JSON.stringify({
-     //--------------????
-     likes: newLikesArr 
+        //--------------????
+        likes: newLikesArr,
       }),
     }).then((res) => {
       if (res.ok) {
