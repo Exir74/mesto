@@ -103,6 +103,7 @@ export class Api {
       method: 'DELETE',
       headers: {
         authorization: this.headers.authorization,
+        'Content-Type': 'application/json',
       },
     }).then((res) => {
       if (res.ok) {
@@ -111,17 +112,49 @@ export class Api {
       return Promise.reject(`Ошибка: ${res.status}`);
     });
   }
-  setLike(cardId, newLikesArr) {
+  setLike(cardId) {
     return fetch(this.baseUrl + '/cards/' + cardId + '/likes', {
       method: 'PUT',
       headers: {
         authorization: this.headers.authorization,
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({
-        //--------------????
-        likes: newLikesArr,
-      }),
+    })
+      .then((res) => {
+        if (res.ok) {
+          return res.json();
+        }
+        return Promise.reject(`Ошибка: ${res.status}`);
+      })
+      .then((result) => {
+        return result;
+      });
+  }
+  // removeLike(cardId, newLikesArr) {
+  //   return fetch(this.baseUrl + '/cards/' + cardId + '/likes', {
+  //     method: 'DELETE',
+  //     headers: {
+  //       authorization: this.headers.authorization,
+  //       // 'Content-Type': 'application/json',
+  //     },
+  //   })
+  //     .then((res) => {
+  //       if (res.ok) {
+  //         return res.json();
+  //       }
+  //       return Promise.reject(`Ошибка: ${res.status}`);
+  //     })
+  //     .then((result) => {
+  //       return result;
+  //     });
+  // }
+  removeLike(cardId) {
+    return fetch(this.baseUrl + '/cards/' + cardId + '/likes', {
+      method: 'DELETE',
+      headers: {
+        authorization: this.headers.authorization,
+        'Content-Type': 'application/json',
+      },
     })
       .then((res) => {
         if (res.ok) {
@@ -134,26 +167,5 @@ export class Api {
         return result;
       });
   }
-  removeLike(cardId, newLikesArr) {
-    return fetch(this.baseUrl + '/cards/' + cardId + '/likes', {
-      method: 'DELET',
-      headers: {
-        authorization: this.headers.authorization,
-        'Content-Type': 'application/json',
 
-      },
-      body: JSON.stringify({
-        //--------------????
-        likes: newLikesArr,
-      }),
-    }).then((res) => {
-      if (res.ok) {
-        return res.json();
-      }
-      return Promise.reject(`Ошибка: ${res.status}`);
-    })
-    .then((result)=>{
-      return result
-    });
-  }
 }

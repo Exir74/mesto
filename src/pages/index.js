@@ -47,7 +47,6 @@ const popupConfirm = new PopupWithConfirm(popupConfirmSelector, {
 });
 const popupImage = new PopupWithImage(imagePopup);
 const createCard = (item, user) => {
-  // console.log(user);
   const card = new Card(
     item,
     user,
@@ -74,53 +73,30 @@ const createCard = (item, user) => {
         }
       },
     },
-    // {
-    //   handleLikes: (user, data, likeClassList) => {
-    //     if (likeClassList.value.includes('_active')) {
-
-    //     }
-    //     else{
-    //       api
-    //       .setLike(data._id, data.likes.push(user))
-    //       .then((result) => {
-    //         console.log(result);
-    //       });
-    //     }
-
-    //     // api.setLike(data._id, data.likes.push(user)).then((result)=>{
-
-    //     // })
-    //     // if (likeClassList.includes('card__like_active')){
-    //     //   console.log('a');
-    //     // }
-    //   },
-    // }
     {
       handleLikes: (user, data) => {
         data.likes.forEach((item) => {
           if (item._id === user._id) {
             card.setLikes();
           }
-          console.log(item);
         });
       },
     },
     {
-      headleNewLike: (user, data, likeClassList) => {
-        if (likeClassList.value.includes('_active')) {
-          // api.removeLike(data._id, data.likes.filter((f)=>{return f !== user}))
-          // console.log(data.likes.filter((f)=>{return f !== user}));
-          data.likes.forEach(item=>{
-          // api.removeLike(data._id, data.likes.filter((f)=>{console.log(f)}))
-          console.log('ffffffffff',data.likes.filter((f)=>{return f !== user}));
-          console.log([item._id].includes(user._id));
-          })
-
+      headleNewLike: (user, data, likeButton) => {
+        if (likeButton.classList.value.includes('_active')) {
+          api.removeLike(data._id).then((item) => {
+            likeButton.parentNode.querySelector(
+              '.card__like-quantity'
+            ).textContent = item.likes.length;
+          });
         } else {
           api
             .setLike(data._id, data.likes.push(user))
-            .then((result) => {
-              console.log(result);
+            .then((item) => {
+              likeButton.parentNode.querySelector(
+                '.card__like-quantity'
+              ).textContent = item.likes.length;
             });
         }
       },
