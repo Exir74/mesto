@@ -15,12 +15,22 @@
       </header>
       <main class="main-content">
         <section class="profile">
-          <img
-            class="profile__avatar"
-            src="<%=require('../image/avatar.jpg')%>"
-            src=""
-            alt="Аватар"
-          />
+          <button type="button" class="profile__edit">
+            <img
+              class="profile__avatar"
+              src="<%=require('../image/avatar.jpg')%>"
+              src=""
+              alt="Аватар"
+            />
+            <div class="profile__avatar-wrapper hover">
+              <img
+                class="profile__edit-avatar hover"
+                src="<%=require('../image/editAvatar.png')%>"
+                src=""
+                alt="Аватар"
+              />
+            </div>
+          </button>
           <div class="profile__info">
             <h1 class="profile__name">Жак-Ив Кусто</h1>
             <p class="profile__subtitle">Исследователь океана</p>
@@ -191,11 +201,7 @@
               alt="закрыть"
             />
           </button>
-          <form
-            method="get"
-            name="confirm-form"
-            class="popup__form"
-          >
+          <form method="get" name="confirm-form" class="popup__form">
             <h3 class="popup__title">Вы уверены?</h3>
             <button type="submit" class="popup__button">Да</button>
           </form>
