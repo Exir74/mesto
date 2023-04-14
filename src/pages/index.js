@@ -144,7 +144,8 @@ const popupImageAdd = new PopupWithForm(cardPopup, {
 imageAddButton.addEventListener('click', () => {
   popupImageAdd.open();
   popupImageAdd.setEventListeners();
-  validatorAddCard.toggleButton();
+  validatorEditProfile.removeValidationErrors()
+  validatorEditProfile.toggleButton();
 });
 
 const userInfoPopup = new UserInfo({ profileName, profileSubtitle });
@@ -172,6 +173,7 @@ profileEditButton.addEventListener('click', () => {
   profileSubtitlePopup.value = userData.subtitle;
   popupEditForm.open();
   popupEditForm.setEventListeners();
+  validatorEditProfile.removeValidationErrors()
   validatorEditProfile.toggleButton();
 });
 
