@@ -141,11 +141,11 @@ const popupImageAdd = new PopupWithForm(cardPopup, {
   },
 });
 
+popupImageAdd.setEventListeners();
 imageAddButton.addEventListener('click', () => {
   popupImageAdd.open();
-  popupImageAdd.setEventListeners();
-  validatorEditProfile.removeValidationErrors()
-  validatorEditProfile.toggleButton();
+  validatorAddCard.removeValidationErrors()
+  validatorAddCard.toggleButton();
 });
 
 const userInfoPopup = new UserInfo({ profileName, profileSubtitle });
