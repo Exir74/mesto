@@ -49,11 +49,17 @@ export const closeButtons =
   document.querySelectorAll('.popup__close');
 export const closeButton = '.popup__close';
 export const profileName = page.querySelector('.profile__name');
-export const profileSubtitle = page.querySelector('.profile__subtitle');
+export const profileSubtitle = page.querySelector(
+  '.profile__subtitle'
+);
 export const popupPlaceName = 'popup-place-name';
 export const popupPlaceUrl = 'popup-place-url';
-export const profileNamePopup = document.querySelector('.popup__input_type_name');
-export const profileSubtitlePopup = document.querySelector('.popup__input_type_subtitle');
+export const profileNamePopup = document.querySelector(
+  '.popup__input_type_name'
+);
+export const profileSubtitlePopup = document.querySelector(
+  '.popup__input_type_subtitle'
+);
 export const placeName = document.querySelector(
   '.popup__input_type_place-name'
 );
@@ -76,6 +82,10 @@ export const cardCaption = '.card__caption';
 export const popupForm = '.popup__form';
 export const popupButton = '.popup__button';
 export const popupInput = '.popup__input';
-export const popupName = 'popup-name' 
-export const poppupSubtitle = 'popup-subtitle'
-export const popupConfirmSelector = page.querySelector('.confirm-popup')
+export const popupName = 'popup-name';
+export const poppupSubtitle = 'popup-subtitle';
+export const popupConfirmSelector =
+  page.querySelector('.confirm-popup');
+export const avatarEditButton = page.querySelector('.profile__edit');
+export const avatarPopup = page.querySelector('.avatar-popup');
+export const avatarUrl = 'popup-avatar-url';
