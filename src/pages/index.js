@@ -185,3 +185,8 @@ const validatorAddCard = new FormValidator(
 );
 validatorEditProfile.enableValidation();
 validatorAddCard.enableValidation();
+
+console.log(document.querySelector('.profile__edit'))
+document.querySelector('.profile__edit').addEventListener('click',()=>{
+console.log('yyyyyyees');
+})
