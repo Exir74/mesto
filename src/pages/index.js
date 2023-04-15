@@ -43,12 +43,15 @@ const api = new Api({
 });
 
 const popupConfirm = new PopupWithConfirm(popupConfirmSelector, {
-  handleConfirm: (item, id) => {
-    api.deleteUserCard(id).catch((err) => {
+  handleConfirm: (element) => {
+    api.deleteUserCard(element.getId())
+    .then((res)=>{
+      element.deleteCard();
+      popupConfirm.close();
+    })
+    .catch((err) => {
       console.log(err);
     });
-    item.remove();
-    popupConfirm.close();
   },
 });
 
@@ -60,8 +63,8 @@ const createCard = (item, user) => {
       popupImage.open(item);
     },
 
-    handleTrashClick: (item, id) => {
-      popupConfirm.open(item, id);
+    handleTrashClick: (item, id, element) => {
+      popupConfirm.open(item, id, element);
     },
 
     handleOwner: (element, isOwner) => {
@@ -101,12 +104,12 @@ const createCard = (item, user) => {
   const cardElement = card.generateCard();
   return cardElement;
 };
-const cardItem = new Section(
+const cardSection = new Section(
   {
     data: [],
     renderer: (item, user) => {
       const cardElement = createCard(item, user);
-      cardItem.addItem(cardElement);
+      cardSection.addItem(cardElement);
     },
   },
   cardContainer
@@ -118,7 +121,7 @@ Promise.all([api.getUserInformation(), api.getInitialCards()])
       subtitle: [user.about],
     });
     profileAvatarImage.src = user.avatar;
-    cardItem.renderItem(cards, user);
+    cardSection.renderItem(cards, user);
   })
   .catch((err) => {
     console.log(err);
@@ -131,7 +134,7 @@ const popupImageAdd = new PopupWithForm(cardPopup, {
       .addUserCard(name, link)
       .then((result) => {
         result.control = true;
-        cardItem.renderItem([result], result.owner);
+        cardSection.renderItem([result], result.owner);
       })
       .catch((reject) => {
         console.log(reject);

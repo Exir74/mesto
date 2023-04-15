@@ -7,15 +7,14 @@ export class PopupWithConfirm extends Popup {
     this._handleSubmit = this._handleSubmit.bind(this);
   }
 
-  open(item, id) {
-    this._item = item;
-    this._id = id;
+  open(element) {
+    this._element =element
     super.open();
   }
 
   _handleSubmit(event) {
     event.preventDefault();
-    this.handleConfirm(this._item, this._id);
+    this.handleConfirm(this._element);
   }
   setEventListeners() {
     super.setEventListeners();
