@@ -21,11 +21,7 @@ export class Api {
         return this._getResponseData(res);
       })
       .then((result) => {
-        // console.log(result);
         return result;
-      })
-      .catch((reject) => {
-        console.log(reject);
       });
   }
 
@@ -41,9 +37,6 @@ export class Api {
       })
       .then((result) => {
         return result;
-      })
-      .catch((reject) => {
-        console.log(reject);
       });
   }
 
@@ -58,13 +51,9 @@ export class Api {
         name: name,
         about: subtitle,
       }),
-    })
-      .then((res) => {
-        return this._getResponseData(res);
-      })
-      .catch((reject) => {
-        console.log(reject);
-      });
+    }).then((res) => {
+      return this._getResponseData(res);
+    });
   }
 
   addUserCard(name, link) {
@@ -85,9 +74,6 @@ export class Api {
       .then((result) => {
         return result;
       })
-      .catch((reject) => {
-        console.log(reject);
-      });
   }
   deleteUserCard(cardId) {
     return fetch(`${this.baseUrl}/cards/${cardId}`, {
@@ -127,7 +113,6 @@ export class Api {
         return this._getResponseData(res);
       })
       .then((result) => {
-        // console.log(result);
         return result;
       });
   }
@@ -145,8 +130,5 @@ export class Api {
       .then((res) => {
         return this._getResponseData(res);
       })
-      .catch((reject) => {
-        console.log(reject);
-      });
   }
 }

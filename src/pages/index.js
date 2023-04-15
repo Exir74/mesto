@@ -45,7 +45,9 @@ const api = new Api({
 const popupConfirm = new PopupWithConfirm(popupConfirmSelector, {
   handlePopupForm: (item, id) => {
     console.log();
-    api.deleteUserCard(id);
+    api.deleteUserCard(id).catch((err) => {
+      console.log(err);
+    });
     item.remove();
     popupConfirm.close();
   },
@@ -88,11 +90,16 @@ const createCard = (item, user) => {
     {
       headleNewLike: (user, data, likeButton) => {
         if (likeButton.classList.value.includes('_active')) {
-          api.removeLike(data._id).then((item) => {
-            likeButton.parentNode.querySelector(
-              '.card__like-quantity'
-            ).textContent = item.likes.length;
-          });
+          api
+            .removeLike(data._id)
+            .then((item) => {
+              likeButton.parentNode.querySelector(
+                '.card__like-quantity'
+              ).textContent = item.likes.length;
+            })
+            .catch((err) => {
+              console.log(err);
+            });
         } else {
           api
             .setLike(data._id, data.likes.push(user))
@@ -100,6 +107,9 @@ const createCard = (item, user) => {
               likeButton.parentNode.querySelector(
                 '.card__like-quantity'
               ).textContent = item.likes.length;
+            })
+            .catch((err) => {
+              console.log(err);
             });
         }
       },
@@ -161,10 +171,15 @@ function checkOwnerImage(user, element) {
 const popupImageAdd = new PopupWithForm(cardPopup, {
   hedlerPopupForm: (items) => {
     const { [popupPlaceName]: name, [popupPlaceUrl]: link } = items;
-    api.addUserCard(name, link).then((result) => {
-      result.control = true;
-      cardItem.renderItem([result], result.owner);
-    });
+    api
+      .addUserCard(name, link)
+      .then((result) => {
+        result.control = true;
+        cardItem.renderItem([result], result.owner);
+      })
+      .catch((reject) => {
+        console.log(reject);
+      });
     popupImageAdd.close();
   },
 });
@@ -181,12 +196,18 @@ const popupEditForm = new PopupWithForm(profilePopup, {
   hedlerPopupForm: (items) => {
     setSevingText(profilePopup);
     const { [popupName]: name, [poppupSubtitle]: subtitle } = items;
-    api.setUserInformation(name, subtitle);
+    api
+      .setUserInformation(name, subtitle)
+      .then((res) => {
+        popupEditForm.close();
+      })
+      .catch((err) => {
+        console.log(err);
+      });
     userInfoPopup.setUserInfo({
       name,
       subtitle,
     });
-    popupEditForm.close();
   },
 });
 profileEditButton.addEventListener('click', () => {
@@ -210,7 +231,9 @@ const popupEditAvatar = new PopupWithForm(avatarPopup, {
   hedlerPopupForm: (items) => {
     setSevingText(avatarPopup);
     const { [avatarUrl]: link } = items;
-    api.setUserAvatar(link);
+    api.setUserAvatar(link).catch((reject) => {
+      console.log(reject);
+    });
     profileAvatarImage.src = link;
     popupEditAvatar.close();
   },
