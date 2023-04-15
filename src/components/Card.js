@@ -31,7 +31,7 @@ export class Card {
     this._element
       .querySelector('.card__button')
       .addEventListener('click', () => {
-        this._handleCardClick(this._name, this._link);
+        this._handleCardClick();
       });
     this._element
       .querySelector('.card__trash')
@@ -45,20 +45,24 @@ export class Card {
         this._data,
         this._cardLikeButton
       );
-      this.setLikes();
+      this.toggleLike();
 
     });
   }
-  setLikes() {
+  toggleLike() {
     this._cardLikeButton.classList.toggle('card__like_active');
   }
+
+
+
   generateCard() {
     this._element = this._getTemplate();
     this._setListeners();
-    this._element.querySelector('.card__image').src = this._image;
+    this._cardImage = this._element.querySelector('.card__image')
+    this._cardImage.src = this._image;
     this._element.querySelector('.card__caption').textContent =
       this._name;
-    this._element.querySelector('.card__image').alt = this._name;
+      this._cardImage.alt = this._name;
     this._element.querySelector('.card__like-quantity').textContent =
       this._likes.length;
     this._handleOwner(
