@@ -43,7 +43,7 @@ const api = new Api({
 });
 
 const popupConfirm = new PopupWithConfirm(popupConfirmSelector, {
-  handlePopupForm: (item, id) => {
+  handleSubmit: (item, id) => {
     console.log();
     api.deleteUserCard(id).catch((err) => {
       console.log(err);
@@ -169,7 +169,7 @@ function checkOwnerImage(user, element) {
 }
 
 const popupImageAdd = new PopupWithForm(cardPopup, {
-  hedlerPopupForm: (items) => {
+  handleFormSubmit: (items) => {
     const { [popupPlaceName]: name, [popupPlaceUrl]: link } = items;
     api
       .addUserCard(name, link)

@@ -1,10 +1,10 @@
 import { Popup } from './Popup.js';
 
 export class PopupWithForm extends Popup {
-  constructor(popup, { hedlerPopupForm }) {
+  constructor(popup, { handleFormSubmit }) {
     super(popup);
-    this._handleFormSubmit = hedlerPopupForm;
-    this._headlerClickSubmit = this._headlerClickSubmit.bind(this);
+    this._handleFormSubmit = handleFormSubmit;
+    this._handleSubmit = this._handleSubmit.bind(this);
     this._popupForm = this._popup.querySelector('.popup__form');
     this._inputList =
       this._popupForm.querySelectorAll('.popup__input');
@@ -13,7 +13,7 @@ export class PopupWithForm extends Popup {
     super.close();
     this._popupForm.reset();
   }
-  _headlerClickSubmit(event) {
+  _handleSubmit(event) {
     event.preventDefault();
     this._handleFormSubmit(this._getInputValues());
   }
@@ -21,7 +21,7 @@ export class PopupWithForm extends Popup {
     super.setEventListeners();
     this._popupForm.addEventListener(
       'submit',
-      this._headlerClickSubmit
+      this._handleSubmit
     );
   }
 
