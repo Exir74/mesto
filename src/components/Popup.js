@@ -3,7 +3,7 @@ export class Popup {
     this._popup = popup;
     this._handleEscClose = this._handleEscClose.bind(this);
     this._handleCloseIcon = this._handleCloseIcon.bind(this);
-    this._hendleCloseOverlay = this._hendleCloseOverlay.bind(this);
+    this._handleCloseOverlay = this._handleCloseOverlay.bind(this);
   }
   open() {
     this._popup.classList.add('popup_open');
@@ -14,7 +14,7 @@ export class Popup {
       this.close();
     }
   }
-  _hendleCloseOverlay(event) {
+  _handleCloseOverlay(event) {
     if (event.target === event.currentTarget) {
       this.close();
     }
@@ -33,6 +33,6 @@ export class Popup {
       .addEventListener('click', this._handleCloseIcon);
     this._popup
       .querySelector('.popup__content')
-      .addEventListener('mousedown', this._hendleCloseOverlay);
+      .addEventListener('mousedown', this._handleCloseOverlay);
   }
 }

@@ -45,11 +45,12 @@ const api = new Api({
 const popupConfirm = new PopupWithConfirm(popupConfirmSelector, {
   handlePopupForm: (item, id) => {
     console.log();
-    api.deletUserCard(id);
+    api.deleteUserCard(id);
     item.remove();
     popupConfirm.close();
   },
 });
+popupConfirm.setEventListeners();
 const popupImage = new PopupWithImage(imagePopup);
 const createCard = (item, user) => {
   const card = new Card(
@@ -59,13 +60,11 @@ const createCard = (item, user) => {
     {
       handleCardClick: () => {
         popupImage.open(item);
-        popupImage.setEventListeners();
       },
     },
     {
       handleTrashClick: (item, id) => {
         popupConfirm.open(item, id);
-        popupConfirm.setEventListeners();
       },
     },
     {
@@ -106,6 +105,8 @@ const createCard = (item, user) => {
       },
     }
   );
+  popupImage.setEventListeners();
+
   const cardElement = card.generateCard();
   return cardElement;
 };
@@ -119,19 +120,36 @@ const cardItem = new Section(
   },
   cardContainer
 );
-api.getUserInformation().then((user) => {
-  userInfoPopup.setUserInfo({
-    name: [user.name],
-    subtitle: [user.about],
-  });
-  profileAvatarImage.src = user.avatar;
-  api.getInitialCards().then((result) => {
-    result.forEach((element) => {
+// api.getUserInformation().then((user) => {
+//   userInfoPopup.setUserInfo({
+//     name: [user.name],
+//     subtitle: [user.about],
+//   });
+//   profileAvatarImage.src = user.avatar;
+//   api.getInitialCards().then((result) => {
+//     result.forEach((element) => {
+//       checkOwnerImage(user, element);
+//     });
+//     cardItem.renderItem(result, user);
+//   });
+// });
+
+Promise.all([api.getUserInformation(), api.getInitialCards()])
+  .then(([user, cards]) => {
+    userInfoPopup.setUserInfo({
+      name: [user.name],
+      subtitle: [user.about],
+    });
+    profileAvatarImage.src = user.avatar;
+    cards.forEach((element) => {
       checkOwnerImage(user, element);
     });
-    cardItem.renderItem(result, user);
+    cardItem.renderItem(cards, user);
+  })
+  .catch((err) => {
+    console.log(err);
   });
-});
+
 function checkOwnerImage(user, element) {
   if (user._id === element.owner._id) {
     element.control = true;
@@ -177,10 +195,10 @@ profileEditButton.addEventListener('click', () => {
   profileNamePopup.value = userData.name;
   profileSubtitlePopup.value = userData.subtitle;
   popupEditForm.open();
-  popupEditForm.setEventListeners();
   validatorEditProfile.removeValidationErrors();
   validatorEditProfile.toggleButton();
 });
+popupEditForm.setEventListeners();
 function setSevingText(popup) {
   popup.querySelector(popupButton).textContent = 'Сохранение...';
 }
@@ -197,11 +215,11 @@ const popupEditAvatar = new PopupWithForm(avatarPopup, {
     popupEditAvatar.close();
   },
 });
+popupEditAvatar.setEventListeners();
 
 avatarEditButton.addEventListener('click', () => {
   setDefaultSevingText(avatarPopup);
   popupEditAvatar.open();
-  popupEditAvatar.setEventListeners();
   validatorAvatar.removeValidationErrors();
   validatorAvatar.toggleButton();
 });

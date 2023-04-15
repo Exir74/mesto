@@ -3,6 +3,12 @@ export class Api {
     this.baseUrl = options.baseUrl;
     this.headers = options.headers;
   }
+  _getResponseData(res) {
+    if (!res.ok) {
+      return Promise.reject(`Ошибка: ${res.status}`);
+    }
+    return res.json();
+  }
 
   getUserInformation() {
     return fetch(`${this.baseUrl}/users/me`, {
@@ -12,10 +18,7 @@ export class Api {
       },
     })
       .then((res) => {
-        if (res.ok) {
-          return res.json();
-        }
-        return Promise.reject(`Ошибка: ${res.status}`);
+        return this._getResponseData(res);
       })
       .then((result) => {
         // console.log(result);
@@ -34,10 +37,7 @@ export class Api {
       },
     })
       .then((res) => {
-        if (res.ok) {
-          return res.json();
-        }
-        return Promise.reject(`Ошибка: ${res.status}`);
+        return this._getResponseData(res);
       })
       .then((result) => {
         return result;
@@ -60,10 +60,7 @@ export class Api {
       }),
     })
       .then((res) => {
-        if (res.ok) {
-          return res.json();
-        }
-        return Promise.reject(`Ошибка: ${res.status}`);
+        return this._getResponseData(res);
       })
       .catch((reject) => {
         console.log(reject);
@@ -83,10 +80,7 @@ export class Api {
       }),
     })
       .then((res) => {
-        if (res.ok) {
-          return res.json();
-        }
-        return Promise.reject(`Ошибка: ${res.status}`);
+        return this._getResponseData(res);
       })
       .then((result) => {
         return result;
@@ -95,7 +89,7 @@ export class Api {
         console.log(reject);
       });
   }
-  deletUserCard(cardId) {
+  deleteUserCard(cardId) {
     return fetch(`${this.baseUrl}/cards/${cardId}`, {
       method: 'DELETE',
       headers: {
@@ -103,10 +97,7 @@ export class Api {
         'Content-Type': 'application/json',
       },
     }).then((res) => {
-      if (res.ok) {
-        return res.json();
-      }
-      return Promise.reject(`Ошибка: ${res.status}`);
+      return this._getResponseData(res);
     });
   }
   setLike(cardId) {
@@ -118,10 +109,7 @@ export class Api {
       },
     })
       .then((res) => {
-        if (res.ok) {
-          return res.json();
-        }
-        return Promise.reject(`Ошибка: ${res.status}`);
+        return this._getResponseData(res);
       })
       .then((result) => {
         return result;
@@ -136,10 +124,7 @@ export class Api {
       },
     })
       .then((res) => {
-        if (res.ok) {
-          return res.json();
-        }
-        return Promise.reject(`Ошибка: ${res.status}`);
+        return this._getResponseData(res);
       })
       .then((result) => {
         // console.log(result);
@@ -158,10 +143,7 @@ export class Api {
       }),
     })
       .then((res) => {
-        if (res.ok) {
-          return res.json();
-        }
-        return Promise.reject(`Ошибка: ${res.status}`);
+        return this._getResponseData(res);
       })
       .catch((reject) => {
         console.log(reject);
