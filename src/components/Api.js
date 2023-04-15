@@ -169,7 +169,6 @@ export class Api {
       });
   }
   setUserAvatar(link) {
-    console.log(link);
     return fetch(this.baseUrl + '/users/me/avatar', {
       method: 'PATCH',
       headers: {
