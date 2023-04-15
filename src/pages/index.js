@@ -119,6 +119,11 @@ const cardItem = new Section(
   cardContainer
 );
 api.getUserInformation().then((user) => {
+  userInfoPopup.setUserInfo({
+    name: [user.name],
+    subtitle: [user.about],
+  });
+  profileAvatarImage.src = user.avatar
   api.getInitialCards().then((result) => {
     result.forEach((element) => {
       checkOwnerImage(user, element);
