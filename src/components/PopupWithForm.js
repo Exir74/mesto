@@ -3,14 +3,11 @@ import { Popup } from './Popup.js';
 export class PopupWithForm extends Popup {
   constructor(popup, { hedlerPopupForm }) {
     super(popup);
-    this._hedlerPopupForm = hedlerPopupForm;
+    this._handleFormSubmit = hedlerPopupForm;
     this._headlerClickSubmit = this._headlerClickSubmit.bind(this);
     this._popupForm = this._popup.querySelector('.popup__form');
     this._inputList =
       this._popupForm.querySelectorAll('.popup__input');
-  }
-  open() {
-    super.open();
   }
   close() {
     super.close();
@@ -18,7 +15,7 @@ export class PopupWithForm extends Popup {
   }
   _headlerClickSubmit(event) {
     event.preventDefault();
-    this._hedlerPopupForm(this._getInputValues());
+    this._handleFormSubmit(this._getInputValues());
   }
   setEventListeners() {
     super.setEventListeners();

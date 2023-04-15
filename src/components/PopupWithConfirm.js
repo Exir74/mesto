@@ -11,9 +11,7 @@ export class PopupWithConfirm extends Popup {
     this._id = id;
     super.open();
   }
-  close() {
-    super.close();
-  }
+
   _headlerClickSubmit(event) {
     event.preventDefault();
     console.log(this._id);
