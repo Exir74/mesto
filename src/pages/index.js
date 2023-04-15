@@ -161,7 +161,7 @@ imageAddButton.addEventListener('click', () => {
 const userInfoPopup = new UserInfo({ profileName, profileSubtitle });
 const popupEditForm = new PopupWithForm(profilePopup, {
   hedlerPopupForm: (items) => {
-    setSevingText(profilePopup)
+    setSevingText(profilePopup);
     const { [popupName]: name, [poppupSubtitle]: subtitle } = items;
     api.setUserInformation(name, subtitle);
     userInfoPopup.setUserInfo({
@@ -171,16 +171,8 @@ const popupEditForm = new PopupWithForm(profilePopup, {
     popupEditForm.close();
   },
 });
-api.getUserInformation().then((result) => {
-  userInfoPopup.setUserInfo({
-    name: [result.name],
-    subtitle: [result.about],
-  });
-  profileAvatarImage.src = result.avatar;
-});
-
 profileEditButton.addEventListener('click', () => {
-  setDefaultSevingText(profilePopup)
+  setDefaultSevingText(profilePopup);
   const userData = userInfoPopup.getUserInfo();
   profileNamePopup.value = userData.name;
   profileSubtitlePopup.value = userData.subtitle;
@@ -189,16 +181,16 @@ profileEditButton.addEventListener('click', () => {
   validatorEditProfile.removeValidationErrors();
   validatorEditProfile.toggleButton();
 });
-function setSevingText(popup){
-  popup.querySelector(popupButton).textContent = 'Сохранение...'
+function setSevingText(popup) {
+  popup.querySelector(popupButton).textContent = 'Сохранение...';
 }
-function setDefaultSevingText(popup){
-  popup.querySelector(popupButton).textContent = 'Сохранить'
+function setDefaultSevingText(popup) {
+  popup.querySelector(popupButton).textContent = 'Сохранить';
 }
 
 const popupEditAvatar = new PopupWithForm(avatarPopup, {
   hedlerPopupForm: (items) => {
-    setSevingText(avatarPopup)
+    setSevingText(avatarPopup);
     const { [avatarUrl]: link } = items;
     api.setUserAvatar(link);
     profileAvatarImage.src = link;
@@ -207,7 +199,7 @@ const popupEditAvatar = new PopupWithForm(avatarPopup, {
 });
 
 avatarEditButton.addEventListener('click', () => {
-  setDefaultSevingText(avatarPopup)
+  setDefaultSevingText(avatarPopup);
   popupEditAvatar.open();
   popupEditAvatar.setEventListeners();
   validatorAvatar.removeValidationErrors();
@@ -228,4 +220,4 @@ const validatorAvatar = new FormValidator(
 );
 validatorEditProfile.enableValidation();
 validatorAddCard.enableValidation();
-validatorAvatar.enableValidation()
+validatorAvatar.enableValidation();

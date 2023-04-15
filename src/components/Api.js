@@ -5,7 +5,7 @@ export class Api {
   }
 
   getUserInformation() {
-    return fetch(this.baseUrl + '/users/me', {
+    return fetch(`${this.baseUrl}/users/me`, {
       method: 'GET',
       headers: {
         authorization: this.headers.authorization,
@@ -27,7 +27,7 @@ export class Api {
   }
 
   getInitialCards() {
-    return fetch(this.baseUrl + '/cards', {
+    return fetch(`${this.baseUrl}/cards`, {
       method: 'GET',
       headers: {
         authorization: this.headers.authorization,
@@ -48,7 +48,7 @@ export class Api {
   }
 
   setUserInformation(name, subtitle) {
-    return fetch(this.baseUrl + '/users/me', {
+    return fetch(`${this.baseUrl}/users/me`, {
       method: 'PATCH',
       headers: {
         authorization: this.headers.authorization,
@@ -71,7 +71,7 @@ export class Api {
   }
 
   addUserCard(name, link) {
-    return fetch(this.baseUrl + '/cards', {
+    return fetch(`${this.baseUrl}/cards`, {
       method: 'POST',
       headers: {
         authorization: this.headers.authorization,
@@ -96,7 +96,7 @@ export class Api {
       });
   }
   deletUserCard(cardId) {
-    fetch(this.baseUrl + '/cards/' + cardId, {
+    return fetch(`${this.baseUrl}/cards/${cardId}`, {
       method: 'DELETE',
       headers: {
         authorization: this.headers.authorization,
@@ -128,7 +128,7 @@ export class Api {
       });
   }
   removeLike(cardId) {
-    return fetch(this.baseUrl + '/cards/' + cardId + '/likes', {
+    return fetch(`${this.baseUrl}/cards/${cardId}/likes`, {
       method: 'DELETE',
       headers: {
         authorization: this.headers.authorization,
@@ -147,7 +147,7 @@ export class Api {
       });
   }
   setUserAvatar(link) {
-    return fetch(this.baseUrl + '/users/me/avatar', {
+    return fetch(`${this.baseUrl}/users/me/avatar`, {
       method: 'PATCH',
       headers: {
         authorization: this.headers.authorization,
