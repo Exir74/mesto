@@ -1,29 +1,4 @@
-export const initialCards = [
-  {
-    name: 'Архыз',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg',
-  },
-  {
-    name: 'Челябинская область',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg',
-  },
-  {
-    name: 'Иваново',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg',
-  },
-  {
-    name: 'Камчатка',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg',
-  },
-  {
-    name: 'Холмогорский район',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg',
-  },
-  {
-    name: 'Байкал',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg',
-  },
-];
+
 export const formValidationConfig = {
   formSelector: '.popup__form',
   inputSelector: '.popup__input',
@@ -49,11 +24,17 @@ export const closeButtons =
   document.querySelectorAll('.popup__close');
 export const closeButton = '.popup__close';
 export const profileName = page.querySelector('.profile__name');
-export const profileSubtitle = page.querySelector('.profile__subtitle');
+export const profileSubtitle = page.querySelector(
+  '.profile__subtitle'
+);
 export const popupPlaceName = 'popup-place-name';
 export const popupPlaceUrl = 'popup-place-url';
-export const profileNamePopup = document.querySelector('.popup__input_type_name');
-export const profileSubtitlePopup = document.querySelector('.popup__input_type_subtitle');
+export const profileNamePopup = document.querySelector(
+  '.popup__input_type_name'
+);
+export const profileSubtitlePopup = document.querySelector(
+  '.popup__input_type_subtitle'
+);
 export const placeName = document.querySelector(
   '.popup__input_type_place-name'
 );
@@ -62,6 +43,7 @@ export const placeUrl = document.querySelector(
 );
 export const profileForm = document.forms['profile-form'];
 export const cardForm = document.forms['card-form'];
+export const avatarForm = document.forms['avatar-form'];
 export const cards = page.querySelector('.cards');
 export const cardContainer = '.cards';
 export const imagePopup = page.querySelector('.image-popup');
@@ -76,5 +58,11 @@ export const cardCaption = '.card__caption';
 export const popupForm = '.popup__form';
 export const popupButton = '.popup__button';
 export const popupInput = '.popup__input';
-export const popupName = 'popup-name' 
-export const poppupSubtitle = 'popup-subtitle'
+export const popupName = 'popup-name';
+export const poppupSubtitle = 'popup-subtitle';
+export const popupConfirmSelector =
+  page.querySelector('.confirm-popup');
+export const avatarEditButton = page.querySelector('.profile__edit');
+export const avatarPopup = page.querySelector('.avatar-popup');
+export const avatarUrl = 'popup-avatar-url';
+export const profileAvatarImage = page.querySelector('.profile__avatar')
