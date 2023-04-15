@@ -55,55 +55,47 @@ const popupConfirm = new PopupWithConfirm(popupConfirmSelector, {
 popupConfirm.setEventListeners();
 const popupImage = new PopupWithImage(imagePopup);
 const createCard = (item, user) => {
-  const card = new Card(
-    item,
-    user,
-    imageTemplate,
-    {
-      handleCardClick: () => {
-        popupImage.open(item);
-      },
+  const card = new Card(item, user, imageTemplate, {
+    handleCardClick: () => {
+      popupImage.open(item);
     },
-    {
-      handleTrashClick: (item, id) => {
-        popupConfirm.open(item, id);
-      },
+
+    handleTrashClick: (item, id) => {
+      popupConfirm.open(item, id);
     },
-    {
-      handleOwner: (element, isOwner) => {
-        if (isOwner) {
-          element
-            .querySelector('.card__trash')
-            .classList.add('card__trash_active');
-        }
-      },
+
+    handleOwner: (element, isOwner) => {
+      if (isOwner) {
+        element
+          .querySelector('.card__trash')
+          .classList.add('card__trash_active');
+      }
     },
-    {
-      handleLikeChange: (cardId) => {
-        if (!card.isLiked()) {
-          api
-            .setLike(cardId)
-            .then((cardData) => {
-              console.log(cardData);
-              card.updateLikes(cardData.likes);
-            })
-            .catch((err) => {
-              console.log(err);
-            });
-        } else {
-          api
-            .removeLike(cardId)
-            .then((cardData) => {
-              console.log(cardData);
-              card.updateLikes(cardData.likes);
-            })
-            .catch((err) => {
-              console.log(err);
-            });
-        }
-      },
-    }
-  );
+
+    handleLikeChange: (cardId) => {
+      if (!card.isLiked()) {
+        api
+          .setLike(cardId)
+          .then((cardData) => {
+            console.log(cardData);
+            card.updateLikes(cardData.likes);
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      } else {
+        api
+          .removeLike(cardId)
+          .then((cardData) => {
+            console.log(cardData);
+            card.updateLikes(cardData.likes);
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      }
+    },
+  });
   popupImage.setEventListeners();
 
   const cardElement = card.generateCard();

@@ -3,10 +3,12 @@ export class Card {
     data,
     user,
     imageTemplate,
-    { handleCardClick },
-    { handleTrashClick },
-    { handleOwner },
-    { handleLikeChange }
+    {
+      handleCardClick,
+      handleTrashClick,
+      handleOwner,
+      handleLikeChange,
+    }
   ) {
     this._image = data.link;
     this._name = data.name;
