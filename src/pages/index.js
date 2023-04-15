@@ -192,7 +192,8 @@ const popupEditAvatar = new PopupWithForm(avatarPopup, {
       });
       // profileAvatarImage.src = result.avatar
     
-
+ 
+      
     // popupEditAvatar.close();
   },
 });
