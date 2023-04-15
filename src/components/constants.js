@@ -89,3 +89,4 @@ export const popupConfirmSelector =
 export const avatarEditButton = page.querySelector('.profile__edit');
 export const avatarPopup = page.querySelector('.avatar-popup');
 export const avatarUrl = 'popup-avatar-url';
+export const profileAvatarImage = page.querySelector('.profile__avatar')

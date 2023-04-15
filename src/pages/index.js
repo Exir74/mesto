@@ -22,7 +22,8 @@ import {
   popupConfirmSelector,
   avatarEditButton,
   avatarPopup,
-  avatarUrl
+  avatarUrl,
+  profileAvatarImage
 } from '../components/constants.js';
 import { Card } from '../components/Card.js';
 import { FormValidator } from '../components/FormValidator.js';
@@ -168,6 +169,7 @@ api.getUserInformation().then((result) => {
     name: [result.name],
     subtitle: [result.about],
   });
+  profileAvatarImage.src = result.avatar
 });
 
 profileEditButton.addEventListener('click', () => {
@@ -184,9 +186,14 @@ profileEditButton.addEventListener('click', () => {
 const popupEditAvatar = new PopupWithForm(avatarPopup, {
   hedlerPopupForm: (items) => {
     const { [avatarUrl]: link, } = items;
+    api.getUserInformation().then((result) => {
+      console.log(link)
+        api.setUserAvatar(result.name,result.about,link);
+      });
+      // profileAvatarImage.src = result.avatar
     
 
-    popupEditAvatar.close();
+    // popupEditAvatar.close();
   },
 });
 
@@ -205,8 +212,3 @@ const validatorAddCard = new FormValidator(
 );
 validatorEditProfile.enableValidation();
 validatorAddCard.enableValidation();
-
-// console.log(document.querySelector('.profile__edit'))
-// document.querySelector('.profile__edit').addEventListener('click',()=>{
-// console.log('yyyyyyees');
-// })

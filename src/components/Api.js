@@ -18,6 +18,7 @@ export class Api {
         return Promise.reject(`Ошибка: ${res.status}`);
       })
       .then((result) => {
+        console.log(result);
         return result;
       })
       .catch((reject) => {
@@ -48,7 +49,7 @@ export class Api {
       });
   }
 
-  setUserInformation(name, subtitle) {
+  setUserInformation(name, subtitle,) {
     return fetch(this.baseUrl + '/users/me', {
       method: 'PATCH',
       headers: {
@@ -165,6 +166,29 @@ export class Api {
       .then((result) => {
         // console.log(result);
         return result;
+      });
+  }
+  setUserAvatar(name,about,link) {
+    return fetch(this.baseUrl + '/users/me', {
+      method: 'PATCH',
+      headers: {
+        authorization: this.headers.authorization,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        name: name,
+        about: about,
+        avatar: link
+      }),
+    })
+      .then((res) => {
+        if (res.ok) {
+          return res.json();
+        }
+        return Promise.reject(`Ошибка: ${res.status}`);
+      })
+      .catch((reject) => {
+        console.log(reject);
       });
   }
 
