@@ -8,7 +8,6 @@ export class UserInfo {
       this._profileName.textContent = name;
       this._profileSubtitle.textContent = subtitle;
   }
-
   getUserInfo() {
     const userData = {
       name: this._profileName.textContent,

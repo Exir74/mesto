@@ -152,7 +152,7 @@ imageAddButton.addEventListener('click', () => {
 
 const userInfoPopup = new UserInfo({ profileName, profileSubtitle });
 const popupEditForm = new PopupWithForm(profilePopup, {
-  hedlerPopupForm: (items) => {
+  handleFormSubmit: (items) => {
     setSevingText(profilePopup);
     const { [popupName]: name, [poppupSubtitle]: subtitle } = items;
     api
@@ -187,7 +187,7 @@ function setDefaultSevingText(popup) {
 }
 
 const popupEditAvatar = new PopupWithForm(avatarPopup, {
-  hedlerPopupForm: (items) => {
+  handleFormSubmit: (items) => {
     setSevingText(avatarPopup);
     const { [avatarUrl]: link } = items;
     api.setUserAvatar(link).catch((reject) => {
