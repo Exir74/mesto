@@ -44,14 +44,15 @@ const api = new Api({
 
 const popupConfirm = new PopupWithConfirm(popupConfirmSelector, {
   handleConfirm: (element) => {
-    api.deleteUserCard(element.getId())
-    .then((res)=>{
-      element.deleteCard();
-      popupConfirm.close();
-    })
-    .catch((err) => {
-      console.log(err);
-    });
+    api
+      .deleteUserCard(element.getId())
+      .then((res) => {
+        element.deleteCard();
+        popupConfirm.close();
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   },
 });
 
@@ -120,7 +121,7 @@ Promise.all([api.getUserInformation(), api.getInitialCards()])
       name: [user.name],
       subtitle: [user.about],
     });
-    profileAvatarImage.src = user.avatar;
+    userInfoPopup.setAvatar({ avatar: [user.avatar] });
     cardSection.renderItem(cards, user);
   })
   .catch((err) => {
@@ -135,11 +136,11 @@ const popupImageAdd = new PopupWithForm(cardPopup, {
       .then((result) => {
         result.control = true;
         cardSection.renderItem([result], result.owner);
+        popupImageAdd.close();
       })
       .catch((reject) => {
         console.log(reject);
       });
-    popupImageAdd.close();
   },
 });
 
@@ -150,26 +151,33 @@ imageAddButton.addEventListener('click', () => {
   validatorAddCard.toggleButton();
 });
 
-const userInfoPopup = new UserInfo({ profileName, profileSubtitle });
+const userInfoPopup = new UserInfo({
+  profileName,
+  profileSubtitle,
+  profileAvatarImage,
+});
 const popupEditForm = new PopupWithForm(profilePopup, {
   handleFormSubmit: (items) => {
-    setSevingText(profilePopup);
+    popupEditForm.setSavingText(profilePopup);
     const { [popupName]: name, [poppupSubtitle]: subtitle } = items;
     api
       .setUserInformation(name, subtitle)
       .then((res) => {
+        userInfoPopup.setUserInfo({
+          name,
+          subtitle,
+        });
         popupEditForm.close();
       })
       .catch((err) => {
         console.log(err);
-      });
-    userInfoPopup.setUserInfo({
-      name,
-      subtitle,
-    });
+      })
+      .finally(()=>{
+        popupEditForm.setDefaultSavingText()
+      })
   },
 });
-profileEditButton.addEventListener('click', () => {
+const handlerProfileEditButton = () => {
   setDefaultSevingText(profilePopup);
   const userData = userInfoPopup.getUserInfo();
   profileNamePopup.value = userData.name;
@@ -177,9 +185,10 @@ profileEditButton.addEventListener('click', () => {
   popupEditForm.open();
   validatorEditProfile.removeValidationErrors();
   validatorEditProfile.toggleButton();
-});
+};
+profileEditButton.addEventListener('click', handlerProfileEditButton);
 popupEditForm.setEventListeners();
-function setSevingText(popup) {
+function setSavingText(popup) {
   popup.querySelector(popupButton).textContent = 'Сохранение...';
 }
 function setDefaultSevingText(popup) {
@@ -188,7 +197,7 @@ function setDefaultSevingText(popup) {
 
 const popupEditAvatar = new PopupWithForm(avatarPopup, {
   handleFormSubmit: (items) => {
-    setSevingText(avatarPopup);
+    setSavingText(avatarPopup);
     const { [avatarUrl]: link } = items;
     api.setUserAvatar(link).catch((reject) => {
       console.log(reject);
@@ -198,13 +207,13 @@ const popupEditAvatar = new PopupWithForm(avatarPopup, {
   },
 });
 popupEditAvatar.setEventListeners();
-
-avatarEditButton.addEventListener('click', () => {
+const handlerAvatarEditButton = () => {
   setDefaultSevingText(avatarPopup);
   popupEditAvatar.open();
   validatorAvatar.removeValidationErrors();
   validatorAvatar.toggleButton();
-});
+};
+avatarEditButton.addEventListener('click', handlerAvatarEditButton);
 
 const validatorEditProfile = new FormValidator(
   formValidationConfig,
