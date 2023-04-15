@@ -25,7 +25,7 @@ import {
   profileAvatarImage,
   avatarForm,
   popupButton,
-} from '../components/constants.js';
+} from '../utils/constants.js';
 import { Card } from '../components/Card.js';
 import { FormValidator } from '../components/FormValidator.js';
 import { UserInfo } from '../components/UserInfo.js';
