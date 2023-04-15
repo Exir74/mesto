@@ -6,8 +6,7 @@ export class Card {
     { handleCardClick },
     { handleTrashClick },
     { handleOwner },
-    { handleLikes },
-    { headleNewLike }
+    { handleLikeChange }
   ) {
     this._image = data.link;
     this._name = data.name;
@@ -18,8 +17,7 @@ export class Card {
     this._data = data;
     this._user = user;
     this._handleOwner = handleOwner;
-    this._handleLikes = handleLikes;
-    this._handleNewLike = headleNewLike;
+    this._handleLikeChange = handleLikeChange;
   }
   _getTemplate() {
     const cardElement = this._imageTemplate
@@ -40,13 +38,7 @@ export class Card {
       });
     this._cardLikeButton = this._element.querySelector('.card__like');
     this._cardLikeButton.addEventListener('click', () => {
-      this._handleNewLike(
-        this._user,
-        this._data,
-        this._cardLikeButton
-      );
-      this.toggleLike();
-      console.log(this.checkOwner());
+      this._handleLikeChange(this._data._id);
     });
   }
   toggleLike() {
@@ -57,10 +49,22 @@ export class Card {
     return this._user._id === this._data.owner._id;
   }
 
-  updateLikes(l){
-
+  updateLikes(likes) {
+    this.toggleLike();
+    this._likeQuantity.textContent = likes.length;
   }
 
+  isLiked() {
+    return this._element.querySelector('.card__like_active');
+  }
+  _checkLike() {
+    this._likes.forEach((item) => {
+      if (item._id === this._user._id) {
+        console.log(item._id === this._user);
+        this.updateLikes(this._likes);
+      }
+    });
+  }
   generateCard() {
     this._element = this._getTemplate();
     this._setListeners();
@@ -69,10 +73,13 @@ export class Card {
     this._element.querySelector('.card__caption').textContent =
       this._name;
     this._cardImage.alt = this._name;
+    this._likeQuantity = this._element.querySelector(
+      '.card__like-quantity'
+    );
     this._element.querySelector('.card__like-quantity').textContent =
       this._likes.length;
     this._handleOwner(this._element, this._checkOwner());
-    this._handleLikes(this._user, this._data);
+    this._checkLike();
     return this._element;
   }
 }

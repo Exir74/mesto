@@ -79,41 +79,23 @@ const createCard = (item, user) => {
       },
     },
     {
-      handleLikes: (user, data) => {
-        data.likes.forEach((item) => {
-          if (item._id === user._id) {
-            card.toggleLike();
-          }
-        });
-
-
-        // api
-        //   .setLike(card.isLiked()) // Состояние текущего лайка получаем при помощи вызова публичного метода isLiked
-        //   .then((cardData) => {
-        //     card.updateLikes(cardData.likes); // updateLikes устанавливает новое количество лайков и обновляет состояние кнопки
-        //   });
-      },
-    },
-    {
-      headleNewLike: (user, data, likeButton) => {
-        if (likeButton.classList.value.includes('_active')) {
+      handleLikeChange: (cardId) => {
+        if (!card.isLiked()) {
           api
-            .removeLike(data._id)
-            .then((item) => {
-              likeButton.parentNode.querySelector(
-                '.card__like-quantity'
-              ).textContent = item.likes.length;
+            .setLike(cardId)
+            .then((cardData) => {
+              console.log(cardData);
+              card.updateLikes(cardData.likes);
             })
             .catch((err) => {
               console.log(err);
             });
         } else {
           api
-            .setLike(data._id, data.likes.push(user))
-            .then((item) => {
-              likeButton.parentNode.querySelector(
-                '.card__like-quantity'
-              ).textContent = item.likes.length;
+            .removeLike(cardId)
+            .then((cardData) => {
+              console.log(cardData);
+              card.updateLikes(cardData.likes);
             })
             .catch((err) => {
               console.log(err);
@@ -137,20 +119,6 @@ const cardItem = new Section(
   },
   cardContainer
 );
-// api.getUserInformation().then((user) => {
-//   userInfoPopup.setUserInfo({
-//     name: [user.name],
-//     subtitle: [user.about],
-//   });
-//   profileAvatarImage.src = user.avatar;
-//   api.getInitialCards().then((result) => {
-//     result.forEach((element) => {
-//       checkOwnerImage(user, element);
-//     });
-//     cardItem.renderItem(result, user);
-//   });
-// });
-
 Promise.all([api.getUserInformation(), api.getInitialCards()])
   .then(([user, cards]) => {
     userInfoPopup.setUserInfo({
@@ -158,22 +126,11 @@ Promise.all([api.getUserInformation(), api.getInitialCards()])
       subtitle: [user.about],
     });
     profileAvatarImage.src = user.avatar;
-    // cards.forEach((element) => {
-    //   checkOwnerImage(user, element);
-    // });
     cardItem.renderItem(cards, user);
   })
   .catch((err) => {
     console.log(err);
   });
-
-// function checkOwnerImage(user, element) {
-//   if (user._id === element.owner._id) {
-//     element.control = true;
-//   } else {
-//     element.control = false;
-//   }
-// }
 
 const popupImageAdd = new PopupWithForm(cardPopup, {
   handleFormSubmit: (items) => {
