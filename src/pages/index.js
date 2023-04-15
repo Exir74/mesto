@@ -43,8 +43,7 @@ const api = new Api({
 });
 
 const popupConfirm = new PopupWithConfirm(popupConfirmSelector, {
-  handleSubmit: (item, id) => {
-    console.log();
+  handleConfirm: (item, id) => {
     api.deleteUserCard(id).catch((err) => {
       console.log(err);
     });
@@ -52,6 +51,9 @@ const popupConfirm = new PopupWithConfirm(popupConfirmSelector, {
     popupConfirm.close();
   },
 });
+
+
+
 popupConfirm.setEventListeners();
 const popupImage = new PopupWithImage(imagePopup);
 const createCard = (item, user) => {
