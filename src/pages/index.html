@@ -15,11 +15,19 @@
       </header>
       <main class="main-content">
         <section class="profile">
-          <img
-            class="profile__avatar"
-            src="<%=require('../image/avatar.jpg')%>"
-            alt="Аватар"
-          />
+          <button type="button" class="profile__edit">
+            <img
+              class="profile__avatar"
+              alt="Аватар"
+            />
+            <div class="profile__avatar-wrapper hover">
+              <img
+                class="profile__edit-avatar hover"
+                src="<%=require('../image/editAvatar.png')%>"
+                alt="Аватар"
+              />
+            </div>
+          </button>
           <div class="profile__info">
             <h1 class="profile__name">Жак-Ив Кусто</h1>
             <p class="profile__subtitle">Исследователь океана</p>
@@ -34,7 +42,7 @@
           <button type="button" class="profile__add-button hover">
             <picture>
               <source
-              srcset="<%=require('../image/Add-Button-S.svg')%>"
+                srcset="<%=require('../image/Add-Button-S.svg')%>"
                 media="(min-width: 708px)"
               />
               <img
@@ -181,7 +189,59 @@
           </div>
         </div>
       </div>
-    </div>
+      <div class="popup confirm-popup">
+        <div class="popup__content">
+          <button type="button" class="popup__close hover">
+            <img
+              class="popup__close-icon"
+              src="<%=require('../image/Close-Icon.svg')%>"
+              alt="закрыть"
+            />
+          </button>
+          <form method="get" name="confirm-form" class="popup__form">
+            <h3 class="popup__title">Вы уверены?</h3>
+            <button type="submit" class="popup__button">Да</button>
+          </form>
+        </div>
+      </div>
+      <div class="popup avatar-popup">
+        <div class="popup__content">
+          <button type="button" class="popup__close hover">
+            <img
+              class="popup__close-icon"
+              src="<%=require('../image/Close-Icon.svg')%>"
+              alt="закрыть"
+            />
+          </button>
+          <form
+            novalidate
+            method="get"
+            name="avatar-form"
+            class="popup__form"
+          >
+            <h3 class="popup__title">Обновить аватар</h3>
+            <input
+              class="popup__input popup__input_type_avatar-url"
+              placeholder="Ссылка на аватар"
+              name="popup-avatar-url"
+              id="avatar-url-input"
+              type="url"
+              value=""
+              required
+            />
+            <div class="popup__error-wrapper">
+              <label
+                for="avatar-url-input"
+                class="popup__error-message"
+                id="avatar-url-input-error"
+              ></label>
+            </div>
+            <button type="submit" class="popup__button">
+              Сохранить
+            </button>
+          </form>
+        </div>
+      </div>
     <template id="card-template">
       <div class="cards__item card">
         <button type="button" class="card__trash hover"></button>
@@ -190,7 +250,10 @@
         </button>
         <div class="card__footer">
           <h2 class="card__caption"></h2>
-          <button type="button" class="card__like"></button>
+          <div class="card__like-wrapper">
+            <button type="button" class="card__like"></button>
+            <p class="card__like-quantity"></p>
+          </div>
         </div>
       </div>
     </template>

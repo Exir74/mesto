@@ -4,9 +4,9 @@ export class UserInfo {
     this._profileSubtitle = profileSubtitle
    
   }
-  setUserInfo({ name, subtitle }) {
-    this._profileName.textContent = name;
-    this._profileSubtitle.textContent = subtitle;
+  setUserInfo({ name, subtitle,}) {
+      this._profileName.textContent = name;
+      this._profileSubtitle.textContent = subtitle;
   }
 
   getUserInfo() {
@@ -16,4 +16,5 @@ export class UserInfo {
     };
     return userData
   }
+
 }
