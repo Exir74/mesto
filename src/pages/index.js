@@ -24,6 +24,7 @@ import {
   avatarUrl,
   profileAvatarImage,
   avatarForm,
+  popupButton,
 } from '../components/constants.js';
 import { Card } from '../components/Card.js';
 import { FormValidator } from '../components/FormValidator.js';
@@ -160,6 +161,7 @@ imageAddButton.addEventListener('click', () => {
 const userInfoPopup = new UserInfo({ profileName, profileSubtitle });
 const popupEditForm = new PopupWithForm(profilePopup, {
   hedlerPopupForm: (items) => {
+    setSevingText(profilePopup)
     const { [popupName]: name, [poppupSubtitle]: subtitle } = items;
     api.setUserInformation(name, subtitle);
     userInfoPopup.setUserInfo({
@@ -178,6 +180,7 @@ api.getUserInformation().then((result) => {
 });
 
 profileEditButton.addEventListener('click', () => {
+  setDefaultSevingText(profilePopup)
   const userData = userInfoPopup.getUserInfo();
   profileNamePopup.value = userData.name;
   profileSubtitlePopup.value = userData.subtitle;
@@ -186,18 +189,25 @@ profileEditButton.addEventListener('click', () => {
   validatorEditProfile.removeValidationErrors();
   validatorEditProfile.toggleButton();
 });
+function setSevingText(popup){
+  popup.querySelector(popupButton).textContent = 'Сохранение...'
+}
+function setDefaultSevingText(popup){
+  popup.querySelector(popupButton).textContent = 'Сохранить'
+}
 
 const popupEditAvatar = new PopupWithForm(avatarPopup, {
   hedlerPopupForm: (items) => {
+    setSevingText(avatarPopup)
     const { [avatarUrl]: link } = items;
     api.setUserAvatar(link);
     profileAvatarImage.src = link;
-
     popupEditAvatar.close();
   },
 });
 
 avatarEditButton.addEventListener('click', () => {
+  setDefaultSevingText(avatarPopup)
   popupEditAvatar.open();
   popupEditAvatar.setEventListeners();
   validatorAvatar.removeValidationErrors();
