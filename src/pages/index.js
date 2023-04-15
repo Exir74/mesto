@@ -23,7 +23,7 @@ import {
   avatarEditButton,
   avatarPopup,
   avatarUrl,
-  profileAvatarImage
+  profileAvatarImage,
 } from '../components/constants.js';
 import { Card } from '../components/Card.js';
 import { FormValidator } from '../components/FormValidator.js';
@@ -68,7 +68,7 @@ const createCard = (item, user) => {
       },
     },
     {
-      handleOwner: (control, element,) => {
+      handleOwner: (control, element) => {
         if (control === true) {
           element
             .querySelector('.card__trash')
@@ -123,7 +123,7 @@ api.getUserInformation().then((user) => {
     name: [user.name],
     subtitle: [user.about],
   });
-  profileAvatarImage.src = user.avatar
+  profileAvatarImage.src = user.avatar;
   api.getInitialCards().then((result) => {
     result.forEach((element) => {
       checkOwnerImage(user, element);
@@ -153,7 +153,7 @@ const popupImageAdd = new PopupWithForm(cardPopup, {
 popupImageAdd.setEventListeners();
 imageAddButton.addEventListener('click', () => {
   popupImageAdd.open();
-  validatorAddCard.removeValidationErrors()
+  validatorAddCard.removeValidationErrors();
   validatorAddCard.toggleButton();
 });
 
@@ -174,7 +174,7 @@ api.getUserInformation().then((result) => {
     name: [result.name],
     subtitle: [result.about],
   });
-  profileAvatarImage.src = result.avatar
+  profileAvatarImage.src = result.avatar;
 });
 
 profileEditButton.addEventListener('click', () => {
@@ -183,30 +183,24 @@ profileEditButton.addEventListener('click', () => {
   profileSubtitlePopup.value = userData.subtitle;
   popupEditForm.open();
   popupEditForm.setEventListeners();
-  validatorEditProfile.removeValidationErrors()
+  validatorEditProfile.removeValidationErrors();
   validatorEditProfile.toggleButton();
 });
 
-
 const popupEditAvatar = new PopupWithForm(avatarPopup, {
   hedlerPopupForm: (items) => {
-    const { [avatarUrl]: link, } = items;
-    api.getUserInformation().then((result) => {
-      console.log(link)
-        api.setUserAvatar(result.name,result.about,link);
-      });
-      // profileAvatarImage.src = result.avatar
-    
- 
-      
-    // popupEditAvatar.close();
+    const { [avatarUrl]: link } = items;
+    api.setUserAvatar(link);
+    profileAvatarImage.src = link;
+
+    popupEditAvatar.close();
   },
 });
 
-avatarEditButton.addEventListener('click',()=>{
-  popupEditAvatar.open()
+avatarEditButton.addEventListener('click', () => {
+  popupEditAvatar.open();
   popupEditAvatar.setEventListeners();
-  })
+});
 
 const validatorEditProfile = new FormValidator(
   formValidationConfig,

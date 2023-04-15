@@ -18,7 +18,7 @@ export class Api {
         return Promise.reject(`Ошибка: ${res.status}`);
       })
       .then((result) => {
-        console.log(result);
+        // console.log(result);
         return result;
       })
       .catch((reject) => {
@@ -168,16 +168,15 @@ export class Api {
         return result;
       });
   }
-  setUserAvatar(name,about,link) {
-    return fetch(this.baseUrl + '/users/me', {
+  setUserAvatar(link) {
+    console.log(link);
+    return fetch(this.baseUrl + '/users/me/avatar', {
       method: 'PATCH',
       headers: {
         authorization: this.headers.authorization,
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        name: name,
-        about: about,
         avatar: link
       }),
     })
