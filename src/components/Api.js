@@ -40,16 +40,14 @@ export class Api {
         return Promise.reject(`Ошибка: ${res.status}`);
       })
       .then((result) => {
-        // console.log(result);
         return result;
-        // cardItem.renderItem(result);
       })
       .catch((reject) => {
         console.log(reject);
       });
   }
 
-  setUserInformation(name, subtitle,) {
+  setUserInformation(name, subtitle) {
     return fetch(this.baseUrl + '/users/me', {
       method: 'PATCH',
       headers: {
@@ -91,9 +89,7 @@ export class Api {
         return Promise.reject(`Ошибка: ${res.status}`);
       })
       .then((result) => {
-        // console.log(result);
         return result;
-        // cardItem.renderItem([result]);
       })
       .catch((reject) => {
         console.log(reject);
@@ -131,24 +127,6 @@ export class Api {
         return result;
       });
   }
-  // removeLike(cardId, newLikesArr) {
-  //   return fetch(this.baseUrl + '/cards/' + cardId + '/likes', {
-  //     method: 'DELETE',
-  //     headers: {
-  //       authorization: this.headers.authorization,
-  //       // 'Content-Type': 'application/json',
-  //     },
-  //   })
-  //     .then((res) => {
-  //       if (res.ok) {
-  //         return res.json();
-  //       }
-  //       return Promise.reject(`Ошибка: ${res.status}`);
-  //     })
-  //     .then((result) => {
-  //       return result;
-  //     });
-  // }
   removeLike(cardId) {
     return fetch(this.baseUrl + '/cards/' + cardId + '/likes', {
       method: 'DELETE',
@@ -176,7 +154,7 @@ export class Api {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        avatar: link
+        avatar: link,
       }),
     })
       .then((res) => {
@@ -189,5 +167,4 @@ export class Api {
         console.log(reject);
       });
   }
-
 }
