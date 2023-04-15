@@ -52,8 +52,6 @@ const popupConfirm = new PopupWithConfirm(popupConfirmSelector, {
   },
 });
 
-
-
 popupConfirm.setEventListeners();
 const popupImage = new PopupWithImage(imagePopup);
 const createCard = (item, user) => {
@@ -72,8 +70,8 @@ const createCard = (item, user) => {
       },
     },
     {
-      handleOwner: (control, element) => {
-        if (control === true) {
+      handleOwner: (element, isOwner) => {
+        if (isOwner) {
           element
             .querySelector('.card__trash')
             .classList.add('card__trash_active');
@@ -84,9 +82,16 @@ const createCard = (item, user) => {
       handleLikes: (user, data) => {
         data.likes.forEach((item) => {
           if (item._id === user._id) {
-            card.setLikes();
+            card.toggleLike();
           }
         });
+
+
+        // api
+        //   .setLike(card.isLiked()) // Состояние текущего лайка получаем при помощи вызова публичного метода isLiked
+        //   .then((cardData) => {
+        //     card.updateLikes(cardData.likes); // updateLikes устанавливает новое количество лайков и обновляет состояние кнопки
+        //   });
       },
     },
     {
@@ -153,22 +158,22 @@ Promise.all([api.getUserInformation(), api.getInitialCards()])
       subtitle: [user.about],
     });
     profileAvatarImage.src = user.avatar;
-    cards.forEach((element) => {
-      checkOwnerImage(user, element);
-    });
+    // cards.forEach((element) => {
+    //   checkOwnerImage(user, element);
+    // });
     cardItem.renderItem(cards, user);
   })
   .catch((err) => {
     console.log(err);
   });
 
-function checkOwnerImage(user, element) {
-  if (user._id === element.owner._id) {
-    element.control = true;
-  } else {
-    element.control = false;
-  }
-}
+// function checkOwnerImage(user, element) {
+//   if (user._id === element.owner._id) {
+//     element.control = true;
+//   } else {
+//     element.control = false;
+//   }
+// }
 
 const popupImageAdd = new PopupWithForm(cardPopup, {
   handleFormSubmit: (items) => {

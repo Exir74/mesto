@@ -46,31 +46,32 @@ export class Card {
         this._cardLikeButton
       );
       this.toggleLike();
-
+      console.log(this.checkOwner());
     });
   }
   toggleLike() {
     this._cardLikeButton.classList.toggle('card__like_active');
   }
 
+  _checkOwner() {
+    return this._user._id === this._data.owner._id;
+  }
 
+  updateLikes(l){
+
+  }
 
   generateCard() {
     this._element = this._getTemplate();
     this._setListeners();
-    this._cardImage = this._element.querySelector('.card__image')
+    this._cardImage = this._element.querySelector('.card__image');
     this._cardImage.src = this._image;
     this._element.querySelector('.card__caption').textContent =
       this._name;
-      this._cardImage.alt = this._name;
+    this._cardImage.alt = this._name;
     this._element.querySelector('.card__like-quantity').textContent =
       this._likes.length;
-    this._handleOwner(
-      this._data.control,
-      this._element,
-      this._data,
-      this._user
-    );
+    this._handleOwner(this._element, this._checkOwner());
     this._handleLikes(this._user, this._data);
     return this._element;
   }
