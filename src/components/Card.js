@@ -60,7 +60,6 @@ export class Card {
   _checkLike() {
     this._likes.forEach((item) => {
       if (item._id === this._user._id) {
-        console.log(item._id === this._user);
         this.updateLikes(this._likes);
       }
     });
