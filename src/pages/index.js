@@ -1,6 +1,5 @@
 import './index.css';
 import {
-  initialCards,
   formValidationConfig,
   imageTemplate,
   profilePopup,
@@ -201,8 +200,8 @@ const popupEditAvatar = new PopupWithForm(avatarPopup, {
 avatarEditButton.addEventListener('click', () => {
   popupEditAvatar.open();
   popupEditAvatar.setEventListeners();
-  // validatorAvatar.removeValidationErrors();
-  // validatorAvatar.toggleButton();
+  validatorAvatar.removeValidationErrors();
+  validatorAvatar.toggleButton();
 });
 
 const validatorEditProfile = new FormValidator(
