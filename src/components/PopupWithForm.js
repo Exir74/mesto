@@ -21,8 +21,8 @@ export class PopupWithForm extends Popup {
     super.setEventListeners();
     this._popupForm.addEventListener('submit', this._handleSubmit);
   }
-  setSavingText(popup) {
-    console.log(this);
+  setSavingText() {
+    console.log(popup);
     popup.querySelector(popupButton).textContent = 'Сохранение...';
   }
   setDefaultSavingText() {
