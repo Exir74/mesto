@@ -24,6 +24,7 @@ import {
   avatarPopup,
   avatarUrl,
   profileAvatarImage,
+  avatarForm,
 } from '../components/constants.js';
 import { Card } from '../components/Card.js';
 import { FormValidator } from '../components/FormValidator.js';
@@ -200,6 +201,8 @@ const popupEditAvatar = new PopupWithForm(avatarPopup, {
 avatarEditButton.addEventListener('click', () => {
   popupEditAvatar.open();
   popupEditAvatar.setEventListeners();
+  // validatorAvatar.removeValidationErrors();
+  // validatorAvatar.toggleButton();
 });
 
 const validatorEditProfile = new FormValidator(
@@ -210,5 +213,10 @@ const validatorAddCard = new FormValidator(
   formValidationConfig,
   cardForm
 );
+const validatorAvatar = new FormValidator(
+  formValidationConfig,
+  avatarForm
+);
 validatorEditProfile.enableValidation();
 validatorAddCard.enableValidation();
+validatorAvatar.enableValidation()

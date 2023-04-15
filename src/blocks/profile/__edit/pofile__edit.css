@@ -4,8 +4,8 @@
   border-radius: 50%;
   background-color: inherit;
   border: none;
-  width: 120px;
-  height: 120px;
+  max-width: 120px;
+  max-height: 120px;
   display: grid;
 }
 @media screen and (max-width: 707px) {

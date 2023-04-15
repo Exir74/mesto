@@ -68,6 +68,7 @@ export const placeUrl = document.querySelector(
 );
 export const profileForm = document.forms['profile-form'];
 export const cardForm = document.forms['card-form'];
+export const avatarForm = document.forms['avatar-form'];
 export const cards = page.querySelector('.cards');
 export const cardContainer = '.cards';
 export const imagePopup = page.querySelector('.image-popup');
