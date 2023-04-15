@@ -4,7 +4,7 @@ export class PopupWithConfirm extends Popup {
     super(popup);
     this.handleConfirm  = handleConfirm ;
     this._popupForm = this._popup.querySelector('.popup__form');
-    this._handleFormSubmit = this._handleFormSubmit.bind(this);
+    this._handleSubmit = this._handleSubmit.bind(this);
   }
 
   open(item, id) {
@@ -13,12 +13,12 @@ export class PopupWithConfirm extends Popup {
     super.open();
   }
 
-  _handleFormSubmit(event) {
+  _handleSubmit(event) {
     event.preventDefault();
     this.handleConfirm(this._item, this._id);
   }
   setEventListeners() {
     super.setEventListeners();
-    this._popupForm.addEventListener('submit', this._handleFormSubmit);
+    this._popupForm.addEventListener('submit', this._handleSubmit);
   }
 }
