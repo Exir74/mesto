@@ -80,7 +80,6 @@ const createCard = (item, user) => {
         api
           .setLike(cardId)
           .then((cardData) => {
-            console.log(cardData);
             card.updateLikes(cardData.likes);
           })
           .catch((err) => {
@@ -90,7 +89,6 @@ const createCard = (item, user) => {
         api
           .removeLike(cardId)
           .then((cardData) => {
-            console.log(cardData);
             card.updateLikes(cardData.likes);
           })
           .catch((err) => {

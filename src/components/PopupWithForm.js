@@ -11,7 +11,6 @@ export class PopupWithForm extends Popup {
     this._popupButton = this._popup.querySelector('.popup__button');
   }
   close() {
-    console.log(this._popupButton.textContent);
     super.close();
     this._popupForm.reset();
   }
