@@ -24,7 +24,6 @@ import {
   avatarUrl,
   profileAvatarImage,
   avatarForm,
-  popupButton,
 } from '../utils/constants.js';
 import { Card } from '../components/Card.js';
 import { FormValidator } from '../components/FormValidator.js';
@@ -45,7 +44,7 @@ const api = new Api({
 const popupConfirm = new PopupWithConfirm(popupConfirmSelector, {
   handleConfirm: (element) => {
     api
-      .deleteUserCard(element.getId())
+      .deleteUserCard(element.getCardId())
       .then((res) => {
         element.deleteCard();
         popupConfirm.close();
@@ -158,7 +157,7 @@ const userInfoPopup = new UserInfo({
 });
 const popupEditForm = new PopupWithForm(profilePopup, {
   handleFormSubmit: (items) => {
-    popupEditForm.setSavingText(profilePopup);
+    popupEditForm.setSavingText();
     const { [popupName]: name, [poppupSubtitle]: subtitle } = items;
     api
       .setUserInformation(name, subtitle)
@@ -172,13 +171,12 @@ const popupEditForm = new PopupWithForm(profilePopup, {
       .catch((err) => {
         console.log(err);
       })
-      .finally(()=>{
-        popupEditForm.setDefaultSavingText()
-      })
+      .finally(() => {
+        popupEditForm.setDefaultSavingText();
+      });
   },
 });
 const handlerProfileEditButton = () => {
-  setDefaultSevingText(profilePopup);
   const userData = userInfoPopup.getUserInfo();
   profileNamePopup.value = userData.name;
   profileSubtitlePopup.value = userData.subtitle;
@@ -188,27 +186,27 @@ const handlerProfileEditButton = () => {
 };
 profileEditButton.addEventListener('click', handlerProfileEditButton);
 popupEditForm.setEventListeners();
-function setSavingText(popup) {
-  popup.querySelector(popupButton).textContent = 'Сохранение...';
-}
-function setDefaultSevingText(popup) {
-  popup.querySelector(popupButton).textContent = 'Сохранить';
-}
 
 const popupEditAvatar = new PopupWithForm(avatarPopup, {
   handleFormSubmit: (items) => {
-    setSavingText(avatarPopup);
+    popupEditAvatar.setSavingText();
     const { [avatarUrl]: link } = items;
-    api.setUserAvatar(link).catch((reject) => {
-      console.log(reject);
-    });
-    profileAvatarImage.src = link;
-    popupEditAvatar.close();
+    api
+      .setUserAvatar(link)
+      .then(() => {
+        profileAvatarImage.src = link;
+        popupEditAvatar.close();
+      })
+      .catch((reject) => {
+        console.log(reject);
+      })
+      .finally(() => {
+        popupEditAvatar.setDefaultSavingText();
+      });
   },
 });
 popupEditAvatar.setEventListeners();
 const handlerAvatarEditButton = () => {
-  setDefaultSevingText(avatarPopup);
   popupEditAvatar.open();
   validatorAvatar.removeValidationErrors();
   validatorAvatar.toggleButton();

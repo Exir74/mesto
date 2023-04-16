@@ -8,8 +8,10 @@ export class PopupWithForm extends Popup {
     this._popupForm = this._popup.querySelector('.popup__form');
     this._inputList =
       this._popupForm.querySelectorAll('.popup__input');
+    this._popupButton = this._popup.querySelector('.popup__button');
   }
   close() {
+    console.log(this._popupButton.textContent);
     super.close();
     this._popupForm.reset();
   }
@@ -22,13 +24,10 @@ export class PopupWithForm extends Popup {
     this._popupForm.addEventListener('submit', this._handleSubmit);
   }
   setSavingText() {
-    console.log(popup);
-    popup.querySelector(popupButton).textContent = 'Сохранение...';
+    this._popupButton.textContent = 'Сохранение...';
   }
   setDefaultSavingText() {
-    this._popup.querySelector(popupButton).textContent = 'Сохранить';
-    
-    // popup.querySelector(popupButton).textContent = 'Сохранить';
+    this._popupButton.textContent = 'Сохранить';
   }
   _getInputValues() {
     this._formValues = {};

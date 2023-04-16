@@ -43,7 +43,7 @@ export class Card {
       this._handleLikeChange(this._data._id);
     });
   }
-  getId(){
+  getCardId(){
     return this._data._id
   }
   _checkOwner() {
