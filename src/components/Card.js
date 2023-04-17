@@ -47,7 +47,7 @@ export class Card {
     return this._data._id
   }
   _checkOwner() {
-    return this._user._id === this._data.owner._id;
+    return this._user === this._data.owner._id;
   }
   toggleLike() {
     this._cardLikeButton.classList.toggle('card__like_active');
@@ -61,7 +61,7 @@ export class Card {
   }
   _checkLike() {
     this._likes.forEach((item) => {
-      if (item._id === this._user._id) {
+      if (item._id === this._user) {
         this.updateLikes(this._likes);
       }
     });

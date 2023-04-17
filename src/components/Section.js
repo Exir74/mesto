@@ -7,10 +7,10 @@ export class Section {
   addItem(item) {
     this._container.prepend(item);
   }
-  renderItem(items, user) {
+  renderItem(items) {
     this._renderedItems = items;
     this._renderedItems.reverse().forEach((item) => {
-      this._renderer(item, user);
+      this._renderer(item);
     });
   }
 }

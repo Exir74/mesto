@@ -57,8 +57,8 @@ const popupConfirm = new PopupWithConfirm(popupConfirmSelector, {
 
 popupConfirm.setEventListeners();
 const popupImage = new PopupWithImage(imagePopup);
-const createCard = (item, user) => {
-  const card = new Card(item, user, imageTemplate, {
+const createCard = (item) => {
+  const card = new Card(item, userInfoPopup.getUserId(), imageTemplate, {
     handleCardClick: () => {
       popupImage.open(item);
     },
@@ -103,8 +103,8 @@ popupImage.setEventListeners();
 const cardSection = new Section(
   {
     data: [],
-    renderer: (item, user) => {
-      const cardElement = createCard(item, user);
+    renderer: (item) => {
+      const cardElement = createCard(item);
       cardSection.addItem(cardElement);
     },
   },
@@ -112,7 +112,6 @@ const cardSection = new Section(
 );
 Promise.all([api.getUserInformation(), api.getInitialCards()])
   .then(([user, cards]) => {
-    console.log(user)
     userInfoPopup.setUserInfo(user)
     cardSection.renderItem(cards, user);
   })
