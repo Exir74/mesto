@@ -148,7 +148,7 @@ const userInfoPopup = new UserInfo({
 });
 const popupEditForm = new PopupWithForm(profilePopup, {
   handleFormSubmit: (items) => {
-    popupEditForm.setSavingText();
+    popupEditForm.setButtonText('Сохранение...');
     const {[popupName]: name, [poppupSubtitle]: about} = items;
     api
       .setUserInformation(name, about)
@@ -160,7 +160,7 @@ const popupEditForm = new PopupWithForm(profilePopup, {
         console.log(err);
       })
       .finally(() => {
-        popupEditForm.setDefaultSavingText();
+        popupEditForm.setButtonText('Сохранить')
       });
   },
 });
@@ -177,7 +177,7 @@ popupEditForm.setEventListeners();
 
 const popupEditAvatar = new PopupWithForm(avatarPopup, {
   handleFormSubmit: (items) => {
-    popupEditAvatar.setSavingText();
+    popupEditAvatar.setButtonText('Сохранение...');
     const {[avatarUrl]: link} = items;
     api
       .setUserAvatar(link)
@@ -189,7 +189,7 @@ const popupEditAvatar = new PopupWithForm(avatarPopup, {
         console.log(reject);
       })
       .finally(() => {
-        popupEditAvatar.setDefaultSavingText();
+        popupEditAvatar.setButtonText('Сохранить');
       });
   },
 });
