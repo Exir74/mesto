@@ -20,9 +20,6 @@ export class Api {
       .then((res) => {
         return this._getResponseData(res);
       })
-      .then((result) => {
-        return result;
-      });
   }
 
   getInitialCards() {
@@ -35,9 +32,6 @@ export class Api {
       .then((res) => {
         return this._getResponseData(res);
       })
-      .then((result) => {
-        return result;
-      });
   }
 
   setUserInformation(name, subtitle) {
@@ -71,9 +65,6 @@ export class Api {
       .then((res) => {
         return this._getResponseData(res);
       })
-      .then((result) => {
-        return result;
-      })
   }
   deleteUserCard(cardId) {
     return fetch(`${this.baseUrl}/cards/${cardId}`, {
@@ -97,9 +88,6 @@ export class Api {
       .then((res) => {
         return this._getResponseData(res);
       })
-      .then((result) => {
-        return result;
-      });
   }
   removeLike(cardId) {
     return fetch(`${this.baseUrl}/cards/${cardId}/likes`, {
@@ -112,9 +100,6 @@ export class Api {
       .then((res) => {
         return this._getResponseData(res);
       })
-      .then((result) => {
-        return result;
-      });
   }
   setUserAvatar(link) {
     return fetch(`${this.baseUrl}/users/me/avatar`, {
