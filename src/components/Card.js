@@ -57,7 +57,7 @@ export class Card {
     this._likeQuantity.textContent = likes.length;
   }
   isLiked() {
-    return this._element.querySelector('.card__like_active');
+    return this._cardLikeButton.classList.value.includes('card__like_active')
   }
   _checkLike() {
     this._likes.forEach((item) => {

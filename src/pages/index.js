@@ -76,6 +76,7 @@ const createCard = (item) => {
     },
 
     handleLikeChange: () => {
+      console.log(card.isLiked())
       if (!card.isLiked()) {
         api
           .setLike(card.getCardId())
