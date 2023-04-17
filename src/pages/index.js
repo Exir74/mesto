@@ -45,7 +45,7 @@ const popupConfirm = new PopupWithConfirm(popupConfirmSelector, {
   handleConfirm: (element) => {
     api
       .deleteUserCard(element.getCardId())
-      .then((res) => {
+      .then(() => {
         element.deleteCard();
         popupConfirm.close();
       })
@@ -67,16 +67,7 @@ const createCard = (item) => {
       popupConfirm.open(item);
     },
 
-    handleOwner: (element, isOwner) => {
-      if (isOwner) {
-        element
-          .querySelector('.card__trash')
-          .classList.add('card__trash_active');
-      }
-    },
-
     handleLikeChange: () => {
-      console.log(card.isLiked())
       if (!card.isLiked()) {
         api
           .setLike(card.getCardId())

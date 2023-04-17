@@ -14,8 +14,7 @@ export class FormValidator {
     );
   }
   _getInput() {
-    const inputList = Array.from(this._formInputs);
-    return inputList;
+    return Array.from(this._formInputs);
   }
   enableValidation() {
     this._elementList = this._getInput();

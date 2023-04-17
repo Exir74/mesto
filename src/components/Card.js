@@ -6,7 +6,6 @@ export class Card {
     {
       handleCardClick,
       handleTrashClick,
-      handleOwner,
       handleLikeChange,
     }
   ) {
@@ -18,14 +17,12 @@ export class Card {
     this._handleTrashClick = handleTrashClick;
     this._data = data;
     this._user = user;
-    this._handleOwner = handleOwner;
     this._handleLikeChange = handleLikeChange;
   }
   _getTemplate() {
-    const cardElement = this._imageTemplate
+    return this._imageTemplate
       .querySelector('.cards__item')
       .cloneNode(true);
-    return cardElement;
   }
   _setListeners() {
     this._element
@@ -49,6 +46,13 @@ export class Card {
   _checkOwner() {
     return this._user === this._data.owner._id;
   }
+  _activateTrashButton(){
+    if (this._checkOwner()) {
+      this._element
+        .querySelector('.card__trash')
+        .classList.add('card__trash_active');
+    }
+  }
   toggleLike() {
     this._cardLikeButton.classList.toggle('card__like_active');
   }
@@ -68,6 +72,7 @@ export class Card {
   }
   deleteCard() {
     this._element.remove()
+    this._element = null
   }
   generateCard() {
     this._element = this._getTemplate();
@@ -82,7 +87,7 @@ export class Card {
     );
     this._element.querySelector('.card__like-quantity').textContent =
       this._likes.length;
-    this._handleOwner(this._element, this._checkOwner());
+    this._activateTrashButton()
     this._checkLike();
     return this._element;
   }
