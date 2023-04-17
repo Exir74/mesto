@@ -112,11 +112,8 @@ const cardSection = new Section(
 );
 Promise.all([api.getUserInformation(), api.getInitialCards()])
   .then(([user, cards]) => {
-    userInfoPopup.setUserInfo({
-      name: [user.name],
-      subtitle: [user.about],
-      avatar: [user.avatar]
-    });
+    console.log(user)
+    userInfoPopup.setUserInfo(user)
     cardSection.renderItem(cards, user);
   })
   .catch((err) => {
@@ -125,7 +122,7 @@ Promise.all([api.getUserInformation(), api.getInitialCards()])
 
 const popupImageAdd = new PopupWithForm(cardPopup, {
   handleFormSubmit: (items) => {
-    const { [popupPlaceName]: name, [popupPlaceUrl]: link } = items;
+    const {[popupPlaceName]: name, [popupPlaceUrl]: link} = items;
     api
       .addUserCard(name, link)
       .then((result) => {
@@ -153,15 +150,11 @@ const userInfoPopup = new UserInfo({
 const popupEditForm = new PopupWithForm(profilePopup, {
   handleFormSubmit: (items) => {
     popupEditForm.setSavingText();
-    const { [popupName]: name, [poppupSubtitle]: subtitle } = items;
+    const {[popupName]: name, [poppupSubtitle]: about} = items;
     api
-      .setUserInformation(name, subtitle)
+      .setUserInformation(name, about)
       .then((res) => {
-        userInfoPopup.setUserInfo({
-          name,
-          subtitle,
-          avatar: [userInfoPopup.getUserInfo().avatar]
-        });
+        userInfoPopup.setUserInfo(res)
         popupEditForm.close();
       })
       .catch((err) => {
@@ -175,7 +168,7 @@ const popupEditForm = new PopupWithForm(profilePopup, {
 const handleEditProfileSubmit = () => {
   const userData = userInfoPopup.getUserInfo();
   profileNamePopup.value = userData.name;
-  profileSubtitlePopup.value = userData.subtitle;
+  profileSubtitlePopup.value = userData.about;
   popupEditForm.open();
   validatorEditProfile.removeValidationErrors();
   validatorEditProfile.toggleButton();
@@ -186,14 +179,11 @@ popupEditForm.setEventListeners();
 const popupEditAvatar = new PopupWithForm(avatarPopup, {
   handleFormSubmit: (items) => {
     popupEditAvatar.setSavingText();
-    const { [avatarUrl]: link } = items;
+    const {[avatarUrl]: link} = items;
     api
       .setUserAvatar(link)
-      .then(() => {
-        userInfoPopup.setUserInfo({
-          avatar: link,
-          name:[userInfoPopup.getUserInfo().name],
-          subtitle:[userInfoPopup.getUserInfo().subtitle]})
+      .then((res) => {
+        userInfoPopup.setUserInfo(res)
         popupEditAvatar.close();
       })
       .catch((reject) => {
