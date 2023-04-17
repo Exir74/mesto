@@ -9,11 +9,10 @@ export class UserInfo {
     this._profileSubtitle.textContent = subtitle;
   }
   getUserInfo() {
-    const userData = {
+    return {
       name: this._profileName.textContent,
       subtitle: this._profileSubtitle.textContent,
     };
-    return userData;
   }
   setAvatar({ avatar }) {
     this._profileAvatarImage.src = avatar;
