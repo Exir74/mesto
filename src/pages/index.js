@@ -189,7 +189,7 @@ const popupEditAvatar = new PopupWithForm(avatarPopup, {
     api
       .setUserAvatar(link)
       .then(() => {
-        profileAvatarImage.src = link;
+        userInfoPopup.setAvatar({ avatar: link });
         popupEditAvatar.close();
       })
       .catch((reject) => {
