@@ -16,4 +16,5 @@ export class UserInfo {
       avatar: this._profileAvatarImage.src
     };
   }
+
 }
