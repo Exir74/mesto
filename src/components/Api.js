@@ -3,6 +3,7 @@ export class Api {
     this.baseUrl = options.baseUrl;
     this.headers = options.headers;
   }
+
   _getResponseData(res) {
     if (!res.ok) {
       return Promise.reject(`Ошибка: ${res.status}`);
@@ -66,6 +67,7 @@ export class Api {
         return this._getResponseData(res);
       })
   }
+
   deleteUserCard(cardId) {
     return fetch(`${this.baseUrl}/cards/${cardId}`, {
       method: 'DELETE',
@@ -77,6 +79,7 @@ export class Api {
       return this._getResponseData(res);
     });
   }
+
   setLike(cardId) {
     return fetch(this.baseUrl + '/cards/' + cardId + '/likes', {
       method: 'PUT',
@@ -89,6 +92,7 @@ export class Api {
         return this._getResponseData(res);
       })
   }
+
   removeLike(cardId) {
     return fetch(`${this.baseUrl}/cards/${cardId}/likes`, {
       method: 'DELETE',
@@ -101,6 +105,7 @@ export class Api {
         return this._getResponseData(res);
       })
   }
+
   setUserAvatar(link) {
     return fetch(`${this.baseUrl}/users/me/avatar`, {
       method: 'PATCH',
