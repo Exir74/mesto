@@ -115,8 +115,8 @@ Promise.all([api.getUserInformation(), api.getInitialCards()])
     userInfoPopup.setUserInfo({
       name: [user.name],
       subtitle: [user.about],
+      avatar: [user.avatar]
     });
-    userInfoPopup.setAvatar({ avatar: [user.avatar] });
     cardSection.renderItem(cards, user);
   })
   .catch((err) => {
@@ -160,6 +160,7 @@ const popupEditForm = new PopupWithForm(profilePopup, {
         userInfoPopup.setUserInfo({
           name,
           subtitle,
+          avatar: [userInfoPopup.getUserInfo().avatar]
         });
         popupEditForm.close();
       })
@@ -189,7 +190,10 @@ const popupEditAvatar = new PopupWithForm(avatarPopup, {
     api
       .setUserAvatar(link)
       .then(() => {
-        userInfoPopup.setAvatar({ avatar: link });
+        userInfoPopup.setUserInfo({
+          avatar: link,
+          name:[userInfoPopup.getUserInfo().name],
+          subtitle:[userInfoPopup.getUserInfo().subtitle]})
         popupEditAvatar.close();
       })
       .catch((reject) => {
