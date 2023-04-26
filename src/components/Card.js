@@ -51,7 +51,7 @@ export class Card {
     return this._user === this._data.owner._id;
   }
 
-  _activateTrashButton() {
+  _checkTrashButton() {
     if (this._checkOwner()) {
       this._element
         .querySelector('.card__trash')
@@ -73,11 +73,10 @@ export class Card {
   }
 
   _checkLike() {
-    this._likes.some((item) => {
-      if (item._id === this._user) {
-        this.updateLikes(this._likes);
-      }
-    })
+    const isLiked = this._likes.some(like => like._id === this._user);
+    if (isLiked) {
+      this.updateLikes(this._likes);
+    }
   }
 
   deleteCard() {
@@ -98,7 +97,7 @@ export class Card {
     );
     this._element.querySelector('.card__like-quantity').textContent =
       this._likes.length;
-    this._activateTrashButton()
+    this._checkTrashButton()
     this._checkLike();
     return this._element;
   }
